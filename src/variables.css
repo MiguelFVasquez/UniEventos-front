@@ -1,0 +1,9 @@
+body {
+    --text-color: #222;
+    --background-color: #fff;
+  }
+  
+  body.dark-theme {
+    --text-color: #fff;
+    --background-color: #222;
+  }

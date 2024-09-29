@@ -37,10 +37,6 @@ body {
     align-items: center; /* Centrar contenido dentro del contenedor */
 }
 
-.cabezal{
-    background-color: #181717;
-    text-align: center;    
-}
 h1{
     margin-top: 1%;
 }
@@ -92,12 +88,9 @@ input {
     color: var(--button-text-color);
 }
 
-.registrate {
-    background-color: transparent;
-    color: var(--button-bg-color);
-    text-align: center;
+.btn.secondary {
+    background-color: #007BFF;
 }
-
 .forgot-password {
     display: block;
     margin-bottom: 10px;

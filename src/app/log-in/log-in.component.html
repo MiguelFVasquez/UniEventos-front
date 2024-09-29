@@ -1,7 +1,3 @@
-
-<div class="cabezal">
-    <h1 >NEO TICKET</h1>
-</div>
 <div class="container">
     <div class="form-container">
         <h2>Iniciar Sesión</h2>
@@ -15,8 +11,8 @@
                 <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">👁️</button>
             </div>
             <a href="#" class="forgot-password">Olvidaste la contraseña?</a>
-            <button type="submit" class="btn">Ingresar</button>
-            <a href="#" class="btn registrate">Registrate</a>
+            <button type="submit" class="btn" >Ingresar</button>
+            <button type="button" class="btn secondary" [routerLink]="['/registro']">Registrarse</button>
         </form>
     </div>
 </div>
