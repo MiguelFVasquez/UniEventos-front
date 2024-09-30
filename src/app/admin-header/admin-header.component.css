@@ -3,7 +3,7 @@
     position: sticky; /* Para que se quede pegado en la parte superior al hacer scroll */
     top: 0;
     z-index: 1000; /* Para que esté encima de otros elementos */
-    background-color: var(--header-bg-color, #333); /* Color de fondo adaptable */
+    background-color: var(--header-bg-color, #192b94d8); /* Color de fondo adaptable */
     color: var(--header-text-color, white); /* Color del texto adaptable */
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra para efecto flotante */

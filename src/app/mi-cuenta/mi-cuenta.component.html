@@ -1,0 +1,45 @@
+<div class="mi-cuenta-container">
+  <h2>Mi Cuenta</h2>
+  <form>
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        [(ngModel)]="nombre"
+        [readonly]="!editMode"
+        placeholder="Nombre"
+      />
+    </div>
+    <div class="form-group">
+      <label for="correo">Correo electrónico</label>
+      <input
+        type="email"
+        id="correo"
+        name="correo"
+        [(ngModel)]="correo"
+        [readonly]="!editMode"
+        placeholder="Correo electrónico"
+      />
+    </div>
+    <div class="form-group" *ngIf="editMode">
+      <label for="password">Contraseña</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Contraseña"
+      />
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn" (click)="toggleEditMode()">
+        {{ editMode ? 'Guardar' : 'Actualizar' }}
+      </button>
+      <button type="button" class="btn secondary" (click)="logout()">
+        Cerrar Sesión
+      </button>
+    </div>
+  </form>
+</div>
