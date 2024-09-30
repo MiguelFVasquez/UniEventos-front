@@ -1,0 +1,27 @@
+<div class="cupon-card">
+  <div class="cupon-header">
+    <h3>{{ cupon.nombre }}</h3>
+    <span [ngClass]="cupon.estado === 'Disponible' ? 'cupon-status disponible' : 'cupon-status no-disponible'">
+      {{ cupon.estado }}
+    </span>
+  </div>
+  <div class="cupon-body">
+    <div class="cupon-info">
+      <span>Descuento:</span> {{ cupon.descuento }}%
+    </div>
+    <div class="cupon-info">
+      <span>Código:</span> {{ cupon.codigo }}
+    </div>
+    <div class="cupon-info">
+      <span>Fecha de Vencimiento:</span> {{ cupon.fechaVencimiento }}
+    </div>
+    <div class="cupon-info">
+      <span>Tipo:</span> {{ cupon.tipo }}
+    </div>
+    <div class="cupon-footer">
+      <button (click)="editarCupon(cupon)">Editar</button>
+      <button (click)="eliminarCupon(cupon)">Eliminar</button>
+    </div>
+  </div>
+  
+</div>

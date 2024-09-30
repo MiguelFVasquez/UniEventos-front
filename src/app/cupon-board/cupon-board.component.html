@@ -1,0 +1,11 @@
+<div class="cupon-board">
+    <h2>Cupones disponibles</h2>
+    <button class="btn" (click)="agregarCupon()">Agregar Cupon</button>
+    <div class="cupon-list">
+      <app-cupon-card 
+        *ngFor="let cupon of cupones" 
+        [cupon]="cupon">
+      </app-cupon-card>
+    </div>
+  </div>  
+<router-outlet></router-outlet>

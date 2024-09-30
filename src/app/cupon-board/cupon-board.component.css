@@ -1,0 +1,38 @@
+.cupon-board {
+    width: 100%; /* Asegura que el ancho sea igual al del adminHeader */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .cupon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .cupon-header h2 {
+    margin: 0;
+  }
+  
+  .btn{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .cupon-cards {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
