@@ -1,0 +1,51 @@
+/* Aseguramos que el header se mantenga en la parte superior */
+.admin-header {
+    position: sticky; /* Para que se quede pegado en la parte superior al hacer scroll */
+    top: 0;
+    z-index: 1000; /* Para que esté encima de otros elementos */
+    background-color: var(--header-bg-color, #333); /* Color de fondo adaptable */
+    color: var(--header-text-color, white); /* Color del texto adaptable */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra para efecto flotante */
+  }
+  
+  /* Estilo de la barra de navegación */
+  .navbar {
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos entre el logo y el menú */
+    align-items: center;
+    max-width: 1200px; /* Para que no sea demasiado ancho */
+    margin: 0 auto; /* Centra la barra en la página */
+  }
+  
+  /* Estilo del logo */
+  .navbar-logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: inherit; /* Hereda el color del header */
+  }
+  
+  /* Estilo del menú */
+  .navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Espaciado entre las opciones del menú */
+  }
+  
+  /* Estilo de los enlaces del menú */
+  .navbar-menu li a {
+    color: inherit; /* Hereda el color del header */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 5px; /* Esquinas redondeadas */
+    transition: background-color 0.3s, color 0.3s; /* Efecto suave al pasar el ratón */
+  }
+  
+  .navbar-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente al pasar el ratón */
+    color: var(--header-text-color-hover, lightgray); /* Color de texto al hacer hover */
+  }
+  
