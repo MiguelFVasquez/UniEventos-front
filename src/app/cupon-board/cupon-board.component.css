@@ -16,18 +16,15 @@
     margin: 0;
   }
   
-  .btn{
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
+.add-btn {
+  width: 50px;
+  background-color: #007bff; /* Color de fondo para "Agregar" */
+}
+
+.add-btn:hover {
+  background-color:  #0056b3; /* Color al pasar el ratón */
+}
+
   
   .cupon-cards {
     margin-top: 20px;

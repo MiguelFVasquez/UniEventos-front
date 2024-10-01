@@ -19,8 +19,13 @@
       <span>Tipo:</span> {{ cupon.tipo }}
     </div>
     <div class="cupon-footer">
-      <button (click)="editarCupon(cupon)">Editar</button>
-      <button (click)="eliminarCupon(cupon)">Eliminar</button>
+      <button class="btn edit-btn" (click)="editarCupon(cupon)">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+      
+      <button class="btn delete-btn" (click)="eliminarCupon(cupon)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     </div>
   </div>
   

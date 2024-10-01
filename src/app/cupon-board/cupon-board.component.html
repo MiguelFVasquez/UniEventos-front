@@ -1,6 +1,9 @@
 <div class="cupon-board">
     <h2>Cupones disponibles</h2>
-    <button class="btn" (click)="agregarCupon()">Agregar Cupon</button>
+    <button class="btn add-btn" (click)="agregarCupon()">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+    
     <div class="cupon-list">
       <app-cupon-card 
         *ngFor="let cupon of cupones" 

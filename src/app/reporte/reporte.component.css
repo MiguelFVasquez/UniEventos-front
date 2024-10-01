@@ -1,0 +1,57 @@
+.reportes-container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 15%;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--background-color, #211e1e); /* Adapta para light/dark */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .reportes-container h2 {
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: var(--text-color, #ffffff); /* Adaptable a dark mode */
+  }
+  
+  .reportes-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .btn {
+    background-color: var(--button-bg-color, #007bff); /* Botón adaptable */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: var(--button-bg-hover-color, #0056b3);
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .report-web .icon {
+    background-color: white;
+    border-radius: 50%;
+  }
+  
+  .report-pdf .icon {
+    background-color: white;
+    border-radius: 50%;
+  }
+  
