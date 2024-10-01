@@ -25,8 +25,14 @@ export class MiCuentaComponent {
   }
   logout() {
     // Redirecciona al log in
-    this.router.navigate(['/log-in']);
+    const confirmacion = window.confirm('¿Seguro que desea cerrar sesión?');
+
+    if (confirmacion) {
+      // Si presiona "Sí", redirige a la ruta de inicio de sesión
+      this.router.navigate(['/log-in']);
+    } else {
+      // Si presiona "No", no se hace nada
+      console.log('Cancelado por el usuario');
+    }
   }
-
-
 }
