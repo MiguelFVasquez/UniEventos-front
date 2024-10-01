@@ -1,0 +1,66 @@
+
+<div class="mi-cuenta-user-container">
+    <div class="profile-section">
+      <i class="fa-regular fa-user profile-icon"></i>
+    </div>
+    
+    <div class="info-section">
+      <h2>Mi Cuenta</h2>
+      <form>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="user.nombre" [readonly]="!isEditable">
+        </div>
+  
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" [(ngModel)]="user.apellido" [readonly]="!isEditable">
+        </div>
+  
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" id="direccion" name="direccion" [(ngModel)]="user.direccion" [readonly]="!isEditable">
+        </div>
+  
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" name="telefono" [(ngModel)]="user.telefono" [readonly]="!isEditable">
+        </div>
+  
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input type="email" id="correo" name="correo" [(ngModel)]="user.correo" [readonly]="!isEditable">
+        </div>
+  
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" [(ngModel)]="user.password" [readonly]="true">
+        </div>
+  
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de Nacimiento</label>
+          <input type="date" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="user.fechaNacimiento" [readonly]="!isEditable">
+        </div>
+  
+        <div class="button-group">
+          <button type="button" class="btn update" (click)="toggleEditable()"> <!--Boton de actualizar-->
+            <i class="fa-solid fa-pen"></i> 
+            <span class="tooltip-text">Editar información</span>
+          </button>
+          <button type="button" class="btn change-password" (click)="changePassword()"> <!--Boton de cambiar password-->
+            <i class="fa-solid fa-key"></i> 
+            <span class="tooltip-text">Cambiar contraseña</span>
+          </button>
+          <button type="button" class="btn logout" (click)="cerrarSesion()"><!--Boton de log out-->
+            <i class="fa-solid fa-right-from-bracket"></i> 
+            <span class="tooltip-text">Cerrar sesión</span>
+          </button>
+          <button type="button" class="btn delete" (click)="eliminarCuenta()"><!--Boton de eliminar cuenta-->
+            <i class="fa-solid fa-trash"></i> 
+            <span class="tooltip-text">Eliminar Cuenta</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

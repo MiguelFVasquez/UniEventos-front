@@ -31,7 +31,9 @@ export class LoginComponent {
 
     if (this.email === validEmail && this.password === validPassword) {
       this.router.navigate(['/admin/dashboard']); // Redirige al dashboard
-    } else {
+    }else if(this.email==='juan' && this.password === 'juan'){
+      this.router.navigate(['user/dashboard']);
+    }else {
       alert('Correo electrónico o contraseña incorrectos.');
     }
   }

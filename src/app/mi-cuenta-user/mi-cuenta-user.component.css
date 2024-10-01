@@ -1,0 +1,118 @@
+.mi-cuenta-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .profile-section {
+    margin-right: 60px;
+  }
+  
+  .profile-icon {
+    font-size: 100px;
+  }
+  
+  .info-section {
+    width: 50%;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    border-bottom: 1px solid  white;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-around; /* Espaciado entre los botones */
+    flex-wrap: wrap; /* Si hay poco espacio, que los botones se reubiquen en la siguiente línea */
+    gap: 0.2px; /* Añade espacio entre los botones */
+    margin-top: 20px; /* Espacio por encima del grupo de botones */
+    position: relative; /* Necesario para el tooltip */
+  }
+  
+  .button-group .btn {
+    padding: 10px 20px; /* Tamaño adecuado de los botones */
+    font-size: 16px; /* Tamaño de texto en los botones */
+    display: flex;
+    align-items: center; /* Alinea íconos y texto verticalmente */
+    gap: 10px; /* Espacio entre el ícono y el texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .button-group .tooltip-text {
+    visibility: hidden;
+    width: 150px; /* Ancho del tooltip */
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    bottom: 100%; /* Aparece arriba del botón */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+  .button-group .btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .update {
+    /*background-color: var(--button-bg-color);*/
+    background-color: #28a745; 
+  }
+  .update:hover{
+    background-color: #218838;
+  }
+  .change-password {
+    /*background-color: var(--password-bg-color);*/
+    background-color: #007bff;
+  }
+  .change-password:hover{
+    background-color: #0066d3;
+  }
+  .logout {
+    /*background-color: var(--logout-bg-color);*/
+    border: 1px solid white;
+    color: white;
+  }
+  .logout:hover{
+    background-color: rgb(144, 144, 135);
+  }
+  .delete {
+    /*background-color: var(--delete-bg-color);*/
+    background-color: #dc3545;
+  }
+  .delete:hover{
+    background-color: #c82333;
+
+  }
+
+  
+  
