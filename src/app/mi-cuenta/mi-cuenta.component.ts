@@ -16,9 +16,11 @@ export class MiCuentaComponent {
   correo = 'admin@correo.com';
   password = '';
   constructor(private router: Router) {}
+  
   toggleEditMode() {
     this.editMode = !this.editMode;
     if (!this.editMode) {
+      
       // Aquí puedes implementar la lógica para guardar los cambios
       console.log('Datos guardados:', { nombre: this.nombre, correo: this.correo, password: this.password });
     }

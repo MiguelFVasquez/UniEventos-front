@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { UserDashBoardComponent } from './user-dash-board/user-dash-board.component';
 import { MiCuentaUserComponent } from './mi-cuenta-user/mi-cuenta-user.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export const routes: Routes = [
     { path: 'log-in', component: LoginComponent },
@@ -43,7 +44,8 @@ export const routes: Routes = [
           component: UserDashBoardComponent,
           children:[
             { path: 'user-mi-cuenta', component: MiCuentaUserComponent},
-            {path: 'carrito', component: CarritoComponent}
+            {path: 'carrito', component: CarritoComponent},
+            {path: 'change-password', component: ChangePasswordComponent}
 
           ]
         }

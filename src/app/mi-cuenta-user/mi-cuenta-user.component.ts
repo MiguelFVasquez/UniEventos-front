@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-mi-cuenta-user',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   templateUrl: './mi-cuenta-user.component.html',
   styleUrl: './mi-cuenta-user.component.css'
 })
@@ -24,12 +24,17 @@ export class MiCuentaUserComponent {
   constructor(private router: Router) {}
 
   toggleEditable() {
+    if(!this.isEditable){
+      alert("Ahora puede actualizar su información")
+    }else{
+      alert("Cambios guardados con exito") //Debera ser una respuesta del back
+    }
+    
     this.isEditable = !this.isEditable;
   }
 
   changePassword() {
-    // Lógica para cambiar la contraseña
-    alert('Redirigiendo a cambiar contraseña');
+    this.router.navigate(['/user/dashboard/change-password']);
   }
 
   cerrarSesion() {
