@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
   }
   
@@ -17,7 +17,8 @@
   }
   
 .add-btn {
-  width: 50px;
+  width: 60px;
+  border-radius: 5px;
   background-color: #007bff; /* Color de fondo para "Agregar" */
 }
 
