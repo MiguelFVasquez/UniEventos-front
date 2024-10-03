@@ -1,0 +1,34 @@
+<h2>Crear Nuevo Cupón</h2>
+
+<form #cuponForm="ngForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre del cupón</mat-label>
+    <input matInput placeholder="Nombre" name="nombre" ngModel required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descuento (%)</mat-label>
+    <input matInput type="number" placeholder="Descuento" name="descuento" ngModel required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de Vencimiento</mat-label>
+    <input matInput type="datetime-local" name="fechaVencimiento" ngModel required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Código</mat-label>
+    <input matInput placeholder="Código" name="codigo" ngModel required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de Cupón</mat-label>
+    <mat-select name="tipo" ngModel required>
+      <mat-option *ngFor="let tipo of tiposCupon" [value]="tipo">{{ tipo }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="button-container">
+    <button class="principal" mat-button type="submit" (click)="guardarCupon()">Guardar</button>
+    <button class="secundary" mat-button type="button" (click)="cerrar()">Cancelar</button>
+   </div>
+</form>

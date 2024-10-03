@@ -1,0 +1,72 @@
+/* crear-cupon.component.css */
+
+/* Fondo oscuro del diálogo */
+:host {
+    display: block;
+    background-color: #2e2e2e;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px; /* Ancho máximo del diálogo */
+    margin: auto; /* Centrar el diálogo */
+  }
+ 
+  /* Estilos para los campos de formulario */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-label, input, mat-select {
+    color: #000000; /* Texto blanco para el tema oscuro */
+    height: auto;
+  }
+  
+  mat-select {
+    background-color: #3a3a3a; 
+  }
+  
+  /* Cambiar el color del borde y el placeholder de los inputs */
+  mat-form-field.mat-focused .mat-form-field-label {
+    color: #90caf9; /* Azul claro para el borde activo */
+  }
+  
+  .mat-form-field-underline {
+    background-color: #90caf9; /* Azul claro para la línea subrayada */
+  }
+  
+  /* Botones */
+  .principal{
+    background-color: #28a745; 
+    color: #fff;
+    border: 0;
+    margin-right: 10px;
+    border-radius: 5px;
+    height: 40px;
+  }
+  
+  .principal:hover {
+    background-color: #218838;
+  }
+  .secundary{
+    background-color: #dc3545;
+    color: #fff;
+    border: 0;
+    margin-right: 10px;
+    border-radius: 5px;
+    height: 40px;
+
+  }
+  .secundary:hover{
+    background-color: #c82333;
+  }
+  /* Ajustar el diálogo para que no ocupe toda la pantalla */
+  .mat-dialog-container {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .button-container {
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-top: 7px; /* Espacio encima de los botones */
+  }
