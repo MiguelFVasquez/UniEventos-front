@@ -1,7 +1,7 @@
 <div class="cupon-card">
   <div class="cupon-header">
     <h3>{{ cupon.nombre }}</h3>
-    <span [ngClass]="cupon.estado === 'Disponible' ? 'cupon-status disponible' : 'cupon-status no-disponible'">
+    <span [ngClass]="cupon.estado === 'DISPONIBLE' ? 'cupon-status disponible' : 'cupon-status no-disponible'">
       {{ cupon.estado }}
     </span>
   </div>
