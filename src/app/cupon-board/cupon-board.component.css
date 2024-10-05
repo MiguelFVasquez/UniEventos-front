@@ -34,3 +34,10 @@
     gap: 20px;
   }
   
+  .no-cupones {
+    font-size: 1.2em;
+    color: #ff6f61;
+    margin-top: 20px;
+    text-align: center;
+  }
+  

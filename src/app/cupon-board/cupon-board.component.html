@@ -1,14 +1,20 @@
 <div class="cupon-board">
-    <h2>Cupones disponibles</h2>
-    <button class="btn add-btn" (click)="agregarCupon()">
-      <i class="fa-solid fa-plus"></i>
-    </button>
-    
-    <div class="cupon-list">
-      <app-cupon-card 
-        *ngFor="let cupon of cupones" 
-        [cupon]="cupon">
-      </app-cupon-card>
-    </div>
-  </div>  
-<router-outlet></router-outlet>
+  <h2>Cupones disponibles</h2>
+  
+  <button class="btn add-btn" (click)="agregarCupon()">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+  
+  <!-- Mostrar mensaje cuando la lista de cupones esté vacía o no exista -->
+  <div *ngIf="cupones && cupones.length === 0" class="no-cupones">
+    No hay cupones disponibles
+  </div>
+
+  <!-- Mostrar cupones si existen en la lista -->
+  <div *ngIf="cupones && cupones.length > 0" class="cupon-list">
+    <app-cupon-card 
+      *ngFor="let cupon of cupones" 
+      [cupon]="cupon">
+    </app-cupon-card>
+  </div>
+</div>
