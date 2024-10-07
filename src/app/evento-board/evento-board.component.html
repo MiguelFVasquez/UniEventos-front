@@ -1,7 +1,15 @@
 <div class="event-board">
-    <h2>Eventos disponibles</h2>
+    <h2>Gestión de eventos</h2>
     <button class="btn" (click)="agregarEvento()">
         <i class="fa-solid fa-plus"></i>
     </button>
+
+    <!--No hay eventos-->
+
+    <!--Mostrar los events card, o sea los evento que existen en la lista-->
+    <div class="event-list">
+        <app-event-card>    </app-event-card>
+    </div>
+
 </div>
 
