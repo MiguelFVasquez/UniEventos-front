@@ -12,6 +12,7 @@ import { UserDashBoardComponent } from './user-dash-board/user-dash-board.compon
 import { MiCuentaUserComponent } from './mi-cuenta-user/mi-cuenta-user.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { EventoBoardComponent } from './evento-board/evento-board.component';
 
 export const routes: Routes = [
     { path: 'log-in', component: LoginComponent },
@@ -27,7 +28,7 @@ export const routes: Routes = [
           component: AdminDashBoardComponent, // Renderiza el AdminDashBoard
           children: [
             { path: 'mi-cuenta', component: MiCuentaComponent },  // Mi Cuenta como hijo del dashboard
-            //{ path: 'events', component: EventsComponent },       // Eventos como hijo del dashboard
+            { path: 'events', component: EventoBoardComponent },       // Eventos como hijo del dashboard
             { path: 'coupons', component: CuponBoardComponent },     // Cupones como hijo del dashboard
             { path: 'reportes', component: ReporteComponent },
           ]
