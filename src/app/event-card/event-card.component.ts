@@ -15,14 +15,28 @@ export class EventCardComponent {
       descripcion: 'Un evento lleno de música y diversión.',
       fecha: '2024-11-05',
       ciudad: 'Bogotá',
-      imagenPortada: 'https://example.com/festival-musica.jpg'
+      imagenPortada: 'assets/imagenCover.jpeg'
     },
     {
       nombre: 'Carrera de 5K',
       descripcion: 'Una carrera para los amantes del running.',
       fecha: '2024-10-15',
       ciudad: 'Medellín',
-      imagenPortada: 'https://example.com/carrera-5k.jpg'
+      imagenPortada: 'assets/imagenCover.jpeg'
+    },
+    {
+      nombre: 'Festival de Tatuajes',
+      descripcion: 'Una evento para dar a conocer los tatuadores del eje',
+      fecha: '2024-11-15',
+      ciudad: 'Armenia',
+      imagenPortada: 'assets/imagenCover.jpeg'
+    },
+    {
+      nombre: 'Fuck NEWS',
+      descripcion: 'Stand up de comedia',
+      fecha: '2024-10-15',
+      ciudad: 'Medellín',
+      imagenPortada: 'assets/imagenCover.jpeg'
     }
   ];
 
@@ -32,14 +46,14 @@ export class EventCardComponent {
       descripcion: 'Un concierto de rock inolvidable.',
       fecha: '2024-09-20',
       ciudad: 'Cali',
-      imagenPortada: 'https://example.com/concierto-rock.jpg'
+      imagenPortada: 'assets/imagenCover.jpeg'
     },
     {
       nombre: 'Feria Gastronómica',
       descripcion: 'Degustación de platos de todo el mundo.',
       fecha: '2024-08-10',
       ciudad: 'Cartagena',
-      imagenPortada: 'https://example.com/feria-gastronomica.jpg'
+      imagenPortada: 'assets/imagenCover.jpeg'
     }
   ];
 

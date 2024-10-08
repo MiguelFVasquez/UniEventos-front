@@ -1,38 +1,30 @@
 <div class="event-card-container">
-    <!-- Sección de eventos disponibles -->
-    <h2>Eventos Disponibles</h2>
-    <div class="event-list">
-      <div class="event-card" *ngFor="let event of listaEventosDisponibles">
-        <img [src]="event.imagenPortada" alt="Imagen del evento" class="event-image">
-        <div class="event-details">
-          <h3>{{ event.nombre }}</h3>
-          <p>{{ event.descripcion }}</p>
-          <p><i class="fa fa-calendar"></i> {{ event.fecha }}</p>
-          <p><i class="fa fa-map-marker-alt"></i> {{ event.ciudad }}</p>
-          <div class="event-buttons">
-            <button class="btn"><i class="fa fa-edit"></i></button>
-            <button class="btn"><i class="fa fa-trash"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Sección de eventos no disponibles -->
-    <h2>Eventos No Disponibles</h2>
-    <div class="event-list">
-      <div class="event-card" *ngFor="let event of listaEventosNoDisponibles">
-        <img [src]="event.imagenPortada" alt="Imagen del evento" class="event-image">
-        <div class="event-details">
-          <h3>{{ event.nombre }}</h3>
-          <p>{{ event.descripcion }}</p>
-          <p><i class="fa fa-calendar"></i> {{ event.fecha }}</p>
-          <p><i class="fa fa-map-marker-alt"></i> {{ event.ciudad }}</p>
-          <div class="event-buttons">
-            <button class="btn"><i class="fa fa-edit"></i></button>
-            <button class="btn"><i class="fa fa-trash"></i></button>
-          </div>
-        </div>
+  <!-- Sección de eventos disponibles -->
+  <h2>Eventos Disponibles</h2>
+  <div class="event-list">
+    <div class="event-card" *ngFor="let event of listaEventosDisponibles">
+      <!-- Correcta referencia a la imagen -->
+      <img [src]="event.imagenPortada" alt="Imagen del evento" class="event-image">
+      <div class="event-details">
+        <h3>{{ event.nombre }}</h3>
+        <p>{{ event.descripcion }}</p>
+        <p><i class="fa fa-calendar"></i> {{ event.fecha }}</p>
+        <p><i class="fa fa-map-marker-alt"></i> {{ event.ciudad }}</p>
       </div>
     </div>
   </div>
-  
+
+  <!-- Sección de eventos no disponibles -->
+  <h2>Eventos No Disponibles</h2>
+  <div class="event-list">
+    <div class="event-card" *ngFor="let event of listaEventosNoDisponibles">
+      <img [src]="event.imagenPortada" alt="Imagen del evento" class="event-image">
+      <div class="event-details">
+        <h3>{{ event.nombre }}</h3>
+        <p>{{ event.descripcion }}</p>
+        <p><i class="fa fa-calendar"></i> {{ event.fecha }}</p>
+        <p><i class="fa fa-map-marker-alt"></i> {{ event.ciudad }}</p>
+      </div>
+    </div>
+  </div>
+</div>

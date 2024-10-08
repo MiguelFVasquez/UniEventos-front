@@ -1,15 +1,24 @@
 <div class="event-board">
     <h2>Gestión de eventos</h2>
-    <button class="btn" (click)="agregarEvento()">
-        <i class="fa-solid fa-plus"></i>
-    </button>
-
-    <!--No hay eventos-->
-
-    <!--Mostrar los events card, o sea los evento que existen en la lista-->
-    <div class="event-list">
-        <app-event-card>    </app-event-card>
+    
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Buscar eventos...">
+      <button class="search-btn">
+        <i class="fa fa-search"></i>
+      </button>
     </div>
-
-</div>
-
+    
+    <!-- Botón para agregar un evento -->
+    <button class="btn" (click)="agregarEvento()">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  
+    <!-- No hay eventos -->
+  
+    <!-- Mostrar los events card, o sea los eventos que existen en la lista -->
+    <div class="event-list">
+      <app-event-card></app-event-card>
+    </div>
+  </div>
+  
