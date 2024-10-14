@@ -9,7 +9,7 @@ import { MessageDTO } from '../models/message.dto';
   providedIn: 'root'
 })
 export class CuponService {
-  private apiUrl = 'http://localhost:8080/cupon'; // URL del backend
+  private apiUrl = 'http://localhost:8080/api/cupon'; // URL del backend
 
   constructor(private http: HttpClient) {}
 
