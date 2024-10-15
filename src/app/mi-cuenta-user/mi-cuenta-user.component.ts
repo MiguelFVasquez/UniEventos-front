@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-
+import { AuthService } from '../servicios/auth.service';
 @Component({
   selector: 'app-mi-cuenta-user',
   standalone: true,
@@ -21,7 +21,7 @@ export class MiCuentaUserComponent {
     password: '********',
     fechaNacimiento: '1990-01-01'
   };
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService,private router: Router) {}
 
   toggleEditable() {
     if(!this.isEditable){
@@ -40,9 +40,12 @@ export class MiCuentaUserComponent {
   cerrarSesion() {
     // Lógica para cerrar sesión
     const confirmacion = window.confirm('¿Seguro que desea cerrar sesión?');
-
+  
     if (confirmacion) {
-      // Si presiona "Sí", redirige a la ruta de inicio de sesión
+      // Si presiona "Sí", elimina el token del localStorage
+      this.authService.saveToken(''); // Elimina el token
+  
+      // Redirige a la ruta de inicio de sesión
       this.router.navigate(['/log-in']);
     } else {
       // Si presiona "No", no se hace nada
