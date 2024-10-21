@@ -1,44 +1,69 @@
 .cupon-board {
-    width: 100%; /* Asegura que el ancho sea igual al del adminHeader */
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .cupon-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-  }
-  
-  .cupon-header h2 {
-    margin: 0;
-  }
-  
+  width: 100%; /* Asegura que el ancho sea igual al del adminHeader */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #1c1c1e; /* Fondo oscuro */
+  color: #f0f0f0; /* Texto claro */
+}
+
+.cupon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #444; /* Borde más oscuro para el tema oscuro */
+  padding-bottom: 10px;
+}
+
+.cupon-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #f0f0f0; /* Texto claro */
+}
+
 .add-btn {
   width: 60px;
+  height: 40px;
   border-radius: 5px;
   background-color: #007bff; /* Color de fondo para "Agregar" */
+  color: white; /* Color del texto en el botón */
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
 }
 
 .add-btn:hover {
-  background-color:  #0056b3; /* Color al pasar el ratón */
+  background-color: #0056b3; /* Color al pasar el ratón */
 }
 
-  
-  .cupon-cards {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  .no-cupones {
-    font-size: 3.2em;
-    color: #0056b3;
-    text-align: center;
-    margin-top: 40px;
-    text-align: center;
-  }
-  
+.cupon-cards {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Las tarjetas se organizan en columnas ajustables */
+  gap: 20px; /* Espacio entre cada tarjeta */
+}
+
+.cupon-card {
+  background-color: #2c2c2e; /* Fondo oscuro para las tarjetas */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada para destacar en fondo oscuro */
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+  border-left: 5px solid #007bff; /* Línea de color en el borde izquierdo para diferenciarlas */
+  color: #f0f0f0; /* Texto claro */
+}
+
+.cupon-card:hover {
+  transform: translateY(-10px); /* Efecto hover para dar sensación de movimiento */
+}
+
+.no-cupones {
+  font-size: 2.4em; /* Tamaño grande pero no excesivo */
+  color: #007bff; /* Color de texto para el mensaje */
+  text-align: center;
+  margin-top: 40px;
+}
+
