@@ -5,15 +5,31 @@
     <i class="fa-solid fa-plus"></i>
   </button>
   
-  <!-- Mostrar mensaje cuando la lista de cupones esté vacía o no exista -->
-  <div *ngIf="cupones && cupones.length === 0" class="no-cupones">
+  <!-- Mostrar mensaje si no hay cupones disponibles -->
+  <div *ngIf="cuponesDisponibles && cuponesDisponibles.length === 0" class="no-cupones">
     No hay cupones disponibles
   </div>
 
-  <!-- Mostrar cupones si existen en la lista -->
-  <div *ngIf="cupones && cupones.length > 0" class="cupon-list">
+  <!-- Mostrar cupones disponibles -->
+  <div *ngIf="cuponesDisponibles && cuponesDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
-      *ngFor="let cupon of cupones" 
+      *ngFor="let cupon of cuponesDisponibles" 
+      [cupon]="cupon">
+    </app-cupon-card>
+  </div>
+
+  <!-- Sección para cupones no disponibles -->
+  <h2>Cupones no disponibles</h2>
+  
+  <!-- Mostrar mensaje si no hay cupones no disponibles -->
+  <div *ngIf="cuponesNoDisponibles && cuponesNoDisponibles.length === 0" class="no-cupones">
+    No hay cupones no disponibles
+  </div>
+
+  <!-- Mostrar cupones no disponibles -->
+  <div *ngIf="cuponesNoDisponibles && cuponesNoDisponibles.length > 0" class="cupon-list">
+    <app-cupon-card 
+      *ngFor="let cupon of cuponesNoDisponibles" 
       [cupon]="cupon">
     </app-cupon-card>
   </div>

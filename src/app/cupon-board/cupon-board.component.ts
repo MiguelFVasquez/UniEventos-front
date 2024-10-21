@@ -14,7 +14,9 @@ import { CuponService } from '../servicios/cupon.service';
 })
 export class CuponBoardComponent {
   
-  cupones: any[] = []; // Cambia a la estructura de datos de tus cupones
+  cuponesDisponibles: any[] = [];  // Lista de cupones disponibles
+  cuponesNoDisponibles: any[] = [];  // Lista de cupones no disponibles
+
 
   constructor(private dialog: MatDialog, private cuponService: CuponService) {}
 
@@ -25,10 +27,11 @@ export class CuponBoardComponent {
   cargarCupones() {
     this.cuponService.obtenerCupones().subscribe({
       next: (data) => {
-        this.cupones = data; // Asigna los cupones a la variable
+        this.cuponesDisponibles = data.filter(cupon => cupon.estado === 'DISPONIBLE');
+        this.cuponesNoDisponibles = data.filter(cupon => cupon.estado === 'NO_DISPONIBLE');
       },
       error: (err) => {
-        console.error('Error al cargar los cupones', err); // Manejo de errores
+        console.error('Error al cargar los cupones', err);
       }
     });
   } 

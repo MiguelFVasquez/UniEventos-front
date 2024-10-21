@@ -1,9 +1,10 @@
 // cupon.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CrearCuponDTO } from '../models/crear-cupon.dto'; // Asegúrate de tener este DTO
 import { MessageDTO } from '../models/message.dto';
+import { AuthService } from '../servicios/auth.service'; // Asegúrate de que la ruta sea correcta
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,23 @@ import { MessageDTO } from '../models/message.dto';
 export class CuponService {
   private apiUrl = 'http://localhost:8080/api/cupon'; // URL del backend
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
     // Método para obtener cupones
   obtenerCupones(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+
+    return this.http.get<any[]>(this.apiUrl, { headers }); // Enviar la solicitud con los encabezados
   }
+  
 
 
   // Método para guardar un cupón
   guardarCupon(cuponDTO: CrearCuponDTO): Observable<MessageDTO> {
-    return this.http.post<MessageDTO>(`${this.apiUrl}/save`, cuponDTO);
+    const token = this.authService.getToken(); // Obtener el token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+
+    return this.http.post<MessageDTO>(`${this.apiUrl}/save`, cuponDTO, { headers }); // Enviar la solicitud con los encabezados
   }
 }
