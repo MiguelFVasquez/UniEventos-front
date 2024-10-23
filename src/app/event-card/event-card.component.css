@@ -1,71 +1,79 @@
-.event-card-container {
-    padding: 20px;
-  }
+/* Contenedor principal de la lista de eventos */
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between; /* Distribuye uniformemente las tarjetas */
+  padding: 20px;
+}
+
+/* Cada tarjeta de evento */
+.event-card {
+  flex: 1 1 23%; /* Se asegura de que quepan 4 tarjetas por fila, ajustable según el ancho disponible */
+  max-width: 260px; /* Establece el ancho máximo de cada tarjeta */
+  min-width: 200px; /* Asegura un ancho mínimo en pantallas más pequeñas */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #2b2b2b;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column; /* Para que el contenido se distribuya verticalmente */
+  height: 100%; /* Ocupa todo el espacio disponible */
+}
+
+/* Mantén las imágenes con tamaño consistente */
+.event-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Detalles del evento */
+.event-details {
+  padding: 15px;
+  flex-grow: 1; /* Asegura que esta sección crezca y ocupe el espacio restante */
+}
+
+.event-details h3, .event-details p {
+  margin: 0;
   
-  .event-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .event-card {
-    width: 260px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #2b2b2b;
-    transition: transform 0.2s ease;
-  }
-  
-  .event-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .event-card.no-disponible {
-    opacity: 0.5;
-  }
-  
-  .event-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-  }
-  
-  .event-details {
-    padding: 15px;
-  }
-  
-  .event-details h3 {
-    margin: 0;
-    font-size: 1.2em;
-    color: #ffffff;
-  }
-  
-  .event-details p {
-    margin: 5px 0;
-    color: #ffffff;
-  }
-  
-  .event-buttons {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .event-buttons .btn {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 1.2em;
-  }
-  
-  .event-buttons .btn i {
-    color: #007BFF;
-    transition: color 0.2s;
-  }
-  
-  .event-buttons .btn:hover i {
-    color: #0056b3;
-  }
-  
+  color: #ffffff;
+}
+
+.event-details p {
+  margin-top: 5px;
+}
+
+/* Botones al final de la tarjeta */
+.event-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-buttons .btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.event-buttons .btn i {
+  color: #007BFF;
+  transition: color 0.2s;
+}
+
+.event-buttons .btn:hover i {
+  color: #0056b3;
+}
+
+/* Efecto hover en las tarjetas */
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+.event-card.no-disponible {
+  opacity: 0.5;
+}
