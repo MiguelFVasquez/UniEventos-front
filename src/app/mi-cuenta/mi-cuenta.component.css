@@ -1,62 +1,139 @@
-.mi-cuenta-container {
-  max-width: 400px;
-  margin:  auto;
-  margin-top: 5%;
+.mi-cuenta-user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Cambiado para adaptarse al contenido */
   padding: 20px;
   background-color: var(--background-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+}
+
+.profile-section {
+  margin-right: 60px;
+}
+
+.profile-icon {
+  font-size: 100px; /* Tamaño del ícono de perfil */
+}
+
+.info-section {
+  width: 50%; /* Ancho de la sección de información */
 }
 
 h2 {
   text-align: center;
-  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1.8rem; /* Ajustado según lo original */
+  color: rgb(58, 96, 247);
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-label {
+.form-group label {
   display: block;
   margin-bottom: 5px;
 }
 
-input {
+.form-group input {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  border-bottom: 1px solid white; /* Cambiado para mantener el diseño */
 }
 
-input[readonly] {
-  background-color: #f9f9f9;
-  color: black;
-  cursor: not-allowed;
+.button-group {
+  display: flex;
+  justify-content: space-around; /* Espaciado entre los botones */
+  flex-wrap: wrap; /* Reubica los botones en la siguiente línea si hay poco espacio */
+  gap: 0.2px; /* Espacio entre los botones */
+  margin-top: 20px; /* Espacio por encima del grupo de botones */
+  position: relative; /* Necesario para el tooltip */
 }
 
-.form-actions {
-  text-align: center;
-}
-
-.btn {
-  padding: 10px 20px;
-  background-color: rgb(58, 96, 247);;
-  color: white;
-  cursor: pointer;
+.button-group .btn {
+  padding: 10px 20px; /* Tamaño adecuado de los botones */
+  font-size: 16px; /* Tamaño de texto en los botones */
+  display: flex;
+  align-items: center; /* Alinea íconos y texto verticalmente */
+  gap: 10px; /* Espacio entre el ícono y el texto */
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-left: 8%;
-
+  transition: background-color 0.3s ease;
 }
 
-.btn.secundary{
-  margin-left: 2%;
+.button-group .tooltip-text {
+  visibility: hidden;
+  width: 150px; /* Ancho del tooltip */
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  bottom: 100%; /* Aparece arriba del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
 }
 
-.btn:hover {
-  background-color: white;
-  color: rgb(58, 96, 247);
+.button-group .btn:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
 
+/* Estilos específicos para los botones */
+.btn {
+  padding: 10px; /* Ajustado para mayor consistencia */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.update {
+  background-color: #28a745; 
+}
+
+.btn.update:hover {
+  background-color: #218838;
+}
+
+.btn.change-password {
+  background-color: #007bff;
+}
+
+.btn.change-password:hover {
+  background-color: #0066d3;
+}
+
+.btn.logout {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.btn.logout:hover {
+  background-color: rgb(144, 144, 135);
+}
+
+.btn.delete {
+  background-color: #dc3545;
+}
+
+.btn.delete:hover {
+  background-color: #c82333;
+}
+
+/* Cambios adicionales para inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  font-size: 0.9rem;
+}
