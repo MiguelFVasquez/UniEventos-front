@@ -5,22 +5,15 @@ import { RegistroComponent } from '../registro/registro.component';
 import { InitialHeaderComponent } from '../initial-header/initial-header.component';
 import { AuthService } from '../servicios/auth.service';
 import { CommonModule } from '@angular/common';
-
 @Component({
-  selector: 'app-change-password',
+  selector: 'app-activar-cuenta',
   standalone: true,
-  imports: [InitialHeaderComponent,FormsModule,CommonModule,RouterModule],
-  templateUrl: './change-password.component.html',
-  styleUrl: './change-password.component.css'
+  imports: [InitialHeaderComponent,FormsModule,RouterModule],
+  templateUrl: './activar-cuenta.component.html',
+  styleUrl: './activar-cuenta.component.css'
 })
-export class ChangePasswordComponent {
-  email: string = '';
-  password: string = '';
-  passwordVisible: boolean = false;
-
-  togglePasswordVisibility() {
-    this.passwordVisible = !this.passwordVisible;
-  }
-
+export class ActivarCuentaComponent {
+  codigo: string='';
+  email: string='';
   onSubmit(){}
 }

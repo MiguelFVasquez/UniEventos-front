@@ -1,0 +1,14 @@
+<app-initial-header></app-initial-header>
+<div class="container">
+    <div class="form-container">
+        <h2>Activar Cuenta</h2>
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <label for="email">Código enviado al correo</label>
+            <input type="email" id="email" required [(ngModel)]="email" name="email">
+            <button type="submit" class="btn" [routerLink]="['/change-password']">Activar cuenta</button> 
+            <button type="button" class="btn secondary" [routerLink]="['/registro']">Registrarse</button>
+        </form>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
