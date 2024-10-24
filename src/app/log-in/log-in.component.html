@@ -10,10 +10,10 @@
                 <input [type]="passwordVisible ? 'text' : 'password'" id="password" placeholder="*********" required [(ngModel)]="password" name="password">
                 <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">👁️</button>
             </div>
-            <a href="#" class="forgot-password">Olvidaste la contraseña?</a>
+            <a [routerLink]="['/validar-codigo']" class="forgot-password">Olvidaste la contraseña?</a>
             <button type="submit" class="btn">Ingresar</button> 
             <button type="button" class="btn secondary" [routerLink]="['/registro']">Registrarse</button>
         </form>
     </div>
 </div>
-
+<router-outlet></router-outlet>

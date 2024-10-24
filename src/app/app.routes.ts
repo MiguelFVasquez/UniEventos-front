@@ -13,11 +13,16 @@ import { MiCuentaUserComponent } from './mi-cuenta-user/mi-cuenta-user.component
 import { CarritoComponent } from './carrito/carrito.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EventoBoardComponent } from './evento-board/evento-board.component';
+import { ValidarCodigoComponent } from './validar-codigo/validar-codigo.component';
+import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
+
 
 export const routes: Routes = [
     { path: 'log-in', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
-
+    {path: 'validar-codigo', component: ValidarCodigoComponent},
+    {path: 'change-password', component: ChangePasswordComponent},
+    {path: 'activar-cuenta',component: ActivarCuentaComponent},
     //Ruta anindada
     {
       path: 'admin',
@@ -52,7 +57,6 @@ export const routes: Routes = [
         }
       ]
     },
-
     { path: '', redirectTo: '/log-in', pathMatch: 'full' },
     { path: '**', redirectTo: '/log-in' }, 
 
