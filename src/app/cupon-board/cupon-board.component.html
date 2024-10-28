@@ -13,9 +13,21 @@
   <!-- Mostrar cupones disponibles -->
   <div *ngIf="cuponesDisponibles && cuponesDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
-      *ngFor="let cupon of cuponesDisponibles" 
+      *ngFor="let cupon of cuponesDisponibles | slice: (paginaActualDisponibles - 1) * 8 : paginaActualDisponibles * 8" 
       [cupon]="cupon">
     </app-cupon-card>
+  </div>
+
+  <!-- Paginación para cupones disponibles -->
+  <div class="pagination">
+    <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 1">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span>Página {{ paginaActualDisponibles }}</span>
+    <button (click)="cambiarPaginaDisponibles(1)" 
+            [disabled]="(paginaActualDisponibles * 8) >= cuponesDisponibles.length">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
   </div>
 
   <!-- Sección para cupones no disponibles -->
@@ -29,8 +41,20 @@
   <!-- Mostrar cupones no disponibles -->
   <div *ngIf="cuponesNoDisponibles && cuponesNoDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
-      *ngFor="let cupon of cuponesNoDisponibles" 
+      *ngFor="let cupon of cuponesNoDisponibles | slice: (paginaActualNoDisponibles - 1) * 8 : paginaActualNoDisponibles * 8" 
       [cupon]="cupon">
     </app-cupon-card>
+  </div>
+
+  <!-- Paginación para cupones no disponibles -->
+  <div class="pagination">
+    <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 1">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span>Página {{ paginaActualNoDisponibles }}</span>
+    <button (click)="cambiarPaginaNoDisponibles(1)" 
+            [disabled]="(paginaActualNoDisponibles * 8) >= cuponesNoDisponibles.length">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
   </div>
 </div>

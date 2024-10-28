@@ -16,6 +16,8 @@ export class CuponBoardComponent {
   
   cuponesDisponibles: any[] = [];  // Lista de cupones disponibles
   cuponesNoDisponibles: any[] = [];  // Lista de cupones no disponibles
+  paginaActualDisponibles: number = 1;
+  paginaActualNoDisponibles: number = 1;
 
 
   constructor(private dialog: MatDialog, private cuponService: CuponService) {}
@@ -45,5 +47,11 @@ export class CuponBoardComponent {
       // Lógica después de cerrar el diálogo, si es necesario
     });
   }
-  
+  cambiarPaginaDisponibles(cambio: number) {
+    this.paginaActualDisponibles += cambio;
+  }
+
+  cambiarPaginaNoDisponibles(cambio: number) {
+    this.paginaActualNoDisponibles += cambio;
+  }
 }

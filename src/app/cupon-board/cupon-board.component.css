@@ -39,21 +39,48 @@
   background-color: #0056b3; /* Color al pasar el ratón */
 }
 
-.cupon-cards {
-  margin-top: 20px;
+.cupon-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Las tarjetas se organizan en columnas ajustables */
-  gap: 20px; /* Espacio entre cada tarjeta */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+  margin-bottom: 20px;
 }
 
 .cupon-card {
-  background-color: #2c2c2e; /* Fondo oscuro para las tarjetas */
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada para destacar en fondo oscuro */
-  border-radius: 10px;
-  transition: transform 0.2s ease;
-  border-left: 5px solid #007bff; /* Línea de color en el borde izquierdo para diferenciarlas */
-  color: #f0f0f0; /* Texto claro */
+  width: 100%; /* Asegura que todas las tarjetas se adapten al espacio de la columna */
+  max-width: 250px; /* Ancho máximo para las tarjetas */
+  height: 300px; /* Altura fija para todas las tarjetas */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.cupon-body {
+  flex-grow: 1; /* Asegura que el cuerpo de la tarjeta crezca para llenar el espacio */
+}
+
+.cupon-body p {
+  margin: 4px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+}
+
+.cupon-header h3 {
+  font-size: 1.2em;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .cupon-card:hover {
@@ -67,3 +94,13 @@
   margin-top: 40px;
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  margin: 0 10px;
+}

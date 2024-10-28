@@ -100,3 +100,8 @@ input {
     font-size: 12px;
     color: var(--forgot-password-color);
 }
+.custom-snackbar {
+    background-color: #ff4d4d; /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto */
+    font-weight: bold;
+  }

@@ -1,100 +1,116 @@
-:host {
-  display: block;
-  background-color: rgba(8, 8, 8, 0.1);
-  color: var(--text-color);
-  padding: 16px;
+.cupon-card {
+  border: 1px solid #444; /* Cambiado a un borde oscuro para el tema oscuro */
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
+  background-color: #1c1c1e; /* Fondo oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más oscura */
+  margin: 20px 0px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px; /* Altura fija para todas las tarjetas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
 
+.cupon-card:hover {
+  transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra más intensa al hacer hover */
+}
 .cupon-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-  color: white;
+  margin-bottom: 12px;
 }
 
 .cupon-header h3 {
-  font-size: 1.2rem;
+  font-size: 1.2em;
+  text-decoration: solid;
   margin: 0;
-  color: white;
-}
-
-.cupon-body {
-  margin-top: 8px;
-}
-
-.cupon-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.cupon-info span {
-  font-weight: bold;
+  color: #f0f0f0; /* Color claro para el texto del encabezado */
 }
 
 .cupon-status {
   padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.9rem;
+  border-radius: 4px;
+  font-size: 0.85em;
   font-weight: bold;
+  color: #fff;
 }
 
-.cupon-status.disponible {
+.disponible {
   background-color: #28a745;
-  color: #fff;
 }
 
-.cupon-status.no-disponible {
+.no-disponible {
   background-color: #dc3545;
-  color: #fff;
 }
+
+.cupon-body {
+  font-size: 0.95em;
+  color: #f0f0f0; /* Color claro para el texto del cuerpo */
+  margin-bottom: 12px;
+  flex-grow: 1; /* Asegura que el cuerpo de la tarjeta crezca para llenar el espacio */
+}
+
+.cupon-body p {
+  margin: 4px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+}
+
+.cupon-info-title {
+  font-weight: bold;
+  color: #f0f0f0; /* Color claro para el título de la información */
+}
+
 .cupon-footer {
   display: flex;
+  gap: 8px;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 15px;
+}
+.tooltip {
+  position: relative; /* Necesario para posicionar el tooltip */
+  display: inline-block; /* Permite que el tooltip se coloque en línea */
+}
+
+.tooltip-text {
+  visibility: hidden; /* Oculta el tooltip por defecto */
+  width: 80px; /* Ancho del tooltip */
+  background-color: #333; /* Fondo oscuro para el tooltip */
+  color: #fff; /* Texto blanco */
+  text-align: center; /* Centra el texto */
+  border-radius: 6px; /* Bordes redondeados */
+  padding: 5px; /* Espacio interno */
+  position: absolute; /* Posicionamiento absoluto */
+  z-index: 1; /* Asegura que esté encima */
+  bottom: 125%; /* Mueve el tooltip hacia arriba */
+  left: 50%; /* Centra el tooltip */
+  margin-left: -40px; /* Ajusta el margen */
+  opacity: 0; /* Inicialmente transparente */
+  transition: opacity 0.3s; /* Transición suave para la opacidad */
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible; /* Muestra el tooltip al pasar el mouse */
+  opacity: 1; /* Hace visible el tooltip */
 }
 
 .btn {
-  background-color: var(--button-bg-color, #007bff); /* Adaptable a light/dark */
-  color: white;
   border: none;
-  padding: 8px 16px;
-  font-size: 1rem;
-  border-radius: 5px;
+  padding: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.3s ease;
+  font-size: 1em;
+  color: #fff;
 }
 
-.btn:hover {
-  background-color: var(--button-bg-hover-color, #0056b3);
-}
-
-/* Personalización de los botones */
 .edit-btn {
-  background-color: #28a745; /* Color de editar */
-}
-
-.edit-btn:hover {
-  background-color: #218838;
+  background-color: #007bff;
 }
 
 .delete-btn {
-  background-color: #dc3545; /* Color de eliminar */
-}
-
-.delete-btn:hover {
-  background-color: #c82333;
-}
-
-button:disabled {
-  background-color: grey;
-  cursor: not-allowed;
+  background-color: #dc3545;
 }
