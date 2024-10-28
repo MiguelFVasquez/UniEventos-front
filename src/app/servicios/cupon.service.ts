@@ -31,4 +31,11 @@ export class CuponService {
 
     return this.http.post<MessageDTO>(`${this.apiUrl}/save`, cuponDTO, { headers }); // Enviar la solicitud con los encabezados
   }
+
+  eliminarCupon(id: string): Observable<MessageDTO> {
+    const token = this.authService.getToken(); // Obtener el token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+
+    return this.http.delete<MessageDTO>(`${this.apiUrl}/${id}`, { headers }); // Enviar la solicitud DELETE con los encabezados
+  }
 }

@@ -5,20 +5,18 @@
     <i class="fa-solid fa-plus"></i>
   </button>
   
-  <!-- Mostrar mensaje si no hay cupones disponibles -->
   <div *ngIf="cuponesDisponibles && cuponesDisponibles.length === 0" class="no-cupones">
     No hay cupones disponibles
   </div>
 
-  <!-- Mostrar cupones disponibles -->
   <div *ngIf="cuponesDisponibles && cuponesDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
       *ngFor="let cupon of cuponesDisponibles | slice: (paginaActualDisponibles - 1) * 8 : paginaActualDisponibles * 8" 
-      [cupon]="cupon">
+      [cupon]="cupon" 
+      (cuponEliminado)="onCuponEliminado($event)">
     </app-cupon-card>
   </div>
 
-  <!-- Paginación para cupones disponibles -->
   <div class="pagination">
     <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 1">
       <i class="fa-solid fa-chevron-left"></i>
@@ -30,23 +28,20 @@
     </button>
   </div>
 
-  <!-- Sección para cupones no disponibles -->
   <h2>Cupones no disponibles</h2>
   
-  <!-- Mostrar mensaje si no hay cupones no disponibles -->
   <div *ngIf="cuponesNoDisponibles && cuponesNoDisponibles.length === 0" class="no-cupones">
     No hay cupones no disponibles
   </div>
 
-  <!-- Mostrar cupones no disponibles -->
   <div *ngIf="cuponesNoDisponibles && cuponesNoDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
       *ngFor="let cupon of cuponesNoDisponibles | slice: (paginaActualNoDisponibles - 1) * 8 : paginaActualNoDisponibles * 8" 
-      [cupon]="cupon">
+      [cupon]="cupon" 
+      (cuponEliminado)="onCuponEliminado($event)">
     </app-cupon-card>
   </div>
 
-  <!-- Paginación para cupones no disponibles -->
   <div class="pagination">
     <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 1">
       <i class="fa-solid fa-chevron-left"></i>

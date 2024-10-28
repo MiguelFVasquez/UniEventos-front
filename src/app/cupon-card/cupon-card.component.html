@@ -11,18 +11,22 @@
     <p><span class="cupon-info-title">Código:</span> {{ cupon.codigo }}</p>
   </div>
 
-<div class="cupon-footer">
-  <div class="tooltip">
-    <button class="btn edit-btn">
-      <i class="fa-solid fa-edit"></i>
-    </button>
-    <span class="tooltip-text">Actualizar</span>
+  <div class="cupon-footer">
+    <div class="tooltip">
+      <button class="btn edit-btn"  >
+        <i class="fa-solid fa-edit"></i>
+      </button>
+      <span class="tooltip-text">Actualizar</span>
+    </div>
+    <div class="tooltip">
+      <button class="btn delete-btn" (click)="eliminarCupon()">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+      <span class="tooltip-text">Eliminar</span>
+    </div>
   </div>
-  <div class="tooltip">
-    <button class="btn delete-btn">
-      <i class="fa-solid fa-trash"></i>
-    </button>
-    <span class="tooltip-text">Eliminar</span>
+
+  <div *ngIf="alertMessage" class="alert" [ngClass]="alertType">
+    {{ alertMessage }}
   </div>
-</div>
 </div>

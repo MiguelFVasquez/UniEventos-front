@@ -47,6 +47,14 @@ export class CuponBoardComponent {
       // Lógica después de cerrar el diálogo, si es necesario
     });
   }
+  // Método para manejar la eliminación de cupones
+  onCuponEliminado(id: string) {
+    // Eliminar de la lista de cupones disponibles
+    this.cuponesDisponibles = this.cuponesDisponibles.filter(cupon => cupon.id !== id);
+    // También puedes eliminarlo de la lista de no disponibles si es necesario
+    this.cuponesNoDisponibles = this.cuponesNoDisponibles.filter(cupon => cupon.id !== id);
+  }
+  
   cambiarPaginaDisponibles(cambio: number) {
     this.paginaActualDisponibles += cambio;
   }
