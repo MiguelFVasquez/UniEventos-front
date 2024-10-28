@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CuponService } from '../servicios/cupon.service';
 import { MessageDTO } from '../models/message.dto';
+import { EditarCuponComponent } from '../editar-cupon/editar-cupon.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cupon-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,EditarCuponComponent],
   templateUrl: './cupon-card.component.html',
   styleUrl: './cupon-card.component.css'
 })
@@ -23,13 +25,20 @@ export class CuponCardComponent {
   //para el alert
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
-
+  mostrarEditarCupon: boolean = false;
+  
 
   @Output() cuponEliminado = new EventEmitter<string>(); // Emitir evento cuando se elimine un cupón
-  constructor(private cuponService: CuponService) {}
-  editarCupon(cupon: any) {
-    // Lógica para editar el cupón
-    console.log('Editar cupón:', cupon);
+  constructor(private dialog: MatDialog,private cuponService: CuponService) {}
+  editarCupon(){
+    const dialogRef= this.dialog.open(EditarCuponComponent,{
+      width: '550px', // Ajusta el ancho del diálogo
+      disableClose: true, // Opcional, para evitar cerrar al hacer clic fuera
+      panelClass: 'custom-dialog'
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      // Lógica después de cerrar el diálogo, si es necesario
+    });
   }
   
   eliminarCupon() {

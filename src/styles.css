@@ -8,3 +8,8 @@ body{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-dialog .mat-mdc-dialog-surface {
+    background-color: #1d1c1c;
+    padding: 20px;
+    border-radius: 8px;
+}
