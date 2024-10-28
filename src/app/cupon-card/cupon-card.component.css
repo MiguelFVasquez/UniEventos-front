@@ -1,15 +1,17 @@
 .cupon-card {
-  border: 1px solid #444; /* Cambiado a un borde oscuro para el tema oscuro */
+  border: 1px solid #444; /* Borde oscuro */
   border-radius: 8px;
   overflow: hidden;
   background-color: #1c1c1e; /* Fondo oscuro */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más oscura */
-  margin: 20px 0px;
+  margin: 20px 0;
   padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 250px; /* Altura fija para todas las tarjetas */
+  max-width: 260px; /* Establece el ancho máximo de cada tarjeta */
+  min-width: 200px;
+  height: 100%; /* Altura fija para todas las tarjetas */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
 
@@ -17,10 +19,8 @@
   transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra más intensa al hacer hover */
 }
+
 .cupon-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 12px;
 }
 
@@ -29,6 +29,9 @@
   text-decoration: solid;
   margin: 0;
   color: #f0f0f0; /* Color claro para el texto del encabezado */
+  overflow: visible; /* Permitir que el texto se muestre completo */
+  white-space: normal; /* Permitir el salto de línea */
+  text-overflow: clip; /* No aplicar puntos suspensivos */
 }
 
 .cupon-status {
@@ -37,6 +40,7 @@
   font-size: 0.85em;
   font-weight: bold;
   color: #fff;
+  margin-top: 8px; /* Añadir margen superior para espacio con el título */
 }
 
 .disponible {
@@ -52,13 +56,12 @@
   color: #f0f0f0; /* Color claro para el texto del cuerpo */
   margin-bottom: 12px;
   flex-grow: 1; /* Asegura que el cuerpo de la tarjeta crezca para llenar el espacio */
+  display: flex; /* Asegura que el contenido ocupe el espacio disponible */
+  flex-direction: column; /* Organiza el contenido verticalmente */
 }
 
 .cupon-body p {
   margin: 4px 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
 }
 
 .cupon-info-title {
@@ -71,6 +74,7 @@
   gap: 8px;
   justify-content: flex-end;
 }
+
 .tooltip {
   position: relative; /* Necesario para posicionar el tooltip */
   display: inline-block; /* Permite que el tooltip se coloque en línea */

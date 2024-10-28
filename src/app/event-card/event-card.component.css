@@ -12,7 +12,7 @@
   flex: 1 1 23%; /* Se asegura de que quepan 4 tarjetas por fila, ajustable según el ancho disponible */
   max-width: 260px; /* Establece el ancho máximo de cada tarjeta */
   min-width: 200px; /* Asegura un ancho mínimo en pantallas más pequeñas */
-  border: 1px solid #ccc;
+  border: 1px solid #444; /* Borde oscuro */
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

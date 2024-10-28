@@ -70,3 +70,43 @@
     justify-content: center; /* Centrar horizontalmente */
     margin-top: 7px; /* Espacio encima de los botones */
   }
+  /* crear-cupon.component.css */
+
+/* Estilo para el mat-select */
+mat-select {
+  background-color: #3a3a3a; /* Fondo del combo box */
+  color: #ffffff; /* Color del texto */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo para el menú desplegable */
+.mat-select-panel {
+  background-color: #2e2e2e; /* Fondo del menú desplegable */
+  color: #ffffff; /* Color del texto del menú */
+}
+
+/* Estilo para las opciones del menú */
+.mat-option {
+  background-color: transparent; /* Fondo transparente para las opciones */
+  color: #ffffff; /* Color del texto de las opciones */
+}
+
+/* Cambia el color al pasar el ratón sobre las opciones */
+.mat-option:hover {
+  background-color: #90caf9; /* Color de fondo al pasar el ratón */
+  color: #000000; /* Color del texto al pasar el ratón */
+}
+
+/* Para asegurar que el placeholder se vea bien */
+.mat-form-field-label {
+  color: #ffffff; /* Color del label */
+}
+
+/* Cambiar el color del borde y el placeholder de los inputs */
+mat-form-field.mat-focused .mat-form-field-label {
+  color: #90caf9; /* Azul claro para el borde activo */
+}
+
+.mat-form-field-underline {
+  background-color: #90caf9; /* Azul claro para la línea subrayada */
+}
