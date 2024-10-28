@@ -1,9 +1,6 @@
-// model/editar-cupon.dto.ts
-export interface CrearCuponDTO {
+export interface EditarCuponDTO {
     nombre: string;
     descuento: number;
     fechaVencimiento: string; 
-    codigo: string;
     tipo: string;
-  }
-  
+}

@@ -30,16 +30,20 @@ export class CuponCardComponent {
 
   @Output() cuponEliminado = new EventEmitter<string>(); // Emitir evento cuando se elimine un cupón
   constructor(private dialog: MatDialog,private cuponService: CuponService) {}
-  editarCupon(){
-    const dialogRef= this.dialog.open(EditarCuponComponent,{
-      width: '550px', // Ajusta el ancho del diálogo
-      disableClose: true, // Opcional, para evitar cerrar al hacer clic fuera
-      panelClass: 'custom-dialog'
-    })
-    dialogRef.afterClosed().subscribe(result => {
-      // Lógica después de cerrar el diálogo, si es necesario
+  editarCupon() {
+    const dialogRef = this.dialog.open(EditarCuponComponent, {
+        width: '550px', // Ajusta el ancho del diálogo
+        disableClose: true, // Opcional, para evitar cerrar al hacer clic fuera
+        panelClass: 'custom-dialog',
+        data: {
+            cupon: this.cupon // Pasar el objeto cupon
+        }
     });
-  }
+
+    dialogRef.afterClosed().subscribe(result => {
+        // Lógica después de cerrar el diálogo, si es necesario
+    });
+}
   
   eliminarCupon() {
     const confirmacion = window.confirm('¿Seguro que desea eliminar este cupón?');
