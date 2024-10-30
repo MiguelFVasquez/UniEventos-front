@@ -40,7 +40,8 @@ export class CuponBoardComponent {
   agregarCupon() {
     const dialogRef = this.dialog.open(CrearCuponComponent, {
       width: '550px', // Ajusta el ancho del diálogo
-      disableClose: true // Opcional, para evitar cerrar al hacer clic fuera
+      disableClose: true,
+      panelClass: 'custom-dialog' // Opcional, para evitar cerrar al hacer clic fuera
     });
 
     dialogRef.afterClosed().subscribe(result => {

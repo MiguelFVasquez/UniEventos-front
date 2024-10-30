@@ -28,12 +28,17 @@ import { Router } from '@angular/router';
 
     // Guardar el token en el localStorage
     saveToken(token: string): void {
-      localStorage.setItem('authToken', token);
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        sessionStorage.setItem('authToken', token);
+      }
     }
 
     // Obtener el token almacenado
     getToken(): string | null {
-      return localStorage.getItem('authToken');
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        return sessionStorage.getItem('authToken');
+      }
+      return null;
     }
 
   // Método para redirigir al usuario después del login
