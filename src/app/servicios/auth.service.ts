@@ -21,6 +21,10 @@ import { Router } from '@angular/router';
       return this.http.post(`${this.apiUrl}/verificar-rol/${email}`, null); // Enviando null ya que no se espera un cuerpo adicional
     }
     
+    validarCodigo(email: string, codigo: string){
+      const validarDTO = {email, codigo};
+      return this.http.post(`${this.apiUrl}/validar-codigo`, validarDTO);
+    }
 
     // Guardar el token en el localStorage
     saveToken(token: string): void {
