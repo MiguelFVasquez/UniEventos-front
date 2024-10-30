@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CrearCuentaRegistroDTO } from '../models/CrearCuentaRegistroDTO';
+import { MessageDTO } from '../models/message.dto';
+import { ValidarCodigoDTO } from '../models/VerificarCodigoDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -45,4 +48,14 @@ import { Router } from '@angular/router';
       this.router.navigate(['/user/dashboard']);
     }
   }
+
+  //------------------METODOS PARA CREACIÓN Y ACTIVACIÓN DE CUENTA-----------
+
+  crearCuenta(cuentaDTO: CrearCuentaRegistroDTO) :Observable<MessageDTO>{
+    return this.http.post<MessageDTO>(`${this.apiUrl}/crear-cuenta`, cuentaDTO);
+  }
+  validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MessageDTO> {
+    return this.http.post<MessageDTO>(`${this.apiUrl}/validar-codigo`, validarCodigoDTO);
+  }
+
 }

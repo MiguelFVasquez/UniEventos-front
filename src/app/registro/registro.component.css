@@ -9,7 +9,8 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 350px;
+  width: 80%;
+  max-width: 800px;
   margin: 60px auto;
   text-align: center;
 }
@@ -19,8 +20,15 @@ h1 {
   color: #ffffff;
 }
 
+.form-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
 .form-group {
-  margin-bottom: 15px;
+  flex: 1 1 45%; /* Ajusta el ancho de cada campo */
   text-align: left;
 }
 
@@ -40,6 +48,8 @@ input {
 
 .form-actions {
   margin-top: 20px;
+  width: 100%;
+  text-align: center;
 }
 
 .btn {
@@ -49,7 +59,7 @@ input {
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
-  width: 100%;
+  width: 20%;
 } 
 
 .btn:hover {
@@ -58,6 +68,7 @@ input {
 
 .login-link {
   margin-top: 20px;
+  margin-left: 250px;
   color: #ffffff;
 }
 
@@ -68,4 +79,15 @@ input {
 
 .login-link a:hover {
   text-decoration: underline;
+  color: aquamarine;
+  
+}
+.success-snackbar {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: #fff;
 }
