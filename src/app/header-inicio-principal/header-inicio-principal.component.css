@@ -1,0 +1,21 @@
+/* header.component.css */
+
+header {
+    background-color: #b1ffa1;
+    color: #000;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .btn-outline-dark {
+    border-color: #000;
+    color: #000;
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  

@@ -15,7 +15,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { EventoBoardComponent } from './evento-board/evento-board.component';
 import { ValidarCodigoComponent } from './validar-codigo/validar-codigo.component';
 import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
-
+import { BusquedaInicioPrincipalComponent } from './busqueda-inicio-principal/busqueda-inicio-principal.component';
+import { HeaderInicioPrincipalComponent } from './header-inicio-principal/header-inicio-principal.component';
+import { EventCardComponent } from './event-card/event-card.component';
 
 export const routes: Routes = [
     { path: 'log-in', component: LoginComponent },
@@ -23,6 +25,8 @@ export const routes: Routes = [
     {path: 'validar-codigo', component: ValidarCodigoComponent},
     {path: 'change-password', component: ChangePasswordComponent},
     {path: 'activar-cuenta',component: ActivarCuentaComponent},
+    {path: 'inicio-principal', component: BusquedaInicioPrincipalComponent},
+
     //Ruta anindada
     {
       path: 'admin',
@@ -57,7 +61,7 @@ export const routes: Routes = [
         }
       ]
     },
-    { path: '', redirectTo: '/log-in', pathMatch: 'full' },
-    { path: '**', redirectTo: '/log-in' }, 
+    { path: '', redirectTo: '/inicio-principal', pathMatch: 'full' },
+    { path: '**', redirectTo: '/inicio-principal' }, 
 
 ];  
