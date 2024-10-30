@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { CrearCuentaRegistroDTO } from '../models/CrearCuentaRegistroDTO';
+import { MessageDTO } from '../models/message.dto';
+import { ValidarCodigoDTO } from '../models/VerificarCodigoDTO';
+import { map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +19,31 @@ import { Router } from '@angular/router';
       const loginDTO = { correo, password }; // Cuerpo de la petición
       return this.http.post(`${this.apiUrl}/login`, loginDTO);
     }
+    //Metodo con el que obtenemos el correo a partir del token
+    getEmailFromToken(): string | null {
+      const token = this.getToken();
+      if (token) {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.nombre;
+      }
+      return null;
+    }
+
+    getUserInfo(email: string): Observable<any> {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+      return this.http.get<any>(`${this.apiUrl}/${email}`, { headers }).pipe(
+        tap(userInfo => {
+          // Guarda la información del usuario en el almacenamiento local
+          localStorage.setItem('user', JSON.stringify(userInfo));
+        })
+      );
+    }
+    //Obtiene la información del usuario desde el localStorage  
+    getUser(): any {
+      const user = localStorage.getItem('user');
+      return user ? JSON.parse(user) : null;
+    }
+
     //Método para verificar el rol de una cuenta dado el email
     verificarRol(email: string): Observable<any> {
       return this.http.post(`${this.apiUrl}/verificar-rol/${email}`, null); // Enviando null ya que no se espera un cuerpo adicional
@@ -49,4 +77,14 @@ import { Router } from '@angular/router';
       this.router.navigate(['/user/dashboard']);
     }
   }
+
+  //------------------METODOS PARA CREACIÓN Y ACTIVACIÓN DE CUENTA-----------
+
+  crearCuenta(cuentaDTO: CrearCuentaRegistroDTO) :Observable<MessageDTO>{
+    return this.http.post<MessageDTO>(`${this.apiUrl}/crear-cuenta`, cuentaDTO);
+  }
+  validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MessageDTO> {
+    return this.http.post<MessageDTO>(`${this.apiUrl}/validar-codigo`, validarCodigoDTO);
+  }
+
 }

@@ -11,19 +11,19 @@
 
   <div *ngIf="cuponesDisponibles && cuponesDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
-      *ngFor="let cupon of cuponesDisponibles | slice: (paginaActualDisponibles - 1) * 8 : paginaActualDisponibles * 8" 
+      *ngFor="let cupon of cuponesDisponibles" 
       [cupon]="cupon" 
       (cuponEliminado)="onCuponEliminado($event)">
     </app-cupon-card>
   </div>
 
   <div class="pagination">
-    <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 1">
+    <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <span>Página {{ paginaActualDisponibles }}</span>
+    <span>{{ paginaActualDisponibles + 1 }} de {{ totalPaginasDisponibles }}</span>
     <button (click)="cambiarPaginaDisponibles(1)" 
-            [disabled]="(paginaActualDisponibles * 8) >= cuponesDisponibles.length">
+            [disabled]="paginaActualDisponibles + 1 >= totalPaginasDisponibles">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
@@ -36,19 +36,19 @@
 
   <div *ngIf="cuponesNoDisponibles && cuponesNoDisponibles.length > 0" class="cupon-list">
     <app-cupon-card 
-      *ngFor="let cupon of cuponesNoDisponibles | slice: (paginaActualNoDisponibles - 1) * 8 : paginaActualNoDisponibles * 8" 
+      *ngFor="let cupon of cuponesNoDisponibles" 
       [cupon]="cupon" 
       (cuponEliminado)="onCuponEliminado($event)">
     </app-cupon-card>
   </div>
 
   <div class="pagination">
-    <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 1">
+    <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 0">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <span>Página {{ paginaActualNoDisponibles }}</span>
+    <span>{{ paginaActualNoDisponibles + 1 }} de {{ totalPaginasNoDisponibles }}</span>
     <button (click)="cambiarPaginaNoDisponibles(1)" 
-            [disabled]="(paginaActualNoDisponibles * 8) >= cuponesNoDisponibles.length">
+            [disabled]="paginaActualNoDisponibles + 1 >= totalPaginasNoDisponibles">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>

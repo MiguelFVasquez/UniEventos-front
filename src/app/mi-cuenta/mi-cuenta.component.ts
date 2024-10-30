@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
+import { MiCuentaService } from '../servicios/mi-cuenta.service';
+import { error } from 'console';
 @Component({
   selector: 'app-mi-cuenta',
   standalone: true,
@@ -12,14 +14,50 @@ import { AuthService } from '../servicios/auth.service';
 })
 export class MiCuentaComponent {
   editMode = false;
-  nombre = 'Miguel';
-  cedula = '1234567890';
-  telefono = '987654321';
-  direccion = 'Calle 24A#101';
-  correo = 'admin@correo.com';
-  password = "";
-  rol = 'ADMINISTRADOR';
-  constructor(private authService: AuthService,private router: Router) {}
+  nombre = '';
+  cedula = '1234567890'; // Este valor podría obtenerse de otra fuente si lo necesitas
+  telefono = '';
+  direccion = '';
+  correo = '';
+  password = '';
+  rol = '';
+  constructor(private router: Router,private authService: AuthService) {}
+
+  ngOnInit() {
+    const email = this.authService.getEmailFromToken();
+    if (email) {
+      this.cargarDatosUsuario(email);
+    }else{
+      console.log("Error al obtener el email");
+    }
+  }
+
+
+  cargarDatosUsuario(email: string) {
+    this.authService.getUserInfo(email).subscribe({
+      next: (info) => {
+        this.cedula=info.cedula;
+        this.nombre = info.nombre;
+        this.telefono = info.telefono;
+        this.direccion = info.direccion;
+        this.correo = info.email;
+
+        // Obtén el rol desde authService
+        this.authService.verificarRol(email).subscribe({
+          next: (rolResponse) => {
+            this.rol = rolResponse.respuesta; // Ajusta según la estructura de la respuesta
+          },
+          error: (error) => {
+            console.error('Error al verificar rol', error);
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Error al cargar los datos del usuario:', error);
+      }
+    });
+  }
+
   toggleEditMode() {
     this.editMode = !this.editMode;
   

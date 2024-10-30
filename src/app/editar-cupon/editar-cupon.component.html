@@ -1,38 +1,36 @@
-
 <div class="editar-cupon-container">
-<h2>Editar Cupón</h2>
-
-<form>
-    <div class="form-group">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" [(ngModel)]="cupon.nombre" name="nombre" required />
-    </div>
-    
-    <div class="form-group">
-    <label for="descuento">Descuento (%):</label>
-    <input type="number" id="descuento" [(ngModel)]="cupon.descuento" name="descuento" required min="0" max="100" />
-    </div>
-    
-    <div class="form-group">
-    <label for="fechaVencimiento">Fecha de Vencimiento:</label>
-    <input type="date" id="fechaVencimiento" [(ngModel)]="cupon.fechaVencimiento" name="fechaVencimiento" required />
-    </div>
-    
-    <div class="form-group">
-    <label for="codigo">Código:</label>
-    <input type="text" id="codigo" [(ngModel)]="cupon.codigo" name="codigo" required />
-    </div>
-    
-    <div class="form-group">
-    <label for="tipo">Tipo de Cupón:</label>
-    <input type="text" id="tipo" [(ngModel)]="cupon.tipo" name="tipo" required />
-    </div>
-    
-    <div class="button-group">
-    <button type="button" class="btn guardar-btn" (click)="actualizarCupon()">
-        <i class="fa-solid fa-save"></i>
-    </button>
-    <button type="button" class="btn cancelar-btn" (click)="cancelarEdicion()">Cancelar</button>
-    </div>
-</form>
-</div>
+    <h2>Editar Cupón</h2>
+  
+    <form>
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" [(ngModel)]="cuponDTO.nombre" name="nombre" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="descuento">Descuento (%):</label>
+        <input type="number" id="descuento" [(ngModel)]="cuponDTO.descuento" name="descuento" required min="0" max="100" />
+      </div>
+  
+      <div class="form-group">
+        <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+        <input type="date" id="fechaVencimiento" [(ngModel)]="cuponDTO.fechaVencimiento" name="fechaVencimiento" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="tipo">Tipo de Cupón:</label>
+        <select id="tipo" [(ngModel)]="cuponDTO.tipo" name="tipo" required>
+          <option value="UNICO">UNICO</option>
+          <option value="MULTIPLE">MULTIPLE</option>
+        </select>
+      </div>
+  
+      <div class="button-group">
+        <button type="button" class="btn guardar-btn" (click)="actualizarCupon()">
+          <i class="fa-solid fa-save"></i>
+        </button>
+        <button type="button" class="btn cancelar-btn" (click)="cancelarEdicion()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  
