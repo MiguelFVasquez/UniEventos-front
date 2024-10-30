@@ -32,7 +32,7 @@ export class RegistroComponent {
   
   onSubmit() {
     if (this.cuentaDTO.password !== this.verifyPassword) {
-      alert('Las contraseñas no coinciden.');
+      this.snackBar.open('Las contraseñas no coinciden.', 'Cerrar', { duration: 3000, panelClass: ['error-snackbar'] });
       return;
     }
 
