@@ -14,6 +14,10 @@ import { map, tap } from 'rxjs/operators';
 
     constructor(private http: HttpClient, private router: Router) {}
 
+    listarTodosEventos(): Observable<any>{
+      return this.http.get(`${this.apiUrl}/evento/getAll`);
+    }
+
     // Método para hacer login y obtener el token
     login(correo: string, password: string): Observable<any> {
       const loginDTO = { correo, password }; // Cuerpo de la petición

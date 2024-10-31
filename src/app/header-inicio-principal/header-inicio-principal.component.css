@@ -1,21 +1,38 @@
-/* header.component.css */
+.navbar {
+  background-color: #28a745; /* Fondo verde */
+  height: 70px; /* Altura de la barra */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
 
-header {
-    background-color: #b1ffa1;
-    color: #000;
-  }
-  
-  h1 {
-    font-size: 1.8rem;
-  }
-  
-  .btn-outline-dark {
-    border-color: #000;
-    color: #000;
-  }
-  
-  .btn-outline-dark:hover {
-    background-color: #000;
-    color: #fff;
-  }
-  
+.navbar a.navbar-brand {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none; /* Sin subrayado */
+  flex-grow: 1;
+  text-align: center;
+}
+
+.navbar .nav-link {
+  color: white;
+  font-size: 18px;
+  text-decoration: none; /* Sin subrayado */
+  margin-right: 20px;
+}
+
+.navbar .ingresar {
+  position: absolute;
+  right: 20px;
+}
+
+.navbar .fas {
+  color: white;
+}
+
+.navbar .nav-link:hover, 
+.navbar a.navbar-brand:hover {
+  color: #d4edda; /* Color claro al pasar el mouse */
+}

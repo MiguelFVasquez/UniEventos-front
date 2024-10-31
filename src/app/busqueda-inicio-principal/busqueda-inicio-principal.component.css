@@ -1,23 +1,4 @@
-.carousel-item img {
-    height: 300px;
-    object-fit: cover;
-  }
-  .search-bar {
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .card {
-    border: none;
-  }
-  
-  .card img {
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .badge.bg-success {
-    font-size: 0.9rem;
-    padding: 5px 10px;
-  }
-  
+.carouselExample{
+    position: relative;
+    width: 100%;
+}
