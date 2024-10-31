@@ -6,6 +6,7 @@ import { InitialHeaderComponent } from '../initial-header/initial-header.compone
 import { AuthService } from '../servicios/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MiCuentaService } from '../servicios/mi-cuenta.service';
+import { SharedService } from '../servicios/shared-service.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -19,7 +20,7 @@ export class LoginComponent {
   password: string = '';
   passwordVisible: boolean = false;
 
-  constructor(private authService: AuthService,  private snackBar: MatSnackBar,private router: Router,private miCuentaService: MiCuentaService) {}
+  constructor(private authService: AuthService,  private snackBar: MatSnackBar,private router: Router,private sharedService: SharedService) {}
 
   // Alternar visibilidad de la contraseña
   togglePasswordVisibility() {
@@ -42,7 +43,8 @@ export class LoginComponent {
         const token = loginResponse?.respuesta?.token;
         if (token) {
           this.authService.saveToken(token);
-
+          // Almacena temporalmente la contraseña en el servicio
+          this.sharedService.setPassword(this.password);
           const email = this.email;
           if (email) {
             this.authService.getUserInfo(email).subscribe({

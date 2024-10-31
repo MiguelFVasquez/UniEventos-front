@@ -29,6 +29,7 @@ import { map, tap } from 'rxjs/operators';
       return null;
     }
 
+
     getUserInfo(email: string): Observable<any> {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
       return this.http.get<any>(`${this.apiUrl}/${email}`, { headers }).pipe(

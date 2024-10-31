@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
 import { MiCuentaService } from '../servicios/mi-cuenta.service';
 import { error } from 'console';
+import { SharedService } from '../servicios/shared-service.service';
 @Component({
   selector: 'app-mi-cuenta',
   standalone: true,
@@ -15,24 +16,32 @@ import { error } from 'console';
 export class MiCuentaComponent {
   editMode = false;
   nombre = '';
-  cedula = '1234567890'; // Este valor podría obtenerse de otra fuente si lo necesitas
+  cedula = ''; // Este valor podría obtenerse de otra fuente si lo necesitas
   telefono = '';
   direccion = '';
   correo = '';
   password = '';
   rol = '';
-  constructor(private router: Router,private authService: AuthService) {}
+
+  passwordVisible: boolean = false;
+  constructor(private router: Router,private authService: AuthService, private sharedService: SharedService) {}
 
   ngOnInit() {
     const email = this.authService.getEmailFromToken();
     if (email) {
       this.cargarDatosUsuario(email);
+      // Obtén la contraseña desde el servicio compartido
+      this.password = this.sharedService.getPassword();
+      // Limpia la contraseña del servicio después de obtenerla
+      //this.sharedService.clearPassword();
     }else{
       console.log("Error al obtener el email");
     }
   }
 
-
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
   cargarDatosUsuario(email: string) {
     this.authService.getUserInfo(email).subscribe({
       next: (info) => {
@@ -41,7 +50,7 @@ export class MiCuentaComponent {
         this.telefono = info.telefono;
         this.direccion = info.direccion;
         this.correo = info.email;
-
+        
         // Obtén el rol desde authService
         this.authService.verificarRol(email).subscribe({
           next: (rolResponse) => {
