@@ -7,6 +7,8 @@ import { MiCuentaService } from '../servicios/mi-cuenta.service';
 import { SharedService } from '../servicios/shared-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoAdicionalDTO } from '../models/InfoAdicionalDTO';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -30,6 +32,7 @@ export class MiCuentaComponent {
               private authService: AuthService,
               private sharedService: SharedService,
               private miCuentaService:MiCuentaService,
+              private dialog: MatDialog,
               private snackBar: MatSnackBar,) {}
 
   ngOnInit() {
@@ -116,10 +119,29 @@ export class MiCuentaComponent {
     }
   }
   changePassword() {
-    // Lógica para cambiar la contraseña
-    console.log('Cambiar contraseña');
-    // Aquí puedes redirigir o abrir un modal para cambiar la contraseña
+    if (this.correo) {
+      console.log('email: ', this.correo)
+      // Llama al servicio para enviar el código al email del usuario
+      this.authService.enviarCodigo(this.correo).subscribe({
+        next: (response) => {
+          this.showNotification(response.message); // Muestra el mensaje de éxito
+          // Abre el componente ChangePasswordComponent como un diálogo después de enviar el código
+          this.dialog.open(ChangePasswordComponent, {
+            width: '500px',
+            disableClose: true,
+            panelClass: 'custom-dialog',
+          });
+        },
+        error: (error) => {
+          console.error('Error al enviar el código:', error);
+          this.showNotification('Error al enviar el código al correo.');
+        }
+      });
+    } else {
+      this.showNotification('Por favor, asegúrate de tener un email válido.');
+    }
   }
+
   eliminarCuenta() {
     // Confirmar antes de eliminar
     const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
