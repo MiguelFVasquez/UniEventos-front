@@ -6,6 +6,8 @@ import { AuthService } from '../servicios/auth.service';
 import { MiCuentaService } from '../servicios/mi-cuenta.service';
 import { SharedService } from '../servicios/shared-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { InfoAdicionalDTO } from '../models/InfoAdicionalDTO';
+
 @Component({
   selector: 'app-mi-cuenta',
   standalone: true,
@@ -73,26 +75,32 @@ export class MiCuentaComponent {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
-  
     if (this.editMode) {
-      // Muestra una alerta indicando que ahora puede editar la información
       alert('Ahora puede editar su información.');
     } else {
-      // Implementa la lógica para guardar los cambios y mostrar la alerta de éxito
-      console.log('Datos guardados:', {
-        nombre: this.nombre,
-        cedula: this.cedula,
-        telefono: this.telefono,
-        direccion: this.direccion,
-        correo: this.correo,
-        password: this.password // Este campo no se puede editar
-      });
-  
-      // Muestra una alerta indicando que los cambios se han guardado con éxito
-      alert('Los cambios han sido guardados con éxito.');
+      this.guardarCambios();
     }
   }
-  
+  guardarCambios() {
+    const infoAdicionalDTO: InfoAdicionalDTO = {
+      nombre: this.nombre,
+      cedula: this.cedula,
+      telefono: this.telefono,
+      direccion: this.direccion,
+      email: this.correo
+    };
+
+    this.miCuentaService.editarCuenta(infoAdicionalDTO).subscribe({
+      next: (response) => {
+        this.showNotification(response.message);
+        alert('Los cambios han sido guardados con éxito.');
+      },
+      error: (error) => {
+        console.error('Error al guardar los cambios:', error);
+        this.showNotification('Error al guardar los cambios');
+      }
+    });
+  }
   logout() {
     // Redirecciona al log in
     const confirmacion = window.confirm('¿Seguro que desea cerrar sesión?');
