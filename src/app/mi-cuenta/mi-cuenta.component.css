@@ -50,6 +50,7 @@ h2 {
   flex-wrap: wrap; /* Reubica los botones en la siguiente línea si hay poco espacio */
   gap: 0.2px; /* Espacio entre los botones */
   margin-top: 20px; /* Espacio por encima del grupo de botones */
+  border-color: #fff;
   position: relative; /* Necesario para el tooltip */
 }
 
@@ -62,6 +63,7 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border-color: #fff;
   transition: background-color 0.3s ease;
 }
 
@@ -91,8 +93,9 @@ h2 {
 .btn {
   padding: 10px; /* Ajustado para mayor consistencia */
   border: none;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   cursor: pointer;
+  border-color: #fff;
   transition: background-color 0.3s ease;
 }
 
@@ -106,6 +109,7 @@ h2 {
 
 .btn.change-password {
   background-color: #007bff;
+  
 }
 
 .btn.change-password:hover {

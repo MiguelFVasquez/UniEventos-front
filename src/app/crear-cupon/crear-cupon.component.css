@@ -1,112 +1,81 @@
-/* crear-cupon.component.css */
-
-/* Fondo oscuro del diálogo */
-:host {
-    display: block;
-    background-color: #2c2b2b;
-    color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px; /* Ancho máximo del diálogo */
-    margin: auto; /* Centrar el diálogo */
-  }
- 
-  /* Estilos para los campos de formulario */
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  mat-label, input, mat-select {
-    color: #000000; /* Texto blanco para el tema oscuro */
-    height: auto;
-  }
-  
-  mat-select {
-    background-color: #3a3a3a; 
-  }
-  
-  /* Cambiar el color del borde y el placeholder de los inputs */
-  mat-form-field.mat-focused .mat-form-field-label {
-    color: #90caf9; /* Azul claro para el borde activo */
-  }
-  
-  .mat-form-field-underline {
-    background-color: #90caf9; /* Azul claro para la línea subrayada */
-  }
-  
-  /* Botones */
-  .principal{
-    background-color: #28a745; 
-    color: #fff;
-    border: 0;
-    margin-right: 10px;
-    border-radius: 5px;
-    height: 40px;
-  }
-  
-  .principal:hover {
-    background-color: #218838;
-  }
-  .secundary{
-    background-color: #dc3545;
-    color: #fff;
-    border: 0;
-    margin-right: 10px;
-    border-radius: 5px;
-    height: 40px;
-
-  }
-  .secundary:hover{
-    background-color: #c82333;
-  }
-  /* Ajustar el diálogo para que no ocupe toda la pantalla */
-  .mat-dialog-container {
-    background-color: transparent;
-    box-shadow: none;
-  }
-  .button-container {
-    display: flex; /* Usar flexbox */
-    justify-content: center; /* Centrar horizontalmente */
-    margin-top: 7px; /* Espacio encima de los botones */
-  }
-  /* crear-cupon.component.css */
-
-/* Estilo para el mat-select */
-mat-select {
-  background-color: #3a3a3a; /* Fondo del combo box */
-  color: #ffffff; /* Color del texto */
-  border-radius: 4px; /* Bordes redondeados */
+/* Estilos generales */
+.editar-cupon-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #2c2b2b;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para el menú desplegable */
-.mat-select-panel {
-  background-color: #2e2e2e; /* Fondo del menú desplegable */
-  color: #ffffff; /* Color del texto del menú */
+h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
 }
 
-/* Estilo para las opciones del menú */
-.mat-option {
-  background-color: transparent; /* Fondo transparente para las opciones */
-  color: #ffffff; /* Color del texto de las opciones */
+/* Estilos para los campos del formulario */
+.form-group {
+  margin-bottom: 15px;
 }
 
-/* Cambia el color al pasar el ratón sobre las opciones */
-.mat-option:hover {
-  background-color: #90caf9; /* Color de fondo al pasar el ratón */
-  color: #000000; /* Color del texto al pasar el ratón */
+label {
+  display: block;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 5px;
 }
 
-/* Para asegurar que el placeholder se vea bien */
-.mat-form-field-label {
-  color: #ffffff; /* Color del label */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #393838;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #2c2b2b;
+  color: #ffffff;
+  appearance: none;
 }
 
-/* Cambiar el color del borde y el placeholder de los inputs */
-mat-form-field.mat-focused .mat-form-field-label {
-  color: #90caf9; /* Azul claro para el borde activo */
+/* Estilos específicos para el select */
+select {
+  background-color: #2c2b2b;
+  color: #ffffff;
 }
 
-.mat-form-field-underline {
-  background-color: #90caf9; /* Azul claro para la línea subrayada */
+/* Grupo de botones */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.guardar-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.guardar-btn:hover {
+  background-color: #218838;
+}
+
+.cancelar-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancelar-btn:hover {
+  background-color: #c82333;
 }
