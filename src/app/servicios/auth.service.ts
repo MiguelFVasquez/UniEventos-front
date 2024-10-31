@@ -6,6 +6,7 @@ import { CrearCuentaRegistroDTO } from '../models/CrearCuentaRegistroDTO';
 import { MessageDTO } from '../models/message.dto';
 import { ValidarCodigoDTO } from '../models/VerificarCodigoDTO';
 import { map, tap } from 'rxjs/operators';
+import { ChangePassword } from '../models/change-password';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,15 +15,35 @@ import { map, tap } from 'rxjs/operators';
 
     constructor(private http: HttpClient, private router: Router) {}
 
+<<<<<<< HEAD
     listarTodosEventos(): Observable<any>{
       return this.http.get(`${this.apiUrl}/evento/getAll`);
     }
 
+=======
+    saveToken(token: string): void {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        sessionStorage.setItem('authToken', token);
+      }
+    }
+
+    // Obtener el token almacenado
+    getToken(): string | null {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        return sessionStorage.getItem('authToken');
+      }
+      return null;
+    }
+
+
+>>>>>>> master
     // Método para hacer login y obtener el token
     login(correo: string, password: string): Observable<any> {
       const loginDTO = { correo, password }; // Cuerpo de la petición
       return this.http.post(`${this.apiUrl}/login`, loginDTO);
     }
+
+
     //Metodo con el que obtenemos el correo a partir del token
     getEmailFromToken(): string | null {
       const token = this.getToken();
@@ -32,6 +53,7 @@ import { map, tap } from 'rxjs/operators';
       }
       return null;
     }
+
 
     getUserInfo(email: string): Observable<any> {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
@@ -54,19 +76,6 @@ import { map, tap } from 'rxjs/operators';
     }
     
     // Guardar el token en el localStorage
-    saveToken(token: string): void {
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        sessionStorage.setItem('authToken', token);
-      }
-    }
-
-    // Obtener el token almacenado
-    getToken(): string | null {
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        return sessionStorage.getItem('authToken');
-      }
-      return null;
-    }
 
   // Método para redirigir al usuario después del login
   redirectToDashboard(rol: string): void {
@@ -85,5 +94,13 @@ import { map, tap } from 'rxjs/operators';
   validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MessageDTO> {
     return this.http.post<MessageDTO>(`${this.apiUrl}/validar-codigo`, validarCodigoDTO);
   }
+  //-------------------RECUPERACIÓN DE PASSWORD-------------------------------
+  enviarCodigo(correo:string):Observable<MessageDTO>{
+    return this.http.put<MessageDTO>(`${this.apiUrl}/enviarCodigoPassword/${correo}`,null);
+  }
+  cambiarPassword(cambioPasswordDTO: ChangePassword): Observable<MessageDTO>{
+    return this.http.post<MessageDTO>(`${this.apiUrl}/cambiarPassword`, cambioPasswordDTO);
+  }
+
 
 }
