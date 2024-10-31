@@ -15,12 +15,10 @@ import { ChangePassword } from '../models/change-password';
 
     constructor(private http: HttpClient, private router: Router) {}
 
-<<<<<<< HEAD
     listarTodosEventos(): Observable<any>{
       return this.http.get(`${this.apiUrl}/evento/getAll`);
     }
 
-=======
     saveToken(token: string): void {
       if (typeof window !== 'undefined' && window.sessionStorage) {
         sessionStorage.setItem('authToken', token);
@@ -35,8 +33,6 @@ import { ChangePassword } from '../models/change-password';
       return null;
     }
 
-
->>>>>>> master
     // Método para hacer login y obtener el token
     login(correo: string, password: string): Observable<any> {
       const loginDTO = { correo, password }; // Cuerpo de la petición
