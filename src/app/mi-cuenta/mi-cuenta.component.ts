@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
 import { MiCuentaService } from '../servicios/mi-cuenta.service';
-import { error } from 'console';
 import { SharedService } from '../servicios/shared-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-mi-cuenta',
   standalone: true,
@@ -24,7 +24,11 @@ export class MiCuentaComponent {
   rol = '';
 
   passwordVisible: boolean = false;
-  constructor(private router: Router,private authService: AuthService, private sharedService: SharedService) {}
+  constructor(private router: Router,
+              private authService: AuthService,
+              private sharedService: SharedService,
+              private miCuentaService:MiCuentaService,
+              private snackBar: MatSnackBar,) {}
 
   ngOnInit() {
     const email = this.authService.getEmailFromToken();
@@ -109,6 +113,30 @@ export class MiCuentaComponent {
     // Aquí puedes redirigir o abrir un modal para cambiar la contraseña
   }
   eliminarCuenta() {
-    // Lógica para eliminar la cuenta
+    // Confirmar antes de eliminar
+    const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
+
+    if (confirmacion) {
+      // Si el usuario confirma, llama al servicio para eliminar la cuenta
+      this.miCuentaService.eliminarCuenta(this.correo).subscribe({
+        next: (response) => {
+          this.showNotification(response.message);
+
+          // Redirigir al usuario al componente de login tras la eliminación
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Error al eliminar la cuenta', error);
+          this.showNotification('Error al eliminar la cuenta');
+        }
+      });
+    }
+  }
+  showNotification(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 }
