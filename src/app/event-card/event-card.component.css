@@ -16,7 +16,7 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #2b2b2b;
+  background-color: #E0E0E0; /* Fondo claro */
   transition: transform 0.2s ease;
   display: flex;
   flex-direction: column; /* Para que el contenido se distribuya verticalmente */
@@ -38,8 +38,7 @@
 
 .event-details h3, .event-details p {
   margin: 0;
-  
-  color: #ffffff;
+  color: #000000;
 }
 
 .event-details p {

@@ -2,22 +2,22 @@
   width: 100%; /* Asegura que el ancho sea igual al del adminHeader */
   padding: 20px;
   box-sizing: border-box;
-  background-color: #1c1c1e; /* Fondo oscuro */
-  color: #f0f0f0; /* Texto claro */
+  background-color: #f5f5f5; /* Fondo claro */
+  color: #333; /* Texto oscuro */
 }
 
 .cupon-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #444; /* Borde más oscuro para el tema oscuro */
+  border-bottom: 1px solid #ccc; /* Borde claro */
   padding-bottom: 10px;
 }
 
 .cupon-header h2 {
   margin: 0;
   font-size: 1.5em;
-  color: #f0f0f0; /* Texto claro */
+  color: #333; /* Texto oscuro */
 }
 
 .add-btn {
@@ -25,7 +25,7 @@
   height: 40px;
   border-radius: 5px;
   background-color: #007bff; /* Color de fondo para "Agregar" */
-  color: white; /* Color del texto en el botón */
+  color: #fff; /* Color del texto en el botón */
   font-size: 1.2em;
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #fff; /* Fondo claro */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   display: flex;
@@ -70,6 +70,7 @@
 
 .cupon-body p {
   margin: 4px 0;
+  color: #333; /* Texto oscuro */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
@@ -77,6 +78,7 @@
 
 .cupon-header h3 {
   font-size: 1.2em;
+  color: #333; /* Texto oscuro */
   margin: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -103,4 +105,14 @@
 
 .pagination button {
   margin: 0 10px;
+  background-color: #f5f5f5; /* Fondo claro para botones de paginación */
+  color: #333; /* Texto oscuro */
+  border: 1px solid #ddd; /* Borde claro */
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #ddd; /* Fondo más oscuro en hover */
 }

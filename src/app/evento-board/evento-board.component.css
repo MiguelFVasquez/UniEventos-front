@@ -11,6 +11,7 @@
 .btn {
   width: 60px;
   border-radius: 5px;
+  color: white;
   background-color: #007bff; /* Color de fondo para "Agregar" */
 }
 
@@ -46,11 +47,12 @@
 .search-btn i {
   font-size: 18px;
 }
+
 /* Contenedor principal de la lista de eventos */
 .event-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; /* Centra los elementos dentro del contenedor */
   gap: 20px; /* Espacio entre las tarjetas */
   margin-bottom: 20px;
 }
@@ -60,8 +62,8 @@
   background-color: #f8f9fa; /* Fondo claro */
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 23%; /* Cada tarjeta ocupa el 23% del ancho para mostrar 4 por fila */
-  min-width: 200px;
+  width: calc(30% - 20px); /* Cada tarjeta ocupa el 30% del ancho menos el espacio entre tarjetas */
+  min-width: 250px; /* Asegura que las tarjetas no sean demasiado estrechas */
   min-height: 350px; /* Altura mínima para asegurar que todas las tarjetas tengan el mismo tamaño */
   display: flex;
   flex-direction: column; /* Asegura que el contenido se distribuya verticalmente */
@@ -100,4 +102,3 @@
   margin-right: 5px;
   color: #007bff;
 }
-
