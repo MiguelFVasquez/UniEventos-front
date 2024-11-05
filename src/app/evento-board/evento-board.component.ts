@@ -3,6 +3,7 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { EventoService } from '../servicios/evento.service';
 
 @Component({
   selector: 'app-evento-board',
@@ -12,80 +13,56 @@ import { CommonModule } from '@angular/common';
   styleUrl: './evento-board.component.css'
 })
 export class EventoBoardComponent implements OnInit {
-  listaEventosDisponibles = [
-    {
-      nombre: 'Festival de Música',
-      descripcion: 'Un evento lleno de música y diversión.',
-      fecha: '2024-11-05',
-      ciudad: 'Bogotá',
-      imagenPortada: 'assets/imagenCover.jpeg'
-    },
-    {
-      nombre: 'Carrera de 5K',
-      descripcion: 'Una carrera para los amantes del running.',
-      fecha: '2024-10-15',
-      ciudad: 'Medellín',
-      imagenPortada: 'assets/imagenCover.jpeg'
-    },
-    {
-      nombre: 'Festival de Tatuajes',
-      descripcion: 'Una evento para dar a conocer los tatuadores del eje',
-      fecha: '2024-11-15',
-      ciudad: 'Armenia',
-      imagenPortada: 'assets/imagenCover.jpeg'
-    },
-    {
-      nombre: 'Fuck NEWS',
-      descripcion: 'Stand up de comedia',
-      fecha: '2024-10-15',
-      ciudad: 'Medellín',
-      imagenPortada: 'assets/imagenCover.jpeg'
-    }
-  ];
+  listaEventosDisponibles:any[] = [];
+  listaEventosNoDisponibles:any[] = [];
 
-  listaEventosNoDisponibles = [
-    {
-      nombre: 'Concierto Rock',
-      descripcion: 'Un concierto de rock inolvidable.',
-      fecha: '2024-09-20',
-      ciudad: 'Cali',
-      imagenPortada: 'assets/imagenCover.jpeg'
-    },
-    {
-      nombre: 'Feria Gastronómica',
-      descripcion: 'Degustación de platos de todo el mundo.',
-      fecha: '2024-08-10',
-      ciudad: 'Cartagena',
-      imagenPortada: 'assets/imagenCover.jpeg'
-    }
-  ];
+  paginaActualDisponibles = 0;
+  paginaActualNoDisponibles = 0;
+  size=3;
+  totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
+  totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 
-  eventosFiltradosDisponibles = [...this.listaEventosDisponibles];
-  eventosFiltradosNoDisponibles = [...this.listaEventosNoDisponibles];
-
+  constructor(private eventService: EventoService) {}
   ngOnInit(): void {
-    this.cargarEventos();
-  }
-
-  cargarEventos() {
-    // Aquí podrías realizar una solicitud a un servicio para cargar eventos desde el backend
+    this.cargarEventosDisponibles();
+    this.cargarEventosNoDisponibles();
   }
 
   agregarEvento() {
     // Lógica para agregar un evento
   }
 
-  filtrarEventos(event: any) {
-    const filtro = event.target.value.toLowerCase();
-
-    this.eventosFiltradosDisponibles = this.listaEventosDisponibles.filter(evento =>
-      evento.nombre.toLowerCase().includes(filtro) || 
-      evento.descripcion.toLowerCase().includes(filtro)
-    );
-
-    this.eventosFiltradosNoDisponibles = this.listaEventosNoDisponibles.filter(evento =>
-      evento.nombre.toLowerCase().includes(filtro) || 
-      evento.descripcion.toLowerCase().includes(filtro)
-    );
+   // Método para cambiar de página en eventos disponibles
+   cambiarPaginaDisponibles(direccion: number) {
+    this.paginaActualDisponibles += direccion;
+    this.cargarEventosDisponibles();
   }
+
+  // Método para cambiar de página en eventos no disponibles
+  cambiarPaginaNoDisponibles(direccion: number) {
+    this.paginaActualNoDisponibles += direccion;
+    this.cargarEventosNoDisponibles();
+  }
+
+  // Métodos para cargar los eventos de cada página (simulados aquí)
+  cargarEventosDisponibles() {
+    this.eventService.getEventosActivos(this.paginaActualDisponibles,this.size).subscribe(data =>{
+      console.log(data);  
+      this.listaEventosDisponibles=data.content;
+      this.totalPaginasDisponibles=data.totalPages;
+    });
+  }
+
+  cargarEventosNoDisponibles() {
+    this.eventService.getEventosInactivos(this.paginaActualDisponibles,this.size).subscribe(data =>{
+      this.listaEventosNoDisponibles=data.content;
+      this.totalPaginasDisponibles=data.totalPages;
+  });
+  }
+
+
+
+  
+
+
 }

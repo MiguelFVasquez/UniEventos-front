@@ -1,28 +1,60 @@
 <div class="event-board">
-  <h2>Gestión de eventos</h2>
-  
-  <!-- Barra de búsqueda -->
-  <div class="search-container">
-    <input type="text" class="search-input" (input)="filtrarEventos($event)" placeholder="Buscar eventos...">
-    <button class="search-btn">
-      <i class="fa fa-search"></i>
-    </button>
-  </div>
-  
+  <h2>Eventos Disponibles</h2>
+
   <!-- Botón para agregar un evento -->
-  <button class="btn" (click)="agregarEvento()">
+  <button class="btn add-btn" (click)="agregarEvento()">
     <i class="fa-solid fa-plus"></i>
   </button>
 
-  <!-- Sección de eventos disponibles -->
-  <h2>Eventos Disponibles</h2>
-  <div class="event-list">
-    <app-event-card *ngFor="let event of listaEventosDisponibles" [event]="event"></app-event-card>
+  <!-- Mensaje cuando no hay eventos disponibles -->
+  <div *ngIf="listaEventosDisponibles && listaEventosDisponibles.length === 0" class="no-events">
+    No hay eventos disponibles
   </div>
 
-  <!-- Sección de eventos no disponibles -->
+  <!-- Lista de eventos disponibles -->
+  <div *ngIf="listaEventosDisponibles && listaEventosDisponibles.length > 0" class="event-list">
+    <app-event-card 
+      *ngFor="let event of listaEventosDisponibles" 
+      [event]="event">
+    </app-event-card>
+  </div>
+
+  <!-- Paginación para eventos disponibles -->
+  <div class="pagination">
+    <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span>{{ paginaActualDisponibles + 1 }} de {{ totalPaginasDisponibles }}</span>
+    <button (click)="cambiarPaginaDisponibles(1)" 
+            [disabled]="paginaActualDisponibles + 1 >= totalPaginasDisponibles">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
   <h2>Eventos No Disponibles</h2>
-  <div class="event-list">
-    <app-event-card *ngFor="let event of listaEventosNoDisponibles" [event]="event"></app-event-card>
+
+  <!-- Mensaje cuando no hay eventos no disponibles -->
+  <div *ngIf="listaEventosNoDisponibles && listaEventosNoDisponibles.length === 0" class="no-events">
+    No hay eventos no disponibles
+  </div>
+
+  <!-- Lista de eventos no disponibles -->
+  <div *ngIf="listaEventosNoDisponibles && listaEventosNoDisponibles.length > 0" class="event-list">
+    <app-event-card 
+      *ngFor="let event of listaEventosNoDisponibles" 
+      [event]="event">
+    </app-event-card>
+  </div>
+
+  <!-- Paginación para eventos no disponibles -->
+  <div class="pagination">
+    <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 0">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span>{{ paginaActualNoDisponibles + 1 }} de {{ totalPaginasNoDisponibles }}</span>
+    <button (click)="cambiarPaginaNoDisponibles(1)" 
+            [disabled]="paginaActualNoDisponibles + 1 >= totalPaginasNoDisponibles">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
   </div>
 </div>

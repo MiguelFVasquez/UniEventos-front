@@ -45,9 +45,10 @@ listaEventosDisponibles = []; /* = [
   ];*/
 
   constructor(private eventoService:EventoService){
-    this.listarEventos(); 
+    
   }
 
+  /*
   public listarEventos(){
     this.eventoService.listarTodosEventos().subscribe({
       next: (data) => {
@@ -57,5 +58,5 @@ listaEventosDisponibles = []; /* = [
         console.log(error);
       }
     });
-  }
+  }*/
 }
