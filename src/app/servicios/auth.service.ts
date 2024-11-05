@@ -7,6 +7,8 @@ import { MessageDTO } from '../models/message.dto';
 import { ValidarCodigoDTO } from '../models/VerificarCodigoDTO';
 import { map, tap } from 'rxjs/operators';
 import { ChangePassword } from '../models/change-password';
+import { Page } from '../models/Page';
+import { ItemEventoDTO } from '../models/ItemEventoDTO ';
 @Injectable({
   providedIn: 'root'
 })
@@ -97,6 +99,21 @@ import { ChangePassword } from '../models/change-password';
   cambiarPassword(cambioPasswordDTO: ChangePassword): Observable<MessageDTO>{
     return this.http.post<MessageDTO>(`${this.apiUrl}/cambiarPassword`, cambioPasswordDTO);
   }
-
+  //----------------OBTENER LOS EVENTOS PARA LOS USUARIOS--------------------
+  getEventosActivos(pagina: number, size: number) {  
+    return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/eventos-activos?page=${pagina}&size=${size}`)
+      .pipe(
+        map((data: Page<ItemEventoDTO>) => {
+          // Transformar el contenido de ItemEventoDTO a un formato adecuado para el frontend
+          const eventos = data.content.map(item => ({
+            urlImagenPoster: item.urlImagenPoster,
+            nombre: item.nombre,
+            fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
+            direccion: item.direccion
+          }));
+          return { ...data, content: eventos }; // Devolver la respuesta transformada
+        })
+      );
+  }
 
 }

@@ -3,60 +3,42 @@ import { HeaderInicioPrincipalComponent } from '../header-inicio-principal/heade
 import { EventCardComponent } from '../event-card/event-card.component';
 import { RouterModule } from '@angular/router';
 import { EventoService } from '../servicios/evento.service';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../servicios/auth.service';
 
 @Component({
   selector: 'app-busqueda-inicio-principal',
   standalone: true,
-  imports: [HeaderInicioPrincipalComponent,EventCardComponent,RouterModule],
+  imports: [HeaderInicioPrincipalComponent,EventCardComponent,RouterModule, CommonModule],
   templateUrl: './busqueda-inicio-principal.component.html',
   styleUrl: './busqueda-inicio-principal.component.css'
 })
 export class BusquedaInicioPrincipalComponent {
+  listaEventosDisponibles:any[] = [];
+  paginaActualDisponibles = 0;
+  paginaActualNoDisponibles = 0;
+  size=4;
+  totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
+  totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 
-listaEventosDisponibles = []; /* = [
-    {
-      nombre: 'Festival de Música',
-      descripcion: 'Un evento lleno de música y diversión.',
-      fecha: '2024-11-05',
-      ciudad: 'Bogotá',
-      imagenPortada: 'assets/musica1.jpg'
-    },
-    {
-      nombre: 'Carrera de 5K',
-      descripcion: 'Una carrera para los amantes del running.',
-      fecha: '2024-10-15',
-      ciudad: 'Medellín',
-      imagenPortada: 'assets/carrera.jpg'
-    },
-    {
-      nombre: 'Festival de Tatuajes',
-      descripcion: 'Una evento para dar a conocer los tatuadores del eje',
-      fecha: '2024-11-15',
-      ciudad: 'Armenia',
-      imagenPortada: 'assets/tatuajes.jpg'
-    },
-    {
-      nombre: 'Fuck NEWS',
-      descripcion: 'Stand up de comedia',
-      fecha: '2024-10-15',
-      ciudad: 'Medellín',
-      imagenPortada: 'assets/fucknews.jpg'
-    }
-  ];*/
-
-  constructor(private eventoService:EventoService){
-    
+  constructor(private authService:AuthService){}
+  
+  ngOnInit(): void {
+    this.listarEventos();
   }
 
-  /*
-  public listarEventos(){
-    this.eventoService.listarTodosEventos().subscribe({
-      next: (data) => {
-        this.listaEventosDisponibles = data.respuesta;
-      },
-      error: (error) => {
-        console.log(error);
-      }
+
+  listarEventos(){
+    this.authService.getEventosActivos(this.paginaActualDisponibles,this.size).subscribe(data =>{
+      console.log(data);  
+      this.listaEventosDisponibles=data.content;
+      this.totalPaginasDisponibles=data.totalPages;
     });
-  }*/
+  }
+
+  cambiarPaginaDisponibles(direccion: number) {
+    this.paginaActualDisponibles += direccion;
+    this.listarEventos();
+  }
+
 }
