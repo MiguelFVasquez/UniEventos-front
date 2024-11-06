@@ -6,6 +6,7 @@ import { CrearCuentaRegistroDTO } from '../models/CrearCuentaRegistroDTO';
 import { MessageDTO } from '../models/message.dto';
 import { ValidarCodigoDTO } from '../models/VerificarCodigoDTO';
 import { map, tap } from 'rxjs/operators';
+import { MensajeDTO } from '../models/mensaje-dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,9 @@ import { map, tap } from 'rxjs/operators';
 
     listarTodosEventos(): Observable<any>{
       return this.http.get(`${this.apiUrl}/evento/getAll`);
+    }
+    listarTodosEventosDisponibles(): Observable<any>{
+      return this.http.get(`${this.apiUrl}/getAll-disponibles`);
     }
 
     // Método para hacer login y obtener el token
@@ -84,6 +88,10 @@ import { map, tap } from 'rxjs/operators';
   }
   validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MessageDTO> {
     return this.http.post<MessageDTO>(`${this.apiUrl}/validar-codigo`, validarCodigoDTO);
+  }
+
+  getTipos(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listar-tipos`);
   }
 
 }

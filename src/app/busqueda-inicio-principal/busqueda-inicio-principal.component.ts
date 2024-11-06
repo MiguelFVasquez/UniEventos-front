@@ -3,49 +3,53 @@ import { HeaderInicioPrincipalComponent } from '../header-inicio-principal/heade
 import { EventCardComponent } from '../event-card/event-card.component';
 import { RouterModule } from '@angular/router';
 import { EventoService } from '../servicios/evento.service';
+import { FiltroEventoDTO } from '../models/filtro-evento-dto';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../servicios/auth.service';
+import { ItemEventoDTO } from '../models/item-evento-dto';
 
 @Component({
   selector: 'app-busqueda-inicio-principal',
   standalone: true,
-  imports: [HeaderInicioPrincipalComponent,EventCardComponent,RouterModule],
+  imports: [HeaderInicioPrincipalComponent,EventCardComponent,RouterModule, ReactiveFormsModule],
   templateUrl: './busqueda-inicio-principal.component.html',
   styleUrl: './busqueda-inicio-principal.component.css'
 })
 export class BusquedaInicioPrincipalComponent {
 
-listaEventosDisponibles = []; /* = [
-    {
-      nombre: 'Festival de Música',
-      descripcion: 'Un evento lleno de música y diversión.',
-      fecha: '2024-11-05',
-      ciudad: 'Bogotá',
-      imagenPortada: 'assets/musica1.jpg'
-    },
-    {
-      nombre: 'Carrera de 5K',
-      descripcion: 'Una carrera para los amantes del running.',
-      fecha: '2024-10-15',
-      ciudad: 'Medellín',
-      imagenPortada: 'assets/carrera.jpg'
-    },
-    {
-      nombre: 'Festival de Tatuajes',
-      descripcion: 'Una evento para dar a conocer los tatuadores del eje',
-      fecha: '2024-11-15',
-      ciudad: 'Armenia',
-      imagenPortada: 'assets/tatuajes.jpg'
-    },
-    {
-      nombre: 'Fuck NEWS',
-      descripcion: 'Stand up de comedia',
-      fecha: '2024-10-15',
-      ciudad: 'Medellín',
-      imagenPortada: 'assets/fucknews.jpg'
-    }
-  ];*/
+  listaEventosDisponibles:ItemEventoDTO[] = [];
+  filtroForm!: FormGroup;
+  tipos: string[];
 
-  constructor(private eventoService:EventoService){
-    this.listarEventos(); 
+  constructor(private authService:AuthService, private eventoService:EventoService, private formBuilder: FormBuilder){
+    this.obtenerEventosDisponibles(); 
+    this.crearFormulario();
+    this.tipos = [];
+    this.obtenerTipos();
+  }
+
+  public crearFormulario(){
+    this.filtroForm = this.formBuilder.group({
+      nombre: [""],
+      tipo: [""],
+      ciudad: ["Armenia"]
+    });
+  }
+
+  public obtenerEventosDisponibles(){
+    this.authService.listarTodosEventosDisponibles().subscribe({
+      next: (data) => {
+        this.listaEventosDisponibles = data.respuesta;
+      }
+    })
+  }
+
+  public obtenerTipos(){
+    this.authService.getTipos().subscribe({
+      next: (data) => {
+        this.tipos = data.respuesta;
+      }
+    });
   }
 
   public listarEventos(){
@@ -58,4 +62,19 @@ listaEventosDisponibles = []; /* = [
       }
     });
   }
+
+  public filtrarEventos(){
+
+    const filtroEve = this.filtroForm.value as FiltroEventoDTO;
+
+    this.eventoService.filtrarEventos(filtroEve).subscribe({
+      next: (data) => {
+        this.listaEventosDisponibles = data.respuesta;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
 }

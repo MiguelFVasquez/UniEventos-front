@@ -1,9 +1,8 @@
 <div class="event-card m-3">
-  <img [src]="event.imagenPortada" alt="Imagen del evento" class="event-image">
+  <img [src]="event.urlImagenPoster" alt="Imagen del evento" class="event-image">
   <div class="event-details">
     <h3>{{ event.nombre }}</h3>
-    <p>{{ event.descripcion }}</p>
-    <p><i class="fa fa-calendar"></i> {{ event.fecha }}</p>
-    <p><i class="fa fa-map-marker-alt"></i> {{ event.ciudad }}</p>
+    <p><i class="fa fa-calendar"></i> {{ event.fecha | date:'yyyy-MM-dd'  }}</p>
+    <p><i class="fa fa-map-marker-alt"></i> {{ event.direccion }}</p>
   </div>
 </div>

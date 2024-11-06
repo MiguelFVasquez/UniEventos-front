@@ -36,3 +36,7 @@
 .navbar a.navbar-brand:hover {
   color: #d4edda; /* Color claro al pasar el mouse */
 }
+.btn-signup-green {
+  background-color: #28a745; /* Ajusta el color según tus preferencias */
+  color: white;
+}

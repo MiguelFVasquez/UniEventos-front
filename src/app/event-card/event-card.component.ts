@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component,Input} from '@angular/core';
+import { ItemEventoDTO } from '../models/item-evento-dto';
 
 @Component({
   selector: 'app-event-card',
@@ -9,7 +10,7 @@ import { Component,Input} from '@angular/core';
   styleUrl: './event-card.component.css'
 })
 export class EventCardComponent {
-  @Input() event: any; // Recibimos el evento como una entrada
+  @Input() event!: ItemEventoDTO; // Recibimos el evento como una entrada
   
   constructor() { }
 

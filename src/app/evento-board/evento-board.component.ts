@@ -3,6 +3,7 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ItemEventoDTO } from '../models/item-evento-dto';
 
 @Component({
   selector: 'app-evento-board',
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [EventCardComponent,RouterModule,CommonModule],
   templateUrl: './evento-board.component.html',
   styleUrl: './evento-board.component.css'
+
 })
 export class EventoBoardComponent implements OnInit {
   listaEventosDisponibles = [
