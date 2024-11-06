@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { EventoService } from '../servicios/evento.service';
+import { Router } from '@angular/router';
+import { EventoService } from '../servicios/evento-service.service';
 
 @Component({
   selector: 'app-evento-board',
@@ -22,7 +22,7 @@ export class EventoBoardComponent implements OnInit {
   totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 
-  constructor(private eventService: EventoService) {}
+  constructor(private eventService: EventoService, private router: Router ) {}
   ngOnInit(): void {
     this.cargarEventosDisponibles();
     this.cargarEventosNoDisponibles();
@@ -31,11 +31,10 @@ export class EventoBoardComponent implements OnInit {
   agregarEvento() {
     // Lógica para agregar un evento
   }
-
-   // Método para cambiar de página en eventos disponibles
-   cambiarPaginaDisponibles(direccion: number) {
-    this.paginaActualDisponibles += direccion;
-    this.cargarEventosDisponibles();
+  // Método para cambiar de página en eventos disponibles
+  cambiarPaginaDisponibles(direccion: number) {
+  this.paginaActualDisponibles += direccion;
+  this.cargarEventosDisponibles();
   }
 
   // Método para cambiar de página en eventos no disponibles
@@ -60,8 +59,12 @@ export class EventoBoardComponent implements OnInit {
   });
   }
 
-
-
+  //------------capturar input para saber cuando se hace click sobre un evento----------
+    // Método para manejar el clic en un evento
+  // Método que navega a la página de detalles del evento
+  onEventCardClick(eventId: string) {
+    this.router.navigate([`/admin/dashboard/events/detail/${eventId}`]);
+  }
   
 
 

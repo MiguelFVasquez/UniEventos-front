@@ -1,0 +1,88 @@
+<div class="container">
+  <div *ngIf="evento; else loading">
+    <h2>Detalles del Evento</h2>
+    
+    <!-- Nombre del evento -->
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" [value]="evento.nombre" disabled />
+    </div>
+
+    <!-- Descripción del evento -->
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" [value]="evento.descripcion" disabled></textarea>
+    </div>
+
+    <!-- Dirección -->
+    <div class="form-group">
+      <label for="direccion">Dirección:</label>
+      <input id="direccion" [value]="evento.direccion" disabled />
+    </div>
+
+    <!-- Ciudad -->
+    <div class="form-group">
+      <label for="ciudad">Ciudad:</label>
+      <input id="ciudad" [value]="evento.ciudad" disabled />
+    </div>
+
+    <!-- Fecha -->
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input id="fecha" [value]="evento.fecha | date:'dd/MM/yyyy'" disabled />
+    </div>
+
+    <!-- Estado -->
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      <input id="estado" [value]="evento.estado" disabled />
+    </div>
+
+    <!-- Tipo de evento -->
+    <div class="form-group">
+      <label for="tipo">Tipo de Evento:</label>
+      <input id="tipo" [value]="evento.tipo" disabled />
+    </div>
+
+    <!-- Promedio de calificaciones -->
+    <div class="form-group">
+      <label for="promedio">Promedio de Calificaciones:</label>
+      <input id="promedio" [value]="evento.promedioCalificaciones" disabled />
+    </div>
+
+    <!-- Imágenes -->
+    <div class="form-group">
+      <label for="imagenPortada">Imagen Portada:</label>
+      <img [src]="evento.imagenPortada" alt="Imagen Portada" />
+    </div>
+    <div class="form-group">
+      <label for="imagenLocalidades">Imagen Localidades:</label>
+      <img [src]="evento.imagenLocalidades" alt="Imagen Localidades" />
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="action-buttons">
+      <!-- Botón Actualizar -->
+      <button 
+      class="action-btn" 
+      (click)="actualizarEvento()"
+      title="Actualizar Evento"
+    >
+      <i class="fa fa-edit"></i>
+    </button>
+      <!-- Botón Eliminar -->
+      <button 
+        class="action-btn delete" 
+        (click)="eliminarEvento()"
+        title="Eliminar Evento"
+      >
+        <i class="fa fa-trash"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Cargando detalles del evento...</p>
+  </ng-template>
+</div>

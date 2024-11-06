@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderInicioPrincipalComponent } from '../header-inicio-principal/header-inicio-principal.component';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { RouterModule } from '@angular/router';
-import { EventoService } from '../servicios/evento.service';
+import { EventoService } from '../servicios/evento-service.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../servicios/auth.service';
 
@@ -17,7 +17,7 @@ export class BusquedaInicioPrincipalComponent {
   listaEventosDisponibles:any[] = [];
   paginaActualDisponibles = 0;
   paginaActualNoDisponibles = 0;
-  size=4;
+  size=3;
   totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 

@@ -3,4 +3,5 @@ export interface ItemEventoDTO {
     nombre: string;
     fecha: number[];  // O usa un tipo más específico si deseas procesar la fecha
     direccion: string;
+    id:string;
 }

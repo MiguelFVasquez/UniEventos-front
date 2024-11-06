@@ -29,7 +29,8 @@ import { Evento } from '../models/evento';
               urlImagenPoster: item.urlImagenPoster,
               nombre: item.nombre,
               fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
-              direccion: item.direccion
+              direccion: item.direccion,
+              id: item.id
             }));
             return { ...data, content: eventos }; // Devolver la respuesta transformada
           })
@@ -49,16 +50,35 @@ import { Evento } from '../models/evento';
               urlImagenPoster: item.urlImagenPoster,
               nombre: item.nombre,
               fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
-              direccion: item.direccion
+              direccion: item.direccion,
+              id: item.id
             }));
             return { ...data, content: eventos }; // Devolver la respuesta transformada
           })
         );
     }
 
-    getEventoById(eventId: string): Observable<Evento>{
+    getEventoById(eventId: string): Observable<Evento> {
       const token = this.authService.getToken();
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get<Evento>(`${this.apiUrl}/${eventId}`);
+      
+      return this.http.get<Evento>(`${this.apiUrl}/${eventId}`, { headers }).pipe(
+        map((data: Evento) => {
+          // Asegúrate de que la fecha esté en formato de array
+          if (Array.isArray(data.fecha) && data.fecha.length === 5) {
+            // Convertir el array de la fecha a un objeto Date
+            const fecha = new Date(
+              data.fecha[0],       // Año
+              data.fecha[1] - 1,   // Mes (ajustamos para que sea 0-11)
+              data.fecha[2],       // Día
+              data.fecha[3],       // Hora
+              data.fecha[4]        // Minutos
+            );
+            return { ...data, fecha: fecha }; // Asigna la fecha transformada
+          }
+          return data; // Si la fecha no está en el formato esperado, retornamos los datos sin cambios
+        })
+      );
     }
+    
 }

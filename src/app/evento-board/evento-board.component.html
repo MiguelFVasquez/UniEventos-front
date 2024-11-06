@@ -15,7 +15,8 @@
   <div *ngIf="listaEventosDisponibles && listaEventosDisponibles.length > 0" class="event-list">
     <app-event-card 
       *ngFor="let event of listaEventosDisponibles" 
-      [event]="event">
+      [event]="event"
+      (click)="onEventCardClick(event.id)">
     </app-event-card>
   </div>
 
@@ -42,7 +43,8 @@
   <div *ngIf="listaEventosNoDisponibles && listaEventosNoDisponibles.length > 0" class="event-list">
     <app-event-card 
       *ngFor="let event of listaEventosNoDisponibles" 
-      [event]="event">
+      [event]="event"
+      (click)="onEventCardClick(event.id)">
     </app-event-card>
   </div>
 
