@@ -79,6 +79,12 @@ import { Evento } from '../models/evento';
           return data; // Si la fecha no está en el formato esperado, retornamos los datos sin cambios
         })
       );
-    }
+    } 
     
+    //Metodo con el que se elimina el evento
+    eliminarEvento(id:string): Observable<MensajeDTO>{
+      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+      return this.http.delete<MensajeDTO>(`${this.apiUrl}/${id}`,{headers});
+    }
 }

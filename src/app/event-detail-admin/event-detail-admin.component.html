@@ -63,22 +63,16 @@
     <!-- Botones de Acción -->
     <div class="action-buttons">
       <!-- Botón Actualizar -->
-      <button 
-      class="action-btn" 
-      (click)="actualizarEvento()"
-      title="Actualizar Evento"
-    >
-      <i class="fa fa-edit"></i>
-    </button>
-      <!-- Botón Eliminar -->
-      <button 
-        class="action-btn delete" 
-        (click)="eliminarEvento()"
-        title="Eliminar Evento"
-      >
-        <i class="fa fa-trash"></i>
+      <button class="action-btn" (click)="actualizarEvento()">
+        <i class="fa fa-edit"></i>
+        <span class="tooltip-text">Actualizar</span>
       </button>
-
+      
+      <!-- Botón Eliminar -->
+      <button class="action-btn delete" (click)="eliminarEvento()">
+        <i class="fa fa-trash"></i>
+        <span class="tooltip-text">Eliminar</span>
+      </button>
     </div>
   </div>
 

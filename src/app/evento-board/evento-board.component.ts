@@ -46,7 +46,6 @@ export class EventoBoardComponent implements OnInit {
   // Métodos para cargar los eventos de cada página (simulados aquí)
   cargarEventosDisponibles() {
     this.eventService.getEventosActivos(this.paginaActualDisponibles,this.size).subscribe(data =>{
-      console.log(data);  
       this.listaEventosDisponibles=data.content;
       this.totalPaginasDisponibles=data.totalPages;
     });

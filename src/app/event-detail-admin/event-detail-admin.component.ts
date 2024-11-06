@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router  } from '@angular/router';
 
 import { Evento } from '../models/evento'; // Asegúrate de que la ruta sea correcta
 import { CommonModule } from '@angular/common';
 import { EventoService } from '../servicios/evento-service.service';
+import { MensajeDTO } from '../models/mensaje-dto';
 
 @Component({
   selector: 'app-event-detail-admin',
@@ -30,7 +31,8 @@ export class EventDetailAdminComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private router: Router
   ) {}
   
   ngOnInit(): void {
@@ -58,7 +60,34 @@ export class EventDetailAdminComponent implements OnInit {
     );
   }
 
-  eliminarEvento(){}
+  eliminarEvento(): void {
+    // Mostrar confirmación antes de eliminar
+    const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este evento?");
+    if (!confirmacion) {
+      return; // Si el usuario cancela, salimos del método
+    }
+  
+    // Intentar eliminar el evento si se confirma
+    if (this.evento.id) {
+      this.eventoService.eliminarEvento(this.evento.id).subscribe(
+        (response: MensajeDTO) => {
+          console.log('Respuesta del servidor:', response.respuesta);
+          alert(response.respuesta); // Muestra el mensaje de confirmación al usuario
+          // Redirige o actualiza la vista según lo necesario
+          this.router.navigate(['/admin/events']); // Ajusta la ruta si deseas redirigir después
+        },
+        (error) => {
+          console.error('Error al eliminar el evento:', error);
+          alert('Hubo un problema al intentar eliminar el evento. Por favor, intenta nuevamente.');
+        }
+      );
+    } else {
+      console.error('No se ha encontrado un ID válido para eliminar el evento');
+    }
+  }
+  
+  
+  
   actualizarEvento(){}
-
+  generarReporteWeb(){}
 }
