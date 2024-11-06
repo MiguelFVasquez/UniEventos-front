@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ItemEventoDTO } from '../models/item-evento-dto';
 import { Router } from '@angular/router';
 import { EventoService } from '../servicios/evento-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CrearEventoDialogComponent } from '../crear-evento-dialog/crear-evento-dialog.component';
 
 @Component({
   selector: 'app-evento-board',
@@ -24,15 +26,18 @@ export class EventoBoardComponent implements OnInit {
   totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 
-  constructor(private eventService: EventoService, private router: Router ) {}
+  constructor(private eventService: EventoService, private router: Router,private dialog: MatDialog ) {}
   ngOnInit(): void {
     this.cargarEventosDisponibles();
     this.cargarEventosNoDisponibles();
   }
 
   agregarEvento() {
-    // Lógica para agregar un evento
-  }
+    this.dialog.open(CrearEventoDialogComponent, {
+      width: '90%',
+      disableClose: false,
+      maxWidth: '800px'
+    });  }
   // Método para cambiar de página en eventos disponibles
   cambiarPaginaDisponibles(direccion: number) {
   this.paginaActualDisponibles += direccion;
