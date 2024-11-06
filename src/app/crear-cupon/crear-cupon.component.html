@@ -1,56 +1,60 @@
-<h2>Crear Nuevo Cupón</h2>
+<div class="crear-cupon-container">
+  <h2>Crear Nuevo Cupón</h2>
 
-<form #cuponForm="ngForm">
-  <!-- Campo Nombre del Cupón -->
-  <mat-form-field appearance="fill">
-    <mat-label>Nombre del cupón</mat-label>
-    <input matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre" required>
-    <mat-error *ngIf="cuponForm.controls['nombre']?.invalid && cuponForm.controls['nombre']?.touched">
-      El nombre es obligatorio
-    </mat-error>
-  </mat-form-field>
+  <form #cuponForm="ngForm">
+    <!-- Campo Nombre del Cupón -->
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Nombre" name="nombre" [(ngModel)]="nombre" required />
+      <mat-error *ngIf="cuponForm.controls['nombre']?.invalid && cuponForm.controls['nombre']?.touched">
+        El nombre es obligatorio
+      </mat-error>
+    </div>
 
-  <!-- Campo Descuento -->
-  <mat-form-field appearance="fill">
-    <mat-label>Descuento (%)</mat-label>
-    <input matInput type="number" placeholder="Descuento" name="descuento" [(ngModel)]="descuento" required>
-    <mat-error *ngIf="cuponForm.controls['descuento']?.invalid && cuponForm.controls['descuento']?.touched">
-      El descuento es obligatorio y debe ser mayor a 0
-    </mat-error>
-  </mat-form-field>
+    <!-- Campo Descuento -->
+    <div class="form-group">
+      <label for="descuento">Descuento (%):</label>
+      <input type="number" id="descuento" placeholder="Descuento" name="descuento" [(ngModel)]="descuento" required min="0" max="100" />
+      <mat-error *ngIf="cuponForm.controls['descuento']?.invalid && cuponForm.controls['descuento']?.touched">
+        El descuento es obligatorio y debe ser mayor a 0
+      </mat-error>
+    </div>
 
-  <!-- Campo Fecha de Vencimiento -->
-  <mat-form-field appearance="fill">
-    <mat-label>Fecha de Vencimiento</mat-label>
-    <input matInput type="datetime-local" name="fechaVencimiento" [(ngModel)]="fechaVencimiento" required>
-    <mat-error *ngIf="cuponForm.controls['fechaVencimiento']?.invalid && cuponForm.controls['fechaVencimiento']?.touched">
-      La fecha de vencimiento es obligatoria
-    </mat-error>
-  </mat-form-field>
+    <!-- Campo Fecha de Vencimiento -->
+    <div class="form-group">
+      <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+      <input type="datetime-local" id="fechaVencimiento" name="fechaVencimiento" [(ngModel)]="fechaVencimiento" required />
+      <mat-error *ngIf="cuponForm.controls['fechaVencimiento']?.invalid && cuponForm.controls['fechaVencimiento']?.touched">
+        La fecha de vencimiento es obligatoria
+      </mat-error>
+    </div>
 
-  <!-- Campo Código -->
-  <mat-form-field appearance="fill">
-    <mat-label>Código</mat-label>
-    <input matInput placeholder="Código" name="codigo" [(ngModel)]="codigo" required>
-    <mat-error *ngIf="cuponForm.controls['codigo']?.invalid && cuponForm.controls['codigo']?.touched">
-      El código es obligatorio
-    </mat-error>
-  </mat-form-field>
+    <!-- Campo Código -->
+    <div class="form-group">
+      <label for="codigo">Código:</label>
+      <input type="text" id="codigo" placeholder="Código" name="codigo" [(ngModel)]="codigo" required />
+      <mat-error *ngIf="cuponForm.controls['codigo']?.invalid && cuponForm.controls['codigo']?.touched">
+        El código es obligatorio
+      </mat-error>
+    </div>
 
-  <!-- Campo Tipo de Cupón -->
-  <mat-form-field appearance="fill">
-    <mat-label>Tipo de Cupón</mat-label>
-    <mat-select name="tipo" [(ngModel)]="tipo" required>
-      <mat-option *ngFor="let tipo of tiposCupon" [value]="tipo">{{ tipo }}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="cuponForm.controls['tipo']?.invalid && cuponForm.controls['tipo']?.touched">
-      El tipo de cupón es obligatorio
-    </mat-error>
-  </mat-form-field>
+    <!-- Campo Tipo de Cupón -->
+    <div class="form-group">
+      <label for="tipo">Tipo de Cupón:</label>
+      <select id="tipo" [(ngModel)]="tipo" name="tipo" required>
+        <option *ngFor="let tipo of tiposCupon" [value]="tipo">{{ tipo }}</option>
+      </select>
+      <mat-error *ngIf="cuponForm.controls['tipo']?.invalid && cuponForm.controls['tipo']?.touched">
+        El tipo de cupón es obligatorio
+      </mat-error>
+    </div>
 
-  <!-- Botones -->
-  <div class="button-container">
-    <button class="principal" mat-button type="button" (click)="guardarCupon()" [disabled]="cuponForm.invalid">Guardar</button>
-    <button class="secundary" mat-button type="button" (click)="cerrar()">Cancelar</button>
-  </div>
-</form>
+    <!-- Botones -->
+    <div class="button-group">
+      <button type="button" class="btn guardar-btn" (click)="guardarCupon()" [disabled]="cuponForm.invalid">
+        <i class="fa-solid fa-save"></i> Guardar
+      </button>
+      <button type="button" class="btn cancelar-btn" (click)="cerrar()">Cancelar</button>
+    </div>
+  </form>
+</div>
