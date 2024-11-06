@@ -18,6 +18,7 @@ import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.componen
 import { BusquedaInicioPrincipalComponent } from './busqueda-inicio-principal/busqueda-inicio-principal.component';
 import { HeaderInicioPrincipalComponent } from './header-inicio-principal/header-inicio-principal.component';
 import { EventCardComponent } from './event-card/event-card.component';
+import { EventDetailAdminComponent } from './event-detail-admin/event-detail-admin.component';
 
 export const routes: Routes = [
     { path: 'log-in', component: LoginComponent },
@@ -38,7 +39,8 @@ export const routes: Routes = [
           component: AdminDashBoardComponent, // Renderiza el AdminDashBoard
           children: [
             { path: 'mi-cuenta', component: MiCuentaComponent },  // Mi Cuenta como hijo del dashboard
-            { path: 'events', component: EventoBoardComponent },       // Eventos como hijo del dashboard
+            { path: 'events', component: EventoBoardComponent },   
+            { path: 'events/detail/:id', component: EventDetailAdminComponent },    // Eventos como hijo del dashboard
             { path: 'coupons', component: CuponBoardComponent },     // Cupones como hijo del dashboard
             { path: 'reportes', component: ReporteComponent },
           ]

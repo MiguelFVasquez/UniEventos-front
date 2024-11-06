@@ -1,52 +1,63 @@
+/* Variables para el tema claro */
+:root {
+    --bg-color: #f5f5f5; /* Fondo claro */
+    --text-color: #333; /* Texto oscuro para buen contraste */
+    --input-border-color: #ccc; /* Borde claro para inputs */
+    --input-bg-color: #fff; /* Fondo claro para inputs */
+    --button-text-color: #fff; /* Texto blanco en botones */
+    --forgot-password-color: #007BFF; /* Azul para enlaces */
+}
+
+/* Estilos generales */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    
 }
 
-
+/* Botón */
 .btn {
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     background-color: #4CAF50;
-    color: white;
+    color: var(--button-text-color);
     cursor: pointer;
     width: 48%;
-  }
+}
 
+/* Contenedor */
 .container {
     width: 400px;
-    padding: 10px;
-    background-color: rgb(21, 20, 20);
+    padding: 20px;
+    background-color: #ffffff; /* Fondo claro */
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra ligera */
     display: flex;
     flex-direction: column;
     margin: 100px auto;
     align-items: center; /* Centrar contenido dentro del contenedor */
 }
 
-h1{
+h1 {
     margin-top: 1%;
 }
-
 
 h2 {
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
+    color: var(--text-color);
 }
 
 label {
@@ -54,13 +65,13 @@ label {
     color: var(--text-color);
 }
 
-input { 
+/* Inputs */
+input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid var(--input-border-color);
     border-radius: 5px;
-    border-bottom: 1px solid white;
     background-color: var(--input-bg-color);
     color: var(--text-color);
 }
@@ -69,6 +80,7 @@ input {
     position: relative;
 }
 
+/* Icono para mostrar/ocultar contraseña */
 .toggle-password {
     position: absolute;
     right: 10px;
@@ -78,6 +90,7 @@ input {
     cursor: pointer;
 }
 
+/* Botones */
 .btn {
     display: block;
     width: 100%;
@@ -87,12 +100,15 @@ input {
     border-radius: 5px;
     cursor: pointer;
     background-color: #4CAF50;
-    color: var(--button-text-color);
+    color: white;
 }
 
 .btn.secondary {
     background-color: #007BFF;
+    color: white;
 }
+
+/* Enlace de contraseña olvidada */
 .forgot-password {
     display: block;
     margin-bottom: 10px;
@@ -100,8 +116,10 @@ input {
     font-size: 12px;
     color: var(--forgot-password-color);
 }
+
+/* Snackbar personalizado */
 .custom-snackbar {
-    background-color: #ff4d4d; /* Cambia el color de fondo */
-    color: #ffffff; /* Cambia el color del texto */
+    background-color: #ff4d4d; /* Rojo para mensajes de error */
+    color: #ffffff;
     font-weight: bold;
-  }
+}

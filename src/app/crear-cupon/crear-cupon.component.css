@@ -4,14 +4,14 @@
   margin: 20px auto;
   padding: 20px;
   border-radius: 8px;
-  background-color: #2c2b2b;
-  color: #fff;
+  background-color: #f8f9fa; /* Fondo claro */
+  color: #333; /* Color de texto oscuro */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
   text-align: center;
-  color: #ffffff;
+  color: #333; /* Color oscuro para el encabezado */
   margin-bottom: 20px;
 }
 
@@ -23,7 +23,7 @@ h2 {
 label {
   display: block;
   font-weight: bold;
-  color: #ffffff;
+  color: #333; /* Color oscuro para las etiquetas */
   margin-bottom: 5px;
 }
 
@@ -33,18 +33,18 @@ input[type="date"],
 select {
   width: 100%;
   padding: 8px;
-  border: 1px solid #393838;
+  border: 1px solid #ccc; /* Borde claro */
   border-radius: 4px;
   font-size: 14px;
-  background-color: #2c2b2b;
-  color: #ffffff;
+  background-color: #ffffff; /* Fondo blanco para los inputs */
+  color: #333; /* Color de texto oscuro */
   appearance: none;
 }
 
 /* Estilos específicos para el select */
 select {
-  background-color: #2c2b2b;
-  color: #ffffff;
+  background-color: #ffffff; /* Fondo blanco para el select */
+  color: #333; /* Color de texto oscuro */
 }
 
 /* Grupo de botones */
@@ -63,19 +63,19 @@ select {
 }
 
 .guardar-btn {
-  background-color: #28a745;
+  background-color: #28a745; /* Verde para el botón guardar */
   color: white;
 }
 
 .guardar-btn:hover {
-  background-color: #218838;
+  background-color: #218838; /* Verde más oscuro al hacer hover */
 }
 
 .cancelar-btn {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Rojo para el botón cancelar */
   color: white;
 }
 
 .cancelar-btn:hover {
-  background-color: #c82333;
+  background-color: #c82333; /* Rojo más oscuro al hacer hover */
 }

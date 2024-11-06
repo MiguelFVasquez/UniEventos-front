@@ -113,7 +113,7 @@ export class MiCuentaComponent {
       this.authService.saveToken(''); // Elimina el token
   
       // Redirige a la ruta de inicio de sesión
-      this.router.navigate(['/log-in']);
+      this.router.navigate(['/inicio-principal']);
     } else {
       console.log('Cancelado por el usuario');
     }
