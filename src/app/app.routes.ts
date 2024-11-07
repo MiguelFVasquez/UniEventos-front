@@ -18,7 +18,9 @@ import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.componen
 import { BusquedaInicioPrincipalComponent } from './busqueda-inicio-principal/busqueda-inicio-principal.component';
 import { HeaderInicioPrincipalComponent } from './header-inicio-principal/header-inicio-principal.component';
 import { EventCardComponent } from './event-card/event-card.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventDetailAdminComponent } from './event-detail-admin/event-detail-admin.component';
+
 
 export const routes: Routes = [
     { path: 'log-in', component: LoginComponent },
@@ -28,7 +30,7 @@ export const routes: Routes = [
     {path: 'carrito',component: CarritoComponent},
     {path: 'activar-cuenta',component: ActivarCuentaComponent},
     {path: 'inicio-principal', component: BusquedaInicioPrincipalComponent},
-
+    {path: 'event-detail', component: EventDetailComponent},
     //Ruta anindada
     {
       path: 'admin',
