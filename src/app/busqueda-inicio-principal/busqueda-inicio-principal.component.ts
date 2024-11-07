@@ -5,14 +5,14 @@ import { RouterModule } from '@angular/router';
 import { EventoService } from '../servicios/evento-service.service';
 import { FiltroEventoDTO } from '../models/filtro-evento-dto';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../servicios/auth.service';
-import { ItemEventoDTO } from '../models/item-evento-dto';
 
 
 @Component({
   selector: 'app-busqueda-inicio-principal',
   standalone: true,
-  imports: [HeaderInicioPrincipalComponent,EventCardComponent,RouterModule, ReactiveFormsModule],
+  imports: [HeaderInicioPrincipalComponent,EventCardComponent,RouterModule, ReactiveFormsModule,CommonModule],
   templateUrl: './busqueda-inicio-principal.component.html',
   styleUrl: './busqueda-inicio-principal.component.css'
 })

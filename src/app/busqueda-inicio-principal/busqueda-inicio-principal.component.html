@@ -1,15 +1,10 @@
 <app-header-inicio-principal></app-header-inicio-principal>
 
+<!-- Carousel de imágenes -->
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner" style="height: 400px;">
-    <div class="carousel-item active"  >
+    <div class="carousel-item active">
       <img src="assets/michael.jpg" class="d-block w-100" alt="Evento 1">
-    </div>
-    <div class="carousel-item">
-      <img src="assets/nirvana.jpg" class="d-block w-100" alt="Evento 2">
-    </div>
-    <div class="carousel-item">
-      <img src="assets/amy.jpeg" class="d-block w-100" alt="Evento 2">
     </div>
     <div class="carousel-item">
       <img src="assets/conciertoGorillaz.jpg" class="d-block w-100" alt="Evento 2">
@@ -32,33 +27,38 @@
   </button>
 </div>
 
+<!-- Barra de búsqueda -->
 <div class="container">
-<div class="search-bar mt-4 mb-4">
-  <form [formGroup]="filtroForm" >
+  <div class="search-bar mt-4 mb-4">
     <div class="input-group">
-      <input type="text" class="form-control" formControlName="nombre" placeholder="Evento, Artistas o Escenarios">
-      <select class="form-select" formControlName="tipo" >
-        <option value="" >Categorías</option>
-        @for (item of tipos; track $index) {
-          <option value="{{item}}" >{{item}}</option>
-        }
-      </select>
-      <select class="form-select" formControlName="ciudad" >
-        <option value="" >Ubicación</option>
-        <option value="Armenia" >Armenia</option>
-      </select> 
-      <button type="button" (click)="filtrarEventos()" > Buscar </button> 
+      <input type="text" class="form-control" placeholder="Evento, Artistas o Escenarios">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Categorías</button>
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Ubicación</button>
+      <button class="btn btn-outline-secondary" type="button">
+        Fecha <i class="fas fa-calendar-alt"></i>
+      </button>
     </div>
-  </form>
-</div>
-</div>
-
-<div class="container">
-  <h2>Eventos Disponibles</h2>
-  <div class="event-list d-flex">
-    @for (item of listaEventosDisponibles; track $index) {
-    <app-event-card [event]="item"></app-event-card>
-    }
   </div>
 </div>
+
+<!-- Lista de eventos disponibles -->
+<div class="container">
+  <h2>Eventos Disponibles</h2>
+  <div class="event-list d-flex flex-wrap">
+    <app-event-card *ngFor="let item of listaEventosDisponibles" [event]="item"></app-event-card>
+  </div>
+
+  <!-- Paginación para eventos disponibles -->
+  <div class="pagination d-flex justify-content-center mt-4">
+    <button class="btn btn-outline-primary" (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span class="mx-3">{{ paginaActualDisponibles + 1 }} de {{ totalPaginasDisponibles }}</span>
+    <button class="btn btn-outline-primary" (click)="cambiarPaginaDisponibles(1)" 
+            [disabled]="paginaActualDisponibles + 1 >= totalPaginasDisponibles">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
