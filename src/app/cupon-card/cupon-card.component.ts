@@ -30,6 +30,7 @@ export class CuponCardComponent {
 
   @Output() cuponEliminado = new EventEmitter<string>(); // Emitir evento cuando se elimine un cupón
   constructor(private dialog: MatDialog,private cuponService: CuponService) {}
+  
   editarCupon() {
     const dialogRef = this.dialog.open(EditarCuponComponent, {
         width: '550px', // Ajusta el ancho del diálogo

@@ -6,6 +6,10 @@ import { AuthService } from '../servicios/auth.service';
 import { MiCuentaService } from '../servicios/mi-cuenta.service';
 import { SharedService } from '../servicios/shared-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { InfoAdicionalDTO } from '../models/InfoAdicionalDTO';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
+
 @Component({
   selector: 'app-mi-cuenta',
   standalone: true,
@@ -28,6 +32,7 @@ export class MiCuentaComponent {
               private authService: AuthService,
               private sharedService: SharedService,
               private miCuentaService:MiCuentaService,
+              private dialog: MatDialog,
               private snackBar: MatSnackBar,) {}
 
   ngOnInit() {
@@ -73,26 +78,32 @@ export class MiCuentaComponent {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
-  
     if (this.editMode) {
-      // Muestra una alerta indicando que ahora puede editar la información
       alert('Ahora puede editar su información.');
     } else {
-      // Implementa la lógica para guardar los cambios y mostrar la alerta de éxito
-      console.log('Datos guardados:', {
-        nombre: this.nombre,
-        cedula: this.cedula,
-        telefono: this.telefono,
-        direccion: this.direccion,
-        correo: this.correo,
-        password: this.password // Este campo no se puede editar
-      });
-  
-      // Muestra una alerta indicando que los cambios se han guardado con éxito
-      alert('Los cambios han sido guardados con éxito.');
+      this.guardarCambios();
     }
   }
-  
+  guardarCambios() {
+    const infoAdicionalDTO: InfoAdicionalDTO = {
+      nombre: this.nombre,
+      cedula: this.cedula,
+      telefono: this.telefono,
+      direccion: this.direccion,
+      email: this.correo
+    };
+
+    this.miCuentaService.editarCuenta(infoAdicionalDTO).subscribe({
+      next: (response) => {
+        this.showNotification(response.message);
+        alert('Los cambios han sido guardados con éxito.');
+      },
+      error: (error) => {
+        console.error('Error al guardar los cambios:', error);
+        this.showNotification('Error al guardar los cambios');
+      }
+    });
+  }
   logout() {
     // Redirecciona al log in
     const confirmacion = window.confirm('¿Seguro que desea cerrar sesión?');
@@ -102,16 +113,35 @@ export class MiCuentaComponent {
       this.authService.saveToken(''); // Elimina el token
   
       // Redirige a la ruta de inicio de sesión
-      this.router.navigate(['/log-in']);
+      this.router.navigate(['/inicio-principal']);
     } else {
       console.log('Cancelado por el usuario');
     }
   }
   changePassword() {
-    // Lógica para cambiar la contraseña
-    console.log('Cambiar contraseña');
-    // Aquí puedes redirigir o abrir un modal para cambiar la contraseña
+    if (this.correo) {
+      console.log('email: ', this.correo)
+      // Llama al servicio para enviar el código al email del usuario
+      this.authService.enviarCodigo(this.correo).subscribe({
+        next: (response) => {
+          this.showNotification(response.message); // Muestra el mensaje de éxito
+          // Abre el componente ChangePasswordComponent como un diálogo después de enviar el código
+          this.dialog.open(ChangePasswordComponent, {
+            width: '500px',
+            disableClose: true,
+            panelClass: 'custom-dialog',
+          });
+        },
+        error: (error) => {
+          console.error('Error al enviar el código:', error);
+          this.showNotification('Error al enviar el código al correo.');
+        }
+      });
+    } else {
+      this.showNotification('Por favor, asegúrate de tener un email válido.');
+    }
   }
+
   eliminarCuenta() {
     // Confirmar antes de eliminar
     const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");

@@ -1,6 +1,18 @@
-<!-- header.component.html -->
-<nav class="navbar navbar-light bg-light justify-content-between">
-    <a class="navbar-brand mx-auto" href="#">NEO TICKET</a>
-    <a class="nav-link" href="/log-in">Ingresar <i class="fas fa-sign-in-alt"></i></a>
-  </nav>
-  
+<header class="p-3 text-bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        Unieventos  
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      </ul>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2" [routerLink]="['/log-in']">Login</button>
+        <button type="button" class="btn btn-signup-green" [routerLink]="['/registro']">Sign-up</button>
+      </div>
+      
+    </div>
+  </div>
+</header>  

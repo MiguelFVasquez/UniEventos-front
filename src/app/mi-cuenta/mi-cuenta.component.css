@@ -4,10 +4,16 @@
   align-items: center;
   height: auto; /* Cambiado para adaptarse al contenido */
   padding: 20px;
-  background-color: var(--background-color);
+  background-color:#F0F0F0;
   color: var(--text-color);
 }
+/*
+"custom-dark": "#0A0A0A",
+        "custom-platinum": "#E0E0E0",
+        "custom-white": "#F0F0F0",
+        "custom-silver": "#474747",
 
+*/
 .profile-section {
   margin-right: 60px;
 }
@@ -21,14 +27,22 @@
 }
 
 h2 {
+  display: block;
+  width: 100%;              /* Abarca todo el ancho de la pantalla */
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.8rem; /* Ajustado según lo original */
-  color: rgb(58, 96, 247);
+  margin: 0 auto 20px;       /* Solo margen inferior */
+  font-size: 1.8rem;         /* Ajustado según lo original */
+  color: rgb(0, 0, 0);
+  background-color: #E0E0E0; /* Color de fondo para visualizar el efecto */
+  padding: 10px 0;           /* Espaciado arriba y abajo */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .form-group {
   margin-bottom: 15px;
+  color: black;
 }
 
 .form-group label {
@@ -40,8 +54,9 @@ h2 {
   width: 100%;
   padding: 10px;
   border: 1px solid var(--border-color);
+  background-color: #E0E0E0;
   border-radius: 5px;
-  border-bottom: 1px solid white; /* Cambiado para mantener el diseño */
+  border-bottom: 1px solid rgb(0, 0, 0); /* Cambiado para mantener el diseño */
 }
 
 .button-group {
@@ -96,6 +111,7 @@ h2 {
   /*border-radius: 5px;*/
   cursor: pointer;
   border-color: #fff;
+  color:white;
   transition: background-color 0.3s ease;
 }
 
@@ -117,7 +133,7 @@ h2 {
 }
 
 .btn.logout {
-  background-color: transparent;
+  background-color: #333;
   border: 1px solid white;
   color: white;
 }

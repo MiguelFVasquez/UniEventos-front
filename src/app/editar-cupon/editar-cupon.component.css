@@ -3,24 +3,25 @@ max-width: 400px;
 margin: 20px auto;
 padding: 20px;
 border-radius: 8px;
-background-color: #2c2b2b;
+background-color: #d8d9db; /* Fondo claro */
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
 text-align: center;
-color: #ffffff;
+color: #000000;
 margin-bottom: 20px;
 }
 
 .form-group {
 margin-bottom: 15px;
+background-color: #d8d9db;
 }
 
 label {
 display: block;
 font-weight: bold;
-color: #ffffff;
+color: #000000;
 margin-bottom: 5px;
 }
 
@@ -39,13 +40,13 @@ select {
     border: 1px solid #393838; /* Cambié a solid para que sea visible */
     border-radius: 4px;
     font-size: 14px;
-    background-color: #2c2b2b;/* Color de fondo para el input */
-    color: #ffffff; /* Color del texto */
+    background-color: #fffcfc;/* Color de fondo para el input */
+    color: #000000; /* Color del texto */
 }
 
 select {
     appearance: none; /* Para eliminar el estilo predeterminado del navegador */
-    background-color: #2c2b2b; /* Mismo fondo que los inputs */
+    background-color: #e1dcdc; /* Mismo fondo que los inputs */
 }
 .button-group {
 display: flex;

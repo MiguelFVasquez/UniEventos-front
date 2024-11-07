@@ -1,0 +1,80 @@
+.crear-evento-dialog {
+    width: 95%; /* Ocupa el 95% del ancho de la pantalla */
+    max-width: 1200px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    overflow-y: auto;
+    max-height: 90vh; /* Limita la altura del diálogo y agrega scroll si es necesario */
+  }
+  
+  .form-group, .localidad-group {
+    margin-bottom: 20px;
+    
+  }
+  
+  textarea, input[type="text"], input[type="date"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .localidad-group {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .form-row .form-group {
+    flex: 1 1 45%;
+  }
+  
+  .localidades-container {
+    margin-top: 25px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  button.guardar-btn, button.cancelar-btn, button.agregar-localidad-btn, button.eliminar-localidad-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button.guardar-btn, button.agregar-localidad-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button.cancelar-btn, button.eliminar-localidad-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  

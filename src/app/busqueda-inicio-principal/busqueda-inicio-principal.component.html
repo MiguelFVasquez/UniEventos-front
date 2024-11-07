@@ -1,17 +1,22 @@
 <app-header-inicio-principal></app-header-inicio-principal>
 
+<!-- Carousel de imágenes -->
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="height: 400px;">
     <div class="carousel-item active">
-      <img src="assets/imagenCover.jpeg" class="d-block w-100" alt="Evento 1">
+      <img src="assets/michael.jpg" class="d-block w-100" alt="Evento 1">
     </div>
     <div class="carousel-item">
-      <img src="assets/imagenCover.jpeg" class="d-block w-100" alt="Evento 2">
+      <img src="assets/conciertoGorillaz.jpg" class="d-block w-100" alt="Evento 2">
     </div>
     <div class="carousel-item">
-      <img src="assets/imagenCover.jpeg" class="d-block w-100" alt="Evento 3">
+      <img src="assets/GUNS-N-ROSES.jpeg" class="d-block w-100" alt="Evento 2">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/conciertoTwentyOnePilots.jpg" class="d-block w-100" alt="Evento 3">
     </div>
   </div>
+  
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -22,22 +27,38 @@
   </button>
 </div>
 
-<div class="search-bar mt-4 p-3">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Evento, Artistas o Escenarios">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Categorías</button>
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Ubicación</button>
-    <button class="btn btn-outline-secondary" type="button">
-      Fecha <i class="fas fa-calendar-alt"></i>
+<!-- Barra de búsqueda -->
+<div class="container">
+  <div class="search-bar mt-4 mb-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Evento, Artistas o Escenarios">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Categorías</button>
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Ubicación</button>
+      <button class="btn btn-outline-secondary" type="button">
+        Fecha <i class="fas fa-calendar-alt"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Lista de eventos disponibles -->
+<div class="container">
+  <h2>Eventos Disponibles</h2>
+  <div class="event-list d-flex flex-wrap">
+    <app-event-card *ngFor="let item of listaEventosDisponibles" [event]="item"></app-event-card>
+  </div>
+
+  <!-- Paginación para eventos disponibles -->
+  <div class="pagination d-flex justify-content-center mt-4">
+    <button class="btn btn-outline-primary" (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span class="mx-3">{{ paginaActualDisponibles + 1 }} de {{ totalPaginasDisponibles }}</span>
+    <button class="btn btn-outline-primary" (click)="cambiarPaginaDisponibles(1)" 
+            [disabled]="paginaActualDisponibles + 1 >= totalPaginasDisponibles">
+      <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
 </div>
 
-<section class="mt-4">
-  <h2>Eventos Destacados</h2>
-  <div class="d-flex flex-wrap justify-content-around">
-    <app-event-card></app-event-card>
-    <app-event-card></app-event-card>
-  </div>
-</section>
 <router-outlet></router-outlet>
