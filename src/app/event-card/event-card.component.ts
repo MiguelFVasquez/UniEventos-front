@@ -13,8 +13,11 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
 })
 export class EventCardComponent {
   @Input() event!: ItemEventoDTO; // Recibimos el evento como una entrada
-
+  @Output() eventClick = new EventEmitter<string>();
+  
   constructor(private router:Router) { }
-
-  ngOnInit(): void { }
+  onEventClick() {
+    this.eventClick.emit(this.event.id); // Emite el id cuando el evento es clickeado
+    console.log("Evento", this.event);
+  }
 }

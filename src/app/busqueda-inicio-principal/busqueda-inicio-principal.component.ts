@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../servicios/auth.service';
 import { ItemEventoDTO } from '../models/item-evento-dto';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,10 @@ export class BusquedaInicioPrincipalComponent {
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
   filtroForm!: FormGroup;
   tipos: string[];
-  constructor(private authService:AuthService, private eventoService:EventoService, private formBuilder: FormBuilder){
+  constructor(private authService:AuthService, 
+              private eventoService:EventoService,
+              private router: Router,
+              private formBuilder: FormBuilder){
     this.listarEventos(); 
     this.crearFormulario();
     this.tipos = [];
@@ -73,4 +77,9 @@ export class BusquedaInicioPrincipalComponent {
       }
     })
   }
+
+  onEventCardClick(eventId: string) {
+    this.router.navigate([`/event-detail/${eventId}`]);
+  }
+
 }

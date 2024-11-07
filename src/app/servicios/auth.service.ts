@@ -74,7 +74,7 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
 
     //Método para verificar el rol de una cuenta dado el email
     verificarRol(email: string): Observable<any> {
-      return this.http.post(`${this.apiUrl}/verificar-rol/${email}`, null); // Enviando null ya que no se espera un cuerpo adicional
+      return this.http.post(`${this.apiUrl}/verificar-rol/${email}`, null);
     }
     
     // Guardar el token en el localStorage

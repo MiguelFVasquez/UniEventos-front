@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 import { EventoService } from '../servicios/evento-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearEventoDialogComponent } from '../crear-evento-dialog/crear-evento-dialog.component';
-
+import { AuthService } from '../servicios/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-evento-board',
   standalone: true,
@@ -16,21 +17,21 @@ import { CrearEventoDialogComponent } from '../crear-evento-dialog/crear-evento-
   styleUrl: './evento-board.component.css'
 
 })
-export class EventoBoardComponent implements OnInit {
-  listaEventosDisponibles:any[] = [];
-  listaEventosNoDisponibles:any[] = [];
+export class EventoBoardComponent {
+  listaEventosDisponibles:ItemEventoDTO[] = []
+  listaEventosNoDisponibles:ItemEventoDTO[] = []
 
   paginaActualDisponibles = 0;
   paginaActualNoDisponibles = 0;
-  size=3;
+  size=4;
   totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 
-  constructor(private eventService: EventoService, private router: Router,private dialog: MatDialog ) {
-    this.cargarEventosDisponibles();
-    this.cargarEventosNoDisponibles();
-  }
-  ngOnInit(): void {
+  constructor(private eventService: EventoService, 
+              private router: Router,
+              private dialog: MatDialog,
+              private authService: AuthService,
+              private snackBar: MatSnackBar ) {
     this.cargarEventosDisponibles();
     this.cargarEventosNoDisponibles();
   }
@@ -74,7 +75,14 @@ export class EventoBoardComponent implements OnInit {
   onEventCardClick(eventId: string) {
     this.router.navigate([`/admin/dashboard/events/detail/${eventId}`]);
   }
-  
 
+  showNotification(message: string, action: string = 'Cerrar') {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar'],
+    });
+  }
 
 }
