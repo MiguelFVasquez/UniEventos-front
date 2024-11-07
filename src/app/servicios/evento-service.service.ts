@@ -10,6 +10,7 @@ import { Page } from '../models/Page';
 import { ItemEventoDTO } from '../models/ItemEventoDTO ';
 import { Evento } from '../models/evento';
 import { FiltroEventoDTO } from '../models/filtro-evento-dto';
+import { CrearEvento } from '../models/CrearEvento';
 @Injectable({
   providedIn: 'root'
 })
@@ -85,7 +86,15 @@ import { FiltroEventoDTO } from '../models/filtro-evento-dto';
         })
       );
     } 
-    
+    //Metodo para crear un nuevo evento
+
+    crearEvento(evento:CrearEvento):Observable<MensajeDTO>{
+      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+      console.log('token: ', token)
+      return this.http.post<MensajeDTO>(`${this.apiUrl}/save`,evento,{headers});
+    }
+
     //Metodo con el que se elimina el evento
     eliminarEvento(id:string): Observable<MensajeDTO>{
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación

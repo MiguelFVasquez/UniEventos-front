@@ -26,7 +26,10 @@ export class EventoBoardComponent implements OnInit {
   totalPaginasDisponibles = 1; // Actualizar con el valor real desde el backend
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
 
-  constructor(private eventService: EventoService, private router: Router,private dialog: MatDialog ) {}
+  constructor(private eventService: EventoService, private router: Router,private dialog: MatDialog ) {
+    this.cargarEventosDisponibles();
+    this.cargarEventosNoDisponibles();
+  }
   ngOnInit(): void {
     this.cargarEventosDisponibles();
     this.cargarEventosNoDisponibles();

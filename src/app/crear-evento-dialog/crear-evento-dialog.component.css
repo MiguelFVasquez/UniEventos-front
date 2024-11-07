@@ -12,6 +12,7 @@
   
   .form-group, .localidad-group {
     margin-bottom: 20px;
+    
   }
   
   textarea, input[type="text"], input[type="date"], select {
@@ -46,7 +47,7 @@
   }
   
   .localidades-container {
-    margin-top: 20px;
+    margin-top: 25px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;

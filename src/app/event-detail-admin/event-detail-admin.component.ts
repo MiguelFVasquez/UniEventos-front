@@ -74,7 +74,7 @@ export class EventDetailAdminComponent implements OnInit {
           console.log('Respuesta del servidor:', response.respuesta);
           alert(response.respuesta); // Muestra el mensaje de confirmación al usuario
           // Redirige o actualiza la vista según lo necesario
-          this.router.navigate(['/admin/events']); // Ajusta la ruta si deseas redirigir después
+          this.router.navigate(['/admin/dashboard/events']); // Ajusta la ruta si deseas redirigir después
         },
         (error) => {
           console.error('Error al eliminar el evento:', error);

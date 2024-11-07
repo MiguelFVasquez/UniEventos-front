@@ -1,5 +1,6 @@
 export interface Localidad{
     nombre: string;
-    capacidadMaxima: number;
     precio: number;
+    entradasVendidas:number;
+    capacidadMaxima: number;
 }
