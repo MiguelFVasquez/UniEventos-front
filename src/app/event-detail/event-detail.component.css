@@ -1,19 +1,11 @@
 .container {
     max-width: 100%;
-    margin: auto;
     font-family: Arial, sans-serif;
   }
   
-  .header {
-    background-color: #b2f7a6;
-    text-align: center;
-    padding: 10px;
-    font-size: 1.5em;
-
-  }
   
   .banner {
-    position: relative;
+    position: relative; 
   }
   
   .banner-img {

@@ -30,7 +30,7 @@ export const routes: Routes = [
     {path: 'carrito',component: CarritoComponent},
     {path: 'activar-cuenta',component: ActivarCuentaComponent},
     {path: 'inicio-principal', component: BusquedaInicioPrincipalComponent},
-    {path: 'event-detail', component: EventDetailComponent},
+    {path: 'event-detail/:id', component: EventDetailComponent},
     //Ruta anindada
     {
       path: 'admin',

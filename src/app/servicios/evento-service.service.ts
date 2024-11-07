@@ -7,10 +7,10 @@ import { MensajeDTO } from '../models/mensaje-dto';
 import { MessageDTO } from '../models/message.dto';
 import { AuthService } from '../servicios/auth.service'; 
 import { Page } from '../models/Page';
-import { ItemEventoDTO } from '../models/ItemEventoDTO ';
 import { Evento } from '../models/evento';
 import { FiltroEventoDTO } from '../models/filtro-evento-dto';
 import { CrearEvento } from '../models/CrearEvento';
+import { ItemEventoDTO } from '../models/item-evento-dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,45 +23,19 @@ import { CrearEvento } from '../models/CrearEvento';
       return this.http.post<MensajeDTO>(`${this.apiUrl}/filtrarEventos`, filtroEventoDTO);
     }
     //Metodo con el que obtenemos el total de los eventos activos
-    getEventosActivos(pagina: number, size: number) {
+    getEventosActivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
       
-      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/activos?page=${pagina}&size=${size}`, { headers })
-        .pipe(
-          map((data: Page<ItemEventoDTO>) => {
-            // Transformar el contenido de ItemEventoDTO a un formato adecuado para el frontend
-            const eventos = data.content.map(item => ({
-              urlImagenPoster: item.urlImagenPoster,
-              nombre: item.nombre,
-              fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
-              direccion: item.direccion,
-              id: item.id
-            }));
-            return { ...data, content: eventos }; // Devolver la respuesta transformada
-          })
-        );
+      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/activos?page=${pagina}&size=${size}`, { headers });
     }
     
     //Metodo con el que obtenemos el total de los eventos inactivos
-    getEventosInactivos(pagina: number, size: number) {
+    getEventosInactivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
       
-      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/inactivos?page=${pagina}&size=${size}`, { headers })
-        .pipe(
-          map((data: Page<ItemEventoDTO>) => {
-            // Transformar el contenido de ItemEventoDTO a un formato adecuado para el frontend
-            const eventos = data.content.map(item => ({
-              urlImagenPoster: item.urlImagenPoster,
-              nombre: item.nombre,
-              fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
-              direccion: item.direccion,
-              id: item.id
-            }));
-            return { ...data, content: eventos }; // Devolver la respuesta transformada
-          })
-        );
+      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/inactivos?page=${pagina}&size=${size}`, { headers });
     }
 
     getEventoById(eventId: string): Observable<Evento> {
