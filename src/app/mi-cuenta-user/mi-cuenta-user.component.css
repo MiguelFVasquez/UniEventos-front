@@ -1,118 +1,167 @@
 .mi-cuenta-user-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  .profile-section {
-    margin-right: 60px;
-  }
-  
-  .profile-icon {
-    font-size: 100px;
-  }
-  
-  .info-section {
-    width: 50%;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    border-bottom: 1px solid  white;
-  }
-  
-  .button-group {
-    display: flex;
-    justify-content: space-around; /* Espaciado entre los botones */
-    flex-wrap: wrap; /* Si hay poco espacio, que los botones se reubiquen en la siguiente línea */
-    gap: 0.2px; /* Añade espacio entre los botones */
-    margin-top: 20px; /* Espacio por encima del grupo de botones */
-    position: relative; /* Necesario para el tooltip */
-  }
-  
-  .button-group .btn {
-    padding: 10px 20px; /* Tamaño adecuado de los botones */
-    font-size: 16px; /* Tamaño de texto en los botones */
-    display: flex;
-    align-items: center; /* Alinea íconos y texto verticalmente */
-    gap: 10px; /* Espacio entre el ícono y el texto */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .button-group .tooltip-text {
-    visibility: hidden;
-    width: 150px; /* Ancho del tooltip */
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    bottom: 100%; /* Aparece arriba del botón */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1;
-  }
-  .button-group .btn:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  .update {
-    /*background-color: var(--button-bg-color);*/
-    background-color: #28a745; 
-  }
-  .update:hover{
-    background-color: #218838;
-  }
-  .change-password {
-    /*background-color: var(--password-bg-color);*/
-    background-color: #007bff;
-  }
-  .change-password:hover{
-    background-color: #0066d3;
-  }
-  .logout {
-    /*background-color: var(--logout-bg-color);*/
-    border: 1px solid white;
-    color: white;
-  }
-  .logout:hover{
-    background-color: rgb(144, 144, 135);
-  }
-  .delete {
-    /*background-color: var(--delete-bg-color);*/
-    background-color: #dc3545;
-  }
-  .delete:hover{
-    background-color: #c82333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Cambiado para adaptarse al contenido */
+  padding: 20px;
+  background-color: #F0F0F0; /* Color de fondo más claro */
+  color: var(--text-color);
+}
 
-  }
+.profile-section {
+  margin-right: 60px;
+}
 
-  
-  
+.profile-icon {
+  font-size: 100px; /* Tamaño del ícono de perfil */
+}
+
+.info-section {
+  width: 50%; /* Ancho de la sección de información */
+}
+
+h2 {
+  display: block;
+  width: 100%;              /* Abarca todo el ancho de la pantalla */
+  text-align: center;
+  margin: 0 auto 20px;       /* Solo margen inferior */
+  font-size: 1.8rem;         /* Ajustado según lo original */
+  color: rgb(0, 0, 0);
+  background-color: #E0E0E0; /* Color de fondo para visualizar el efecto */
+  padding: 10px 0;           /* Espaciado arriba y abajo */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  color: black;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  background-color: #E0E0E0;
+  border-radius: 5px;
+  border-bottom: 1px solid rgb(0, 0, 0); /* Cambiado para mantener el diseño */
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around; /* Espaciado entre los botones */
+  flex-wrap: wrap; /* Reubica los botones en la siguiente línea si hay poco espacio */
+  gap: 0.2px; /* Espacio entre los botones */
+  margin-top: 20px; /* Espacio por encima del grupo de botones */
+  border-color: #fff;
+  position: relative; /* Necesario para el tooltip */
+}
+
+.button-group .btn {
+  padding: 10px 20px; /* Tamaño adecuado de los botones */
+  font-size: 16px; /* Tamaño de texto en los botones */
+  display: flex;
+  align-items: center; /* Alinea íconos y texto verticalmente */
+  gap: 10px; /* Espacio entre el ícono y el texto */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.button-group .tooltip-text {
+  visibility: hidden;
+  width: 150px; /* Ancho del tooltip */
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  bottom: 100%; /* Aparece arriba del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.button-group .btn:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Estilos específicos para los botones */
+.btn {
+  padding: 10px; /* Ajustado para mayor consistencia */
+  border: none;
+  cursor: pointer;
+  border-color: #fff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn.update {
+  background-color: #28a745; 
+}
+
+.btn.update:hover {
+  background-color: #218838;
+}
+
+.btn.change-password {
+  background-color: #007bff;
+}
+
+.btn.change-password:hover {
+  background-color: #0066d3;
+}
+
+.btn.logout {
+  background-color: #333;
+  border: 1px solid white;
+  color: white;
+}
+
+.btn.logout:hover {
+  background-color: rgb(144, 144, 135);
+}
+
+.btn.delete {
+  background-color: #dc3545;
+}
+
+.btn.delete:hover {
+  background-color: #c82333;
+}
+
+/* Cambios adicionales para inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password-btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+}
