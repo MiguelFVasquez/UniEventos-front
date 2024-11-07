@@ -30,16 +30,24 @@
 <!-- Barra de búsqueda -->
 <div class="container">
   <div class="search-bar mt-4 mb-4">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Evento, Artistas o Escenarios">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Categorías</button>
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Ubicación</button>
-      <button class="btn btn-outline-secondary" type="button">
-        Fecha <i class="fas fa-calendar-alt"></i>
-      </button>
-    </div>
+    <form [formGroup]="filtroForm" >
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="nombre" placeholder="Evento, Artistas o Escenarios">
+        <select class="form-select" formControlName="tipo" >
+          <option value="" >Categorías</option>
+          @for (item of tipos; track $index) {
+            <option value="{{item}}" >{{item}}</option>
+          }
+        </select>
+        <select class="form-select" formControlName="ciudad" >
+          <option value="" >Ubicación</option>
+          <option value="Armenia" >Armenia</option>
+        </select> 
+        <button type="button" (click)="filtrarEventos()" > Buscar </button> 
+      </div>
+    </form>
   </div>
-</div>
+  </div>
 
 <!-- Lista de eventos disponibles -->
 <div class="container">
