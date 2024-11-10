@@ -5,6 +5,7 @@ import { Evento } from '../models/evento'; // Asegúrate de que la ruta sea corr
 import { CommonModule } from '@angular/common';
 import { EventoService } from '../servicios/evento-service.service';
 import { MensajeDTO }  from '../models/mensaje-dto';
+import { AuthService } from '../servicios/auth.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -31,7 +32,8 @@ export class EventDetailComponent implements OnInit{
   }
   constructor(  private route: ActivatedRoute,
     private eventoService: EventoService,
-    private router: Router){
+    private router: Router,
+    private authService: AuthService){
   
   }
   ngOnInit(): void {
@@ -42,18 +44,18 @@ export class EventDetailComponent implements OnInit{
       console.error('ID del evento no encontrado en la ruta');
     }  
   }
-    obtenerEvento(id: string): void {
-      this.eventoService.getEventoById(id).subscribe(
-        (data: Evento) => {
-          // Convierte la fecha al tipo Date para asegurar la visualización correcta
-          this.evento = {
-            ...data,
-            fecha: new Date(data.fecha) // convierte la fecha recibida a un objeto Date
-          };
-        },
-        (error) => {
-          console.error('Error al obtener el evento:', error);
-        }
-      );
-    }
+  obtenerEvento(id: string): void { 
+    this.authService.getEventoById(id).subscribe(
+      (data: Evento) => {
+        // Convierte la fecha al tipo Date para asegurar la visualización correcta
+        this.evento = {
+          ...data,
+          fecha: new Date(data.fecha) // Asegura que la fecha se convierta a un objeto Date
+        };
+      },
+      (error) => {
+        console.error('Error al obtener el evento:', error);
+      }
+    );
+  }
 }

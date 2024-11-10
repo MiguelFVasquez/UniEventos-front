@@ -1,70 +1,84 @@
+/* Container to center-align content */
 .container {
-    max-width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /* Centers content horizontally */
+    padding: 20px; /* Adds spacing around content */
     font-family: Arial, sans-serif;
-  }
-  
-  
-  .banner {
-    position: relative; 
-  }
-  
-  .banner-img {
-    width: 100%;
+}
+
+/* Banner Section */
+.banner {
+    position: relative;
+    text-align: center; /* Centers banner image */
+}
+
+.banner-img {
+    width: 60%;
     height: auto;
-  }
-  
-  .event-details {
+    border-radius: 8px; /* Optional: rounded corners for a polished look */
+}
+
+/* Event Details Section */
+.event-details {
     display: flex;
     gap: 20px;
-    margin: 20px 20     px;
-  }
-  
-  .date {
+    margin: 20px 0;
+    justify-content: center; /* Centers flex items horizontally */
+}
+
+.date {
     width: 80px;
-  }
-  
-  .date-box {
+}
+
+.date-box {
     background-color: #e0e0e0;
     padding: 10px;
     text-align: center;
     border-radius: 8px;
-  }
-  
-  .date-box span {
+}
+
+.date-box span {
     font-size: 2em;
     font-weight: bold;
-  }
-  
-  .details h2 {
+}
+
+.details h2 {
     margin-top: 0;
-  }
-  
-  .seating {
+}
+
+/* Seating Section */
+.seating {
     margin-top: 20px;
-  }
-  
-  .seating-info {
+    text-align: center; /* Centers heading */
+}
+
+.seating-info {
     display: flex;
+    flex-direction: column;
     gap: 20px;
-  }
-  
-  .seating-chart img {
+    align-items: center; /* Centers flex items horizontally */
+}
+
+.seating-chart img {
     width: 300px;
     border-radius: 8px;
-  }
-  
-  .prices table {
+}
+
+/* Pricing Table */
+.prices table {
     width: 100%;
+    max-width: 700px; /* Limits table width for better readability */
     border-collapse: collapse;
-  }
-  
-  .prices th, .prices td {
+    margin: 0 auto; /* Centers table */
+}
+
+.prices th, .prices td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
-  }
-  
-  .prices th {
+}
+
+.prices th {
     background-color: #b2f7a6;
-  }
-  
+    text-align: center;
+}

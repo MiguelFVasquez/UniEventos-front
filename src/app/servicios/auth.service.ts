@@ -10,6 +10,7 @@ import { MensajeDTO } from '../models/mensaje-dto';
 import { ChangePassword } from '../models/change-password';
 import { Page } from '../models/Page';
 import { ItemEventoDTO } from '../models/item-evento-dto';
+import { Evento } from '../models/evento';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,26 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
     listarTodosEventosDisponibles(): Observable<any>{
       return this.http.get(`${this.apiUrl}/getAll-disponibles`);
     }
-
+    getEventoById(eventId: string): Observable<Evento> {
+      
+      return this.http.get<Evento>(`${this.apiUrl}/evento/${eventId}`).pipe(
+        map((data: Evento) => {
+          // Asegúrate de que la fecha esté en formato de array
+          if (Array.isArray(data.fecha) && data.fecha.length === 5) {
+            // Convertir el array de la fecha a un objeto Date
+            const fecha = new Date(
+              data.fecha[0],       // Año
+              data.fecha[1] - 1,   // Mes (ajustamos para que sea 0-11)
+              data.fecha[2],       // Día
+              data.fecha[3],       // Hora
+              data.fecha[4]        // Minutos
+            );
+            return { ...data, fecha: fecha }; // Asigna la fecha transformada
+          }
+          return data; // Si la fecha no está en el formato esperado, retornamos los datos sin cambios
+        })
+      );
+    } 
     saveToken(token: string): void {
       if (typeof window !== 'undefined' && window.sessionStorage) {
         sessionStorage.setItem('authToken', token);
