@@ -1,6 +1,6 @@
-<div class="">
-    <app-header-inicio-principal></app-header-inicio-principal>
-
+<div *ngIf="evento; else loading">
+  <app-header-inicio-principal></app-header-inicio-principal>
+  
   
     <div class="banner">
       <img src="assets/banner.png" alt="Tour Mundial" class="banner-img" />
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="details">
-        <h2>Blessd en Bogotá</h2>
+        <h2>{{evento.nombre}} </h2>
         <p><strong>Ciudad:</strong> Bogotá D.C</p>
         <p><strong>Lugar:</strong> Movistar Arena</p>
         <p><strong>Fecha:</strong> 19 de Octubre del 2024</p>
@@ -77,4 +77,7 @@
       </div>
     </section>
   </div>
+  <ng-template #loading>
+    <p>Cargando detalles del evento...</p>
+  </ng-template>
   
