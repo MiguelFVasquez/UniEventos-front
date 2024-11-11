@@ -30,7 +30,7 @@ export const routes: Routes = [
     {path: 'carrito',component: CarritoComponent},
     {path: 'activar-cuenta',component: ActivarCuentaComponent},
     {path: 'inicio-principal', component: BusquedaInicioPrincipalComponent},
-    {path: 'event-detail', component: EventDetailComponent},
+    {path: 'event-detail/:id', component: EventDetailComponent},
     //Ruta anindada
     {
       path: 'admin',
@@ -42,7 +42,7 @@ export const routes: Routes = [
           children: [
             { path: 'mi-cuenta', component: MiCuentaComponent },  // Mi Cuenta como hijo del dashboard
             { path: 'events', component: EventoBoardComponent },   
-            { path: 'events/detail/:id', component: EventDetailAdminComponent },    // Eventos como hijo del dashboard
+            { path: 'events/detail/:id', component: EventDetailAdminComponent },
             { path: 'coupons', component: CuponBoardComponent },     // Cupones como hijo del dashboard
             { path: 'reportes', component: ReporteComponent },
           ]
@@ -60,6 +60,7 @@ export const routes: Routes = [
           children:[
             { path: 'user-mi-cuenta', component: MiCuentaUserComponent},
             {path: 'carrito', component: CarritoComponent},
+            {path:'events/detail/:id', component:EventDetailComponent},
             {path: 'change-password', component: ChangePasswordComponent}
 
           ]

@@ -7,10 +7,10 @@ import { MensajeDTO } from '../models/mensaje-dto';
 import { MessageDTO } from '../models/message.dto';
 import { AuthService } from '../servicios/auth.service'; 
 import { Page } from '../models/Page';
-import { ItemEventoDTO } from '../models/ItemEventoDTO ';
 import { Evento } from '../models/evento';
 import { FiltroEventoDTO } from '../models/filtro-evento-dto';
 import { CrearEvento } from '../models/CrearEvento';
+import { ItemEventoDTO } from '../models/item-evento-dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,45 +21,19 @@ import { CrearEvento } from '../models/CrearEvento';
     
     
     //Metodo con el que obtenemos el total de los eventos activos
-    getEventosActivos(pagina: number, size: number) {
+    getEventosActivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
       
-      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/activos?page=${pagina}&size=${size}`, { headers })
-        .pipe(
-          map((data: Page<ItemEventoDTO>) => {
-            // Transformar el contenido de ItemEventoDTO a un formato adecuado para el frontend
-            const eventos = data.content.map(item => ({
-              urlImagenPoster: item.urlImagenPoster,
-              nombre: item.nombre,
-              fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
-              direccion: item.direccion,
-              id: item.id
-            }));
-            return { ...data, content: eventos }; // Devolver la respuesta transformada
-          })
-        );
+      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/activos?page=${pagina}&size=${size}`, { headers });
     }
     
     //Metodo con el que obtenemos el total de los eventos inactivos
-    getEventosInactivos(pagina: number, size: number) {
+    getEventosInactivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
       
-      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/inactivos?page=${pagina}&size=${size}`, { headers })
-        .pipe(
-          map((data: Page<ItemEventoDTO>) => {
-            // Transformar el contenido de ItemEventoDTO a un formato adecuado para el frontend
-            const eventos = data.content.map(item => ({
-              urlImagenPoster: item.urlImagenPoster,
-              nombre: item.nombre,
-              fecha: new Date(item.fecha[0], item.fecha[1] - 1, item.fecha[2], item.fecha[3], item.fecha[4]), // Convertir la fecha
-              direccion: item.direccion,
-              id: item.id
-            }));
-            return { ...data, content: eventos }; // Devolver la respuesta transformada
-          })
-        );
+      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/inactivos?page=${pagina}&size=${size}`, { headers });
     }
 
     getEventoById(eventId: string): Observable<Evento> {
@@ -98,5 +72,33 @@ import { CrearEvento } from '../models/CrearEvento';
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
       return this.http.delete<MensajeDTO>(`${this.apiUrl}/${id}`,{headers});
+    }
+
+    //-------------------Reportes PDF----------------------------------
+    //Metodo para generar el reporte de un evento dado el id
+
+    generarReportePdf(id: string):Observable<Blob>{
+      const token = this.authService.getToken();
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get(`${this.apiUrl}/generar-reporte-pdf/${id}`,{headers, responseType:'blob'}); //Para manejar el pdf como un blob
+    }
+    //
+    generarReportePdfInactivos(): Observable<Blob>{
+      const token = this.authService.getToken();
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get(`${this.apiUrl}/generar-reporte-inactivos-pdf`,{headers, responseType:'blob'}); //Para manejar el pdf como un blob
+    }
+//--------------------Reportes web--------------------------------
+    //Genara el reporte web de un evento en especifico
+    generarReporteWeb(eventoId: string):Observable<any>{
+      const token = this.authService.getToken();
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get(`${this.apiUrl}/generar-reporte-web/${eventoId}`,{headers})
+    }
+    //Genera el reporte web de todos los eventos inactivos
+    generarReporteWebInactivos(): Observable<any>{
+      const token = this.authService.getToken();
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get(`${this.apiUrl}/generar-reporte-inactivos-web`,{headers})
     }
 }

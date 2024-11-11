@@ -1,121 +1,119 @@
 /* Estilo general para el contenedor principal */
 .container {
-    max-width: 800px; /* Máximo ancho del contenedor */
-    margin: 0 auto; /* Centrar el contenedor */
-    padding: 20px;
-  }
-  
-  /* Estilo general */
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo de los grupos de formulario */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-    display: block;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  /* Estilo para las imágenes */
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  
-  /* Estilo para los botones de acción */
-  .action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-  }
-  
-  /* Botón de acción */
-  .action-btn {
-    background-color: #007bff; /* Color predeterminado para los botones */
-    border: none;
-    color: transparent; /* Hacer el texto del botón invisible */
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: flex; /* Para que los íconos se alineen correctamente */
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Necesario para posicionar el tooltip */
-  }
-  
-  /* Estilo para los íconos dentro de los botones */
-  .action-btn i {
-    font-size: 20px;
-    color: white;
-  }
-  
-  /* Efectos al pasar el mouse */
-  .action-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .action-btn:active {
-    background-color: #004085;
-  }
-  
-  /* Tooltip (Texto del tipo de acción) */
-  .tooltip-text {
-    visibility: hidden;
-    width: 120px; /* Ancho del tooltip */
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    bottom: 100%; /* Aparece arriba del botón */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1;
-  }
-  
-  /* Mostrar el tooltip cuando el mouse pase por encima del botón */
-  .action-btn:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  /* Botón de eliminar con color rojo */
-  .action-btn.delete {
-    background-color: #dc3545; /* Rojo */
-  }
-  
-  .action-btn.delete:hover {
-    background-color: #c82333; /* Rojo oscuro al hacer hover */
-  }
-  
-  .action-btn.delete:active {
-    background-color: #bd2130; /* Rojo más oscuro al hacer clic */
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilo de los grupos de formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: #f9f9f9;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Estilo para las imágenes */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* Estilo para los botones de acción */
+.action-buttons, .report-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* Botón de acción */
+.action-btn, .report-btn {
+  background-color: #007bff;
+  border: none;
+  color: transparent;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Estilo para los íconos dentro de los botones */
+.action-btn i, .report-btn i {
+  font-size: 20px;
+  color: white;
+}
+
+/* Efectos al pasar el mouse */
+.action-btn:hover, .report-btn:hover {
+  background-color: #0056b3;
+}
+
+.action-btn:active, .report-btn:active {
+  background-color: #004085;
+}
+
+/* Tooltip (Texto del tipo de acción) */
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+/* Mostrar el tooltip cuando el mouse pase por encima del botón */
+.action-btn:hover .tooltip-text, .report-btn:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Botón de eliminar con color rojo */
+.action-btn.delete {
+  background-color: #dc3545;
+}
+
+.action-btn.delete:hover {
+  background-color: #c82333;
+}
+
+.action-btn.delete:active {
+  background-color: #bd2130;
+}

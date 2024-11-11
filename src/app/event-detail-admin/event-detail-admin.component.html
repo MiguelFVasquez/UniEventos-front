@@ -60,8 +60,20 @@
       <img [src]="evento.imagenLocalidades" alt="Imagen Localidades" />
     </div>
 
-    <!-- Botones de Acción -->
-    <div class="action-buttons">
+    <!-- Botones de Generación de Reportes (solo visibles si evento está inactivo) -->
+    <div class="report-buttons" *ngIf="evento.estado === 'INACTIVO'">
+      <button class="report-btn" (click)="generarReportePDF()">
+        <i class="fa fa-file-pdf"></i>
+        <span class="tooltip-text">Generar Reporte PDF</span>
+      </button>
+      <button class="report-btn" (click)="generarReporteWeb()">
+        <i class="fa fa-globe"></i>
+        <span class="tooltip-text">Generar Reporte Web</span>
+      </button>
+    </div>
+
+    <!-- Botones de Acción (solo visibles si evento está activo) -->
+    <div class="action-buttons" *ngIf="evento.estado === 'ACTIVO'">
       <!-- Botón Actualizar -->
       <button class="action-btn" (click)="actualizarEvento()">
         <i class="fa fa-edit"></i>

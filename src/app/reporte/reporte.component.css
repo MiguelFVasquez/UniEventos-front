@@ -4,7 +4,7 @@
     margin-top: 15%;
     padding: 20px;
     text-align: center;
-    background-color: var(--background-color, #211e1e); /* Adapta para light/dark */
+    background-color: var(--background-color, #dfdada); /* Adapta para light/dark */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
   }
@@ -13,7 +13,7 @@
     margin-bottom: 20px;
     margin-top: 0;
     font-size: 1.8rem;
-    color: var(--text-color, #ffffff); /* Adaptable a dark mode */
+    color: var(--text-color, #000000); /* Adaptable a dark mode */
   }
   
   .reportes-buttons {

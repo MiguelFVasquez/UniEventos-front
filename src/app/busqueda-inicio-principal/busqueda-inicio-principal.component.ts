@@ -7,6 +7,8 @@ import { FiltroEventoDTO } from '../models/filtro-evento-dto';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../servicios/auth.service';
+import { ItemEventoDTO } from '../models/item-evento-dto';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { AuthService } from '../servicios/auth.service';
   styleUrl: './busqueda-inicio-principal.component.css'
 })
 export class BusquedaInicioPrincipalComponent {
-  listaEventosDisponibles:any[] = [];
+  listaEventosDisponibles:ItemEventoDTO[] = [];
   paginaActualDisponibles = 0;
   paginaActualNoDisponibles = 0;
   size=3;
@@ -31,9 +33,10 @@ export class BusquedaInicioPrincipalComponent {
   tipo: string="";
   nombre: string="";
 
-
-
-  constructor(private authService:AuthService, private eventoService:EventoService, private formBuilder: FormBuilder){
+  constructor(private authService:AuthService, 
+              private eventoService:EventoService,
+              private router: Router,
+              private formBuilder: FormBuilder){
     this.listarEventos(); 
     this.crearFormulario();
     this.tipos = [];
@@ -42,9 +45,6 @@ export class BusquedaInicioPrincipalComponent {
     
   }
   
-  ngOnInit(): void {
-    this.listarEventos();
-  }
   public obtenerTipos(){
     this.authService.getTipos().subscribe({
       next: (data) => {
@@ -62,7 +62,7 @@ export class BusquedaInicioPrincipalComponent {
 
   listarEventos(){
     this.authService.getEventosActivos(this.paginaActualDisponibles,this.size).subscribe(data =>{
-      console.log(data);  
+      console.log(data.content);  
       this.listaEventosDisponibles=data.content;
       this.totalPaginasDisponibles=data.totalPages;
     });
@@ -111,4 +111,9 @@ export class BusquedaInicioPrincipalComponent {
       }
     })
   }
+
+  onEventCardClick(eventId: string) {
+    this.router.navigate([`/event-detail/${eventId}`]);
+  }
+
 }
