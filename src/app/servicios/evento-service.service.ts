@@ -19,9 +19,7 @@ import { CrearEvento } from '../models/CrearEvento';
 
     constructor(private http: HttpClient, private router: Router,private authService: AuthService) {}
     
-    filtrarEventos(filtroEventoDTO: FiltroEventoDTO): Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>(`${this.apiUrl}/filtrarEventos`, filtroEventoDTO);
-    }
+    
     //Metodo con el que obtenemos el total de los eventos activos
     getEventosActivos(pagina: number, size: number) {
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación

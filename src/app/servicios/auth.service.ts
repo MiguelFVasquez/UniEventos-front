@@ -10,6 +10,7 @@ import { MensajeDTO } from '../models/mensaje-dto';
 import { ChangePassword } from '../models/change-password';
 import { Page } from '../models/Page';
 import { ItemEventoDTO } from '../models/ItemEventoDTO ';
+import { FiltroEventoDTO } from '../models/filtro-evento-dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -120,8 +121,17 @@ import { ItemEventoDTO } from '../models/ItemEventoDTO ';
       );
   }
 
+  filtrarEventos(filtroEventoDTO: FiltroEventoDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.apiUrl}/filtrarEventos`, filtroEventoDTO, {
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
+
   getTipos(): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/listar-tipos`);
+  }
+  getCiudades(): Observable<MensajeDTO>{
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listar-ciudades`);
   }
 
 }

@@ -25,11 +25,21 @@ export class BusquedaInicioPrincipalComponent {
   totalPaginasNoDisponibles = 1; // Actualizar con el valor real desde el backend
   filtroForm!: FormGroup;
   tipos: string[];
+  ciudades: string[];
+
+  ciudad: string="";
+  tipo: string="";
+  nombre: string="";
+
+
+
   constructor(private authService:AuthService, private eventoService:EventoService, private formBuilder: FormBuilder){
     this.listarEventos(); 
     this.crearFormulario();
     this.tipos = [];
+    this.ciudades=[];
     this.obtenerTipos();
+    
   }
   
   ngOnInit(): void {
@@ -46,7 +56,7 @@ export class BusquedaInicioPrincipalComponent {
     this.filtroForm = this.formBuilder.group({
       nombre: [""],
       tipo: [""],
-      ciudad: ["Armenia"]
+      ciudad: [""]
     });
   }
 
@@ -61,12 +71,38 @@ export class BusquedaInicioPrincipalComponent {
   cambiarPaginaDisponibles(direccion: number) {
     this.paginaActualDisponibles += direccion;
     this.listarEventos();
+    }
+
+
+  public obtenerCiudades(){
+    this.authService.getCiudades().subscribe({
+      next: (data) =>{
+        this.ciudades= data.respuesta;
+      }
+    })
   }
+
+  /*public listarEventos(){
+    this.eventoService.listarTodosEventos().subscribe({
+      next: (data) => {
+        this.listaEventosDisponibles = data.respuesta;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+
+  }*/
+ 
   public filtrarEventos(){
+      const filtroEve: FiltroEventoDTO = {
+      nombre: this.filtroForm.value.nombre,
+      tipo: this.filtroForm.value.tipo,
+      ciudad: this.filtroForm.value.ciudad
+    };
 
-    const filtroEve = this.filtroForm.value as FiltroEventoDTO;
 
-    this.eventoService.filtrarEventos(filtroEve).subscribe({
+    this.authService.filtrarEventos(filtroEve).subscribe({
       next: (data) => {
         this.listaEventosDisponibles = data.respuesta;
       },

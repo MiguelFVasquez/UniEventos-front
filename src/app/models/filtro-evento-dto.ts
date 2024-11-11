@@ -1,6 +1,6 @@
 export interface FiltroEventoDTO {
-      nombre: string,
-      tipo: string,
-      ciudad: string
+    nombre: string;
+    tipo: string ;
+    ciudad: string;
   }
   

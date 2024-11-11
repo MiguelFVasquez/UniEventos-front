@@ -30,7 +30,7 @@
 <!-- Barra de búsqueda -->
 <div class="container">
   <div class="search-bar mt-4 mb-4">
-    <form [formGroup]="filtroForm" >
+    <form [formGroup]="filtroForm" (ngSubmit)="filtrarEventos()">
       <div class="input-group">
         <input type="text" class="form-control" formControlName="nombre" placeholder="Evento, Artistas o Escenarios">
         <select class="form-select" formControlName="tipo" >
@@ -42,6 +42,9 @@
         <select class="form-select" formControlName="ciudad" >
           <option value="" >Ubicación</option>
           <option value="Armenia" >Armenia</option>
+          @for (item of ciudades; track $index) {
+            <option value="{{item}}" >{{item}}</option>
+          }
         </select> 
         <button type="button" (click)="filtrarEventos()" > Buscar </button> 
       </div>
