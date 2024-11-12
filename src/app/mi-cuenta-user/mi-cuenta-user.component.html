@@ -60,7 +60,7 @@
           type="email" 
           id="correo" 
           name="correo" 
-          [(ngModel)]="user.correo" 
+          [(ngModel)]="user.email" 
           [readonly]="!editMode" 
           placeholder="Correo electrónico" 
         />
@@ -73,9 +73,6 @@
             [type]="passwordVisible ? 'text' : 'password'" 
             id="password" 
             name="password" 
-            [(ngModel)]="user.password" 
-            [readonly]="true" 
-            placeholder="Contraseña" 
           />
           <button 
             type="button" 

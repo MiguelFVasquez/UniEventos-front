@@ -3,6 +3,7 @@ export interface Localidad {
     precio: number;
     entradasVendidas: number;
     capacidadMaxima: number;
+
 }
 
 export interface Evento {

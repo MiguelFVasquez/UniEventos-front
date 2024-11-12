@@ -19,14 +19,15 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 })
 export class MiCuentaComponent {
   editMode = false;
-  nombre = '';
-  cedula = ''; // Este valor podría obtenerse de otra fuente si lo necesitas
-  telefono = '';
-  direccion = '';
-  correo = '';
-  password = '';
-  rol = '';
-
+  user :InfoAdicionalDTO= {
+    cedula:'',
+    email:'',
+    telefono: '',
+    direccion:'',
+    nombre: '',
+    idCuenta:''
+  };
+  rol:string='';
   passwordVisible: boolean = false;
   constructor(private router: Router,
               private authService: AuthService,
@@ -40,7 +41,7 @@ export class MiCuentaComponent {
     if (email) {
       this.cargarDatosUsuario(email);
       // Obtén la contraseña desde el servicio compartido
-      this.password = this.sharedService.getPassword();
+      //this.password = this.sharedService.getPassword();
       // Limpia la contraseña del servicio después de obtenerla
       //this.sharedService.clearPassword();
     }else{
@@ -54,11 +55,12 @@ export class MiCuentaComponent {
   cargarDatosUsuario(email: string) {
     this.authService.getUserInfo(email).subscribe({
       next: (info) => {
-        this.cedula=info.cedula;
-        this.nombre = info.nombre;
-        this.telefono = info.telefono;
-        this.direccion = info.direccion;
-        this.correo = info.email;
+        this.user.cedula=info.cedula;
+        this.user.nombre = info.nombre;
+        this.user.telefono = info.telefono;
+        this.user.direccion = info.direccion;
+        this.user.email = info.email;
+        this.user.idCuenta=info.idCuenta;
         
         // Obtén el rol desde authService
         this.authService.verificarRol(email).subscribe({
@@ -86,11 +88,12 @@ export class MiCuentaComponent {
   }
   guardarCambios() {
     const infoAdicionalDTO: InfoAdicionalDTO = {
-      nombre: this.nombre,
-      cedula: this.cedula,
-      telefono: this.telefono,
-      direccion: this.direccion,
-      email: this.correo
+      nombre: this.user.nombre,
+      cedula: this.user.cedula,
+      telefono: this.user.telefono,
+      direccion: this.user.direccion,
+      email: this.user.email,
+      idCuenta:this.user.idCuenta
     };
 
     this.miCuentaService.editarCuenta(infoAdicionalDTO).subscribe({
@@ -119,10 +122,10 @@ export class MiCuentaComponent {
     }
   }
   changePassword() {
-    if (this.correo) {
-      console.log('email: ', this.correo)
+    if (this.user.email) {
+      console.log('email: ', this.user.email)
       // Llama al servicio para enviar el código al email del usuario
-      this.authService.enviarCodigo(this.correo).subscribe({
+      this.authService.enviarCodigo(this.user.email).subscribe({
         next: (response) => {
           this.showNotification(response.message); // Muestra el mensaje de éxito
           // Abre el componente ChangePasswordComponent como un diálogo después de enviar el código
@@ -148,7 +151,7 @@ export class MiCuentaComponent {
 
     if (confirmacion) {
       // Si el usuario confirma, llama al servicio para eliminar la cuenta
-      this.miCuentaService.eliminarCuenta(this.correo).subscribe({
+      this.miCuentaService.eliminarCuenta(this.user.email).subscribe({
         next: (response) => {
           this.showNotification(response.message);
 

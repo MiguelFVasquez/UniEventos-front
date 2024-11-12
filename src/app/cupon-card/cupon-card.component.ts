@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-cupon-card',
   standalone: true,
-  imports: [CommonModule,EditarCuponComponent],
+  imports: [CommonModule],
   templateUrl: './cupon-card.component.html',
   styleUrl: './cupon-card.component.css'
 })

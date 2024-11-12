@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { EventoService } from '../servicios/evento-service.service';
 import { MensajeDTO }  from '../models/mensaje-dto';
 import { AuthService } from '../servicios/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [HeaderInicioPrincipalComponent, CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css'
 })

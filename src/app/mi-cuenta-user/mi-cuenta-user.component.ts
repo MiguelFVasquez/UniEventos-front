@@ -19,15 +19,13 @@ import { MiCuentaUserServiceService } from '../servicios/mi-cuenta-user-service.
 })
 export class MiCuentaUserComponent {
   editMode: boolean = false;
-  user = {
-    nombre: '',
-    cedula: '',
+  user :InfoAdicionalDTO= {
+    cedula:'',
+    email:'',
     telefono: '',
-    direccion: '',
-    correo: '',
-    rol: '',
-    password: '',
-    fechaNacimiento: ''
+    direccion:'',
+    nombre: '',
+    idCuenta:''
   };
   passwordVisible: boolean = false;
   constructor(private authService: AuthService,
@@ -43,7 +41,7 @@ export class MiCuentaUserComponent {
     if (email) {
       this.cargarDatosUsuario(email);
       // Obtén la contraseña desde el servicio compartido
-      this.user.password = this.sharedService.getPassword();
+      //this.user.password = this.sharedService.getPassword();
       // Limpia la contraseña del servicio después de obtenerla
       //this.sharedService.clearPassword();
     }else{
@@ -59,20 +57,12 @@ export class MiCuentaUserComponent {
         this.user.nombre = info.nombre;
         this.user.telefono = info.telefono;
         this.user.direccion = info.direccion;
-        this.user.correo = info.email;
-        
-        // Obtén el rol desde authService
-        this.authService.verificarRol(email).subscribe({
-          next: (rolResponse) => {
-            this.user.rol = rolResponse.respuesta; // Ajusta según la estructura de la respuesta
-          },
-          error: (error) => {
-            console.error('Error al verificar rol', error);
-          }
-        });
-      },
-      error: (error) => {
+        this.user.email = info.email;
+        this.user.idCuenta=info.idCuenta;
+        console.log("Id obtenido: ", this.user.idCuenta);
+      },error: (error) => {
         console.error('Error al cargar los datos del usuario:', error);
+        this.showNotification('Erro al carga los datos del usuario')
       }
     });
   }
@@ -96,7 +86,8 @@ export class MiCuentaUserComponent {
       cedula: this.user.cedula,
       telefono: this.user.telefono,
       direccion: this.user.direccion,
-      email: this.user.correo
+      email: this.user.email,
+      idCuenta:this.user.idCuenta
     };
 
     this.miCuentaService.editarCuentaUser(infoAdicionalDTO).subscribe({
@@ -111,10 +102,10 @@ export class MiCuentaUserComponent {
   }
   //Metodo con el que habilitamos el cambio del password
   changePassword() {
-    if (this.user.correo) {
-      console.log('email: ', this.user.correo)
+    if (this.user.email) {
+      console.log('email: ', this.user.email)
       // Llama al servicio para enviar el código al email del usuario
-      this.authService.enviarCodigo(this.user.correo).subscribe({
+      this.authService.enviarCodigo(this.user.email).subscribe({
         next: (response) => {
           this.showNotification(response.message); // Muestra el mensaje de éxito
           // Abre el componente ChangePasswordComponent como un diálogo después de enviar el código
@@ -156,7 +147,7 @@ export class MiCuentaUserComponent {
   const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
     if (confirmacion) {
       // Si el usuario confirma, llama al servicio para eliminar la cuenta
-      this.miCuentaService.eliminarCuentaUser(this.user.correo).subscribe({
+      this.miCuentaService.eliminarCuentaUser(this.user.email).subscribe({
         next: (response) => {
           this.showNotification(response.message);
 

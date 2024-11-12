@@ -4,4 +4,5 @@ export interface InfoAdicionalDTO{
     telefono: string;
     direccion: string;
     nombre:string;
+    idCuenta:string;
 }

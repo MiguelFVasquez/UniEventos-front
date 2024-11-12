@@ -10,7 +10,7 @@ import { SharedService } from '../servicios/shared-service.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule,FormsModule, RegistroComponent,InitialHeaderComponent], 
+  imports: [RouterModule,FormsModule,InitialHeaderComponent], 
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css',
   
