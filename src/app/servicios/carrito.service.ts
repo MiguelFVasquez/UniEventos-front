@@ -15,8 +15,8 @@ import { CarritoDTO } from '../models/carritoDTO';
     constructor(private http: HttpClient, private router: Router) {
     }
 
-    listarElementos(carritoDTO: CarritoDTO): Observable<MensajeDTO>{
-      return this.http.get<MensajeDTO>(`${this.apiUrl}/listarElementos-carrito`);
+    listarElementos(idCarrito: string): Observable<MensajeDTO>{
+      return this.http.get<MensajeDTO>(`${this.apiUrl}/listarElementos-carrito/${idCarrito}`);
     }
 
     eliminarElemento(carritoDTO: CarritoDTO): Observable<MensajeDTO>{

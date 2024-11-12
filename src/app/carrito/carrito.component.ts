@@ -8,6 +8,8 @@ import { FormBuilder } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Validators  } from '@angular/forms';
+import { ItemEventoDTO } from '../models/item-evento-dto';
+import { ItemCarritoDTO } from '../models/item-carritoDTO';
 
 @Component({
   selector: 'app-carrito',
@@ -17,7 +19,7 @@ import { Validators  } from '@angular/forms';
   styleUrl: './carrito.component.css'
 })
 export class CarritoComponent {
-  elementosCarritos:any[] = [];
+  elementosCarritos: ItemCarritoDTO[] = [];
 
   cuponForm!: FormGroup;
 
@@ -42,9 +44,10 @@ export class CarritoComponent {
     this.carritoDTO;
     this.actualizarCantidadEventos();
     this.crearFormulario();
+    this.listarElementosCarrito();
   }
   public listarElementosCarrito(){
-    this.carritoService.listarElementos(this.carritoDTO).subscribe({
+    this.carritoService.listarElementos().subscribe({
       next: (data) => {
         this.elementosCarritos = data.respuesta;
       }

@@ -1,5 +1,5 @@
 export interface ItemEventoDTO{
-    urlImagenPoster: string
+    urlImagenPoster: string,
     nombre:string,
     fecha:Date,
     direccion:string,

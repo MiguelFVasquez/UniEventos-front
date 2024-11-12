@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { ItemEventoDTO } from '../models/item-evento-dto';
+import { ItemCarritoDTO } from '../models/item-carritoDTO';
 
 @Component({
   selector: 'app-carrito-evento',
@@ -9,6 +11,6 @@ import { Component, Input } from '@angular/core';
 })
 export class CarritoEventoComponent {
 
-  @Input() CarritoDTO: any;
+  @Input() itemCarrito!: ItemCarritoDTO;
 
 }
