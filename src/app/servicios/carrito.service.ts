@@ -28,8 +28,8 @@ import { CarritoDTO } from '../models/carritoDTO';
     
     }
 
-    obtenerCantElemCarrito(idCarrito: string): Observable<MensajeDTO>{
-      return this.http.get<MensajeDTO>(`${this.apiUrl}/obtenerCantidadItems/${idCarrito}`);
+    obtenerCantElemCarrito(idUsuario: string): Observable<MensajeDTO>{
+      return this.http.get<MensajeDTO>(`${this.apiUrl}/obtenerCantidadItems/${idUsuario}`);
     }
 
 
