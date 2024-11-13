@@ -1,6 +1,4 @@
 <div *ngIf="evento; else loading">
-  <app-header-inicio-principal></app-header-inicio-principal>
-  
   <div class="banner">
     <img [src]="evento.imagenPortada" alt="{{evento.nombre}}" class="banner-img" />
   </div>
@@ -45,9 +43,16 @@
               <td>{{ localidad.nombre }}</td>
               <td>{{ localidad.precio | currency:'COP' }}</td>
               <td>{{ localidad.capacidadMaxima }}</td>
-              <td>
-                <input type="number" min="1" max="{{ localidad.capacidadMaxima - localidad.entradasVendidas }}" />
-                <button>Agregar</button>
+              <td class="quantity-cell">
+                <input
+                  type="number"
+                  min="1"
+                  max="{{ localidad.capacidadMaxima - localidad.entradasVendidas }}"
+                  class="quantity-selector"
+                />
+                <button class="add-button">
+                  <i class="fas fa-plus"></i>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -56,8 +61,6 @@
     </div>
   </section>
 </div>
-<p></p>
-<p></p>
 
 <ng-template #loading>
   <p>Cargando detalles del evento...</p>

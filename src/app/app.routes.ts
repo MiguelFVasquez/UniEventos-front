@@ -20,6 +20,7 @@ import { HeaderInicioPrincipalComponent } from './header-inicio-principal/header
 import { EventCardComponent } from './event-card/event-card.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventDetailAdminComponent } from './event-detail-admin/event-detail-admin.component';
+import { UserEventComponent } from './user-event/user-event.component';
 
 
 export const routes: Routes = [
@@ -60,6 +61,7 @@ export const routes: Routes = [
           children:[
             { path: 'user-mi-cuenta', component: MiCuentaUserComponent},
             {path: 'carrito', component: CarritoComponent},
+            {path: 'events', component: UserEventComponent}, //ruta para mostrar los eventos una vez se ha logeado
             {path:'events/detail/:id', component:EventDetailComponent},
             {path: 'change-password', component: ChangePasswordComponent}
 

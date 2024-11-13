@@ -8,27 +8,27 @@
     <form>
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre" [readonly]="!editMode" placeholder="Nombre" />
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="user.nombre" [readonly]="!editMode" placeholder="Nombre" />
       </div>
 
       <div class="form-group">
         <label for="cedula">Cédula</label>
-        <input type="text" id="cedula" name="cedula" [(ngModel)]="cedula" [readonly]="!editMode" placeholder="Cédula" />
+        <input type="text" id="cedula" name="cedula" [(ngModel)]="user.cedula" [readonly]="!editMode" placeholder="Cédula" />
       </div>
 
       <div class="form-group">
         <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" [(ngModel)]="telefono" [readonly]="!editMode" placeholder="Teléfono" />
+        <input type="text" id="telefono" name="telefono" [(ngModel)]="user.telefono" [readonly]="!editMode" placeholder="Teléfono" />
       </div>
 
       <div class="form-group">
         <label for="direccion">Dirección</label>
-        <input type="text" id="direccion" name="direccion" [(ngModel)]="direccion" [readonly]="!editMode" placeholder="Dirección" />
+        <input type="text" id="direccion" name="direccion" [(ngModel)]="user.direccion" [readonly]="!editMode" placeholder="Dirección" />
       </div>
 
       <div class="form-group">
         <label for="correo">Correo Electrónico</label>
-        <input type="email" id="correo" name="correo" [(ngModel)]="correo" [readonly]="!editMode" placeholder="Correo electrónico" />
+        <input type="email" id="correo" name="correo" [(ngModel)]="user.email" [readonly]="!editMode" placeholder="Correo electrónico" />
       </div>
 
       <div class="form-group">
@@ -43,7 +43,6 @@
             [type]="passwordVisible ? 'text' : 'password'"
             id="password"
             name="password"
-            [(ngModel)]="password"
             [readonly]="true"
             placeholder="Contraseña"
           />

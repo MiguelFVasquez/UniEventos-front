@@ -1,0 +1,82 @@
+
+<!-- Carousel de imágenes -->
+<div id="carouselExample" class="carouselExample carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" style="height: 400px;">
+    <div class="carousel-item active">
+      <img src="assets/michael.jpg" class="d-block w-100" alt="Evento 1">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/conciertoGorillaz.jpg" class="d-block w-100" alt="Evento 2">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/GUNS-N-ROSES.jpeg" class="d-block w-100" alt="Evento 2">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/conciertoTwentyOnePilots.jpg" class="d-block w-100" alt="Evento 3">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Barra de búsqueda -->
+<div class="container">
+  <div class="search-bar mt-4 mb-4">
+    <form [formGroup]="filtroForm" (ngSubmit)="filtrarEventos()">
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="nombre" placeholder="Evento, Artistas o Escenarios">
+        <select class="form-select" formControlName="tipo">
+          <option value="">Categorías</option>
+          <ng-container *ngFor="let item of tipos">
+            <option [value]="item">{{item}}</option>
+          </ng-container>
+        </select>
+        <select class="form-select" formControlName="ciudad" >
+          <option value="" >Ubicación</option>
+          <option value="Armenia" >Armenia</option>
+          @for (item of ciudades; track $index) {
+            <option value="{{item}}" >{{item}}</option>
+          }
+        </select>
+        <select class="form-select" formControlName="ciudad">
+          <option value="">Ubicación</option>
+          <option value="Armenia">Armenia</option>
+        </select> 
+        <button type="button" (click)="filtrarEventos()" class="btn btn-primary">Buscar</button> 
+      </div>
+      </form>
+    </div>
+</div>
+
+<!-- Lista de eventos disponibles -->
+<div class="container">
+  <h2>Eventos Disponibles</h2>
+  <div class="event-list">
+    <app-event-card 
+      *ngFor="let event of listaEventosDisponibles" 
+      [event]="event"
+      (click)="onEventCardClick(event.id)">
+    </app-event-card>
+  </div>
+
+  <!-- Paginación para eventos disponibles -->
+  <div class="pagination d-flex justify-content-center mt-4">
+    <button class="btn btn-outline-primary" (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <span class="mx-3">{{ paginaActualDisponibles + 1 }} de {{ totalPaginasDisponibles }}</span>
+    <button class="btn btn-outline-primary" (click)="cambiarPaginaDisponibles(1)" 
+            [disabled]="paginaActualDisponibles + 1 >= totalPaginasDisponibles">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

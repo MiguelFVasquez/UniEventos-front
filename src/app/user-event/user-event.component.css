@@ -1,0 +1,57 @@
+.carouselExample {
+    position: relative;
+    width: 100%;
+}
+
+.event-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra los elementos dentro del contenedor */
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin-bottom: 20px;
+}
+
+.event-card {
+    background-color: #f8f9fa; /* Fondo claro */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(30% - 20px); /* Cada tarjeta ocupa el 30% del ancho menos el espacio entre tarjetas */
+    min-width: 250px; /* Asegura que las tarjetas no sean demasiado estrechas */
+    min-height: 350px; /* Altura mínima para asegurar que todas las tarjetas tengan el mismo tamaño */
+    display: flex;
+    flex-direction: column; /* Asegura que el contenido se distribuya verticalmente */
+    justify-content: space-between; /* Distribuye uniformemente el contenido dentro de la tarjeta */
+    box-sizing: border-box;
+}
+
+/* Imagen del evento */
+.event-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Asegura que la imagen cubra el área correctamente sin distorsión */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Detalles del evento */
+.event-details {
+padding: 15px;
+flex-grow: 1; /* Asegura que esta parte del contenido crezca para ocupar el espacio disponible */
+}
+
+.event-details h3 {
+margin: 0 0 10px;
+font-size: 18px;
+color: #343a40;
+}
+
+.event-details p {
+margin: 5px 0;
+color: #6c757d;
+font-size: 14px;
+}
+
+/* Alineación de íconos y texto */
+.event-details i {
+margin-right: 5px;
+color: #007bff;
+}
