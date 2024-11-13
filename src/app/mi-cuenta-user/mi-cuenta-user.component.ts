@@ -61,6 +61,8 @@ export class MiCuentaUserComponent {
         this.user.email = info.email;
         this.user.idCuenta=info.idCuenta;
         this.user.idCarrito=info.idCarrito;
+        this.sharedService.setUserId(info.idCuenta);
+        this.sharedService.setCarritoId(info.idCarrito);
         console.log("Id obtenido: ", this.user.idCuenta);
         console.log('Id de carrito obtenido: ',this.user.idCarrito );
       },error: (error) => {

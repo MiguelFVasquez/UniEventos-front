@@ -48,13 +48,15 @@
                   type="number"
                   min="1"
                   max="{{ localidad.capacidadMaxima - localidad.entradasVendidas }}"
+                  [(ngModel)]="localidad.cantidadSeleccionada"
                   class="quantity-selector"
                 />
-                <button class="add-button">
+                <button class="add-button" (click)="agregarAlCarrito(evento.id, localidad.cantidadSeleccionada, localidad.nombre)">
                   <i class="fas fa-plus"></i>
                 </button>
               </td>
             </tr>
+            
           </tbody>
         </table>
       </div>

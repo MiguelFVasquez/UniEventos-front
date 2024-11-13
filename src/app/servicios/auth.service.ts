@@ -106,7 +106,7 @@ import { Evento } from '../models/evento';
     if (rol === 'ADMINISTRADOR') {
       this.router.navigate(['/admin/dashboard/events']);
     } else {
-      this.router.navigate(['/user/dashboard/events']);
+      this.router.navigate(['/user/dashboard/user-mi-cuenta']);
     }
   }
 
