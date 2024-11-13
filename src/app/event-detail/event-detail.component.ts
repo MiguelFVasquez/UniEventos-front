@@ -82,12 +82,13 @@ export class EventDetailComponent implements OnInit{
       nuevaCantidad: cantidad,
       nLocalidad: nombreLocalidad
     };
-    console.log('id carrito ', this.idCarrito);
+    console.log('id carrito ', this.idCarrito)
+    console.log('nombre localidad ',nombreLocalidad);
 
     this.carritoService.agregarEventoCarrito(carritoDTO).subscribe(
       (response) => {
         console.log(response.respuesta); // Confirmación de que el item fue agregado
-        alert("Evento agregado al carrito con exito" + response.respuesta)
+        alert("Evento agregado al carrito con exito: \n" + response.respuesta)
       },
       (error) => {
         console.error('Error al agregar el evento al carrito:', error);
