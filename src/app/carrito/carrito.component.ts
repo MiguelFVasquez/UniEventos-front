@@ -1,77 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CarritoDTO } from '../models/carritoDTO';
 import { CarritoService } from '../servicios/carrito.service';
 import { CarritoEventoComponent } from '../carrito-evento/carrito-evento.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Validators  } from '@angular/forms';
-import { ItemEventoDTO } from '../models/item-evento-dto';
+import { SharedService } from '../servicios/shared-service.service';
 import { ItemCarritoDTO } from '../models/item-carritoDTO';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [RouterModule, CarritoEventoComponent, ReactiveFormsModule],
+  imports: [RouterModule, CarritoEventoComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
-export class CarritoComponent {
+export class CarritoComponent implements OnInit {
   elementosCarritos: ItemCarritoDTO[] = [];
-  idUsuario: string = 'idUsuario';
+  idUsuario: string = '';
   cuponForm!: FormGroup;
-
-  listaCarrito=[];
-
   cantidadEventos: number = 0;
 
-  idEvento: string= "";
-  idCarrito: string= "";
-  nuevaCantidad: number= 0;
-  nLocalidad: string="";
-
-   carritoDTO: CarritoDTO ={
-      idEvento: this.idEvento,
-      idCarrito: this.idCarrito,
-      nuevaCantidad: this.nuevaCantidad,
-      nLocalidad: this.nLocalidad
-  };
-
-  constructor(private carritoService:CarritoService, private formBuilder: FormBuilder){
-    this.listaCarrito;
-    this.carritoDTO;
-    this.actualizarCantidadEventos();
+  constructor(
+    private carritoService: CarritoService,
+    private formBuilder: FormBuilder,
+    private sharedService: SharedService
+  ) {
+    // Obtener el ID de usuario desde el servicio compartido
+    this.idUsuario = this.sharedService.getUserId();
     this.crearFormulario();
-    this.listarElementosCarrito();
   }
 
   ngOnInit(): void {
     this.listarElementosCarrito();
+    this.actualizarCantidadEventos();
   }
 
-  public listarElementosCarrito(){
+  // Método para listar los elementos del carrito
+  public listarElementosCarrito(): void {
     this.carritoService.listarElementos(this.idUsuario).subscribe({
       next: (data) => {
-        this.elementosCarritos = data.respuesta;
+        if (!data.error) {
+          this.elementosCarritos = data.respuesta;
+          this.cantidadEventos= data.respuesta.length;
+          console.log("Elementos del carrito: " + data.respuesta)
+        } else {
+          console.error("Error al obtener los elementos del carrito");
+        }
+      },
+      error: (err) => {
+        console.error("Error en la solicitud al backend:", err);
       }
     });
   }
 
-  actualizarCantidadEventos() {
+  // Actualiza el total de eventos en el carrito
+  actualizarCantidadEventos(): void {
     this.cantidadEventos = this.obtenerCantidadEventos();
   }
 
+  // Retorna la cantidad de eventos en el carrito
   obtenerCantidadEventos(): number {
-    return 4; 
+    return this.elementosCarritos.length;
   }
 
-  public crearFormulario() {
+  // Crea el formulario para aplicar un cupón
+  public crearFormulario(): void {
     this.cuponForm = this.formBuilder.group({
-      codigoCupon: ['', [Validators.maxLength(6),Validators.minLength(6)]]
+      codigoCupon: ['', [Validators.maxLength(6), Validators.minLength(6)]]
     });
-   }
-   
-
+  }
 }

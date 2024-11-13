@@ -7,6 +7,9 @@ import { EventoService } from '../servicios/evento-service.service';
 import { MensajeDTO }  from '../models/mensaje-dto';
 import { AuthService } from '../servicios/auth.service';
 import { FormsModule } from '@angular/forms';
+import { SharedService } from '../servicios/shared-service.service';
+import { CarritoDTO } from '../models/carritoDTO';
+import { CarritoService } from '../servicios/carrito.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -31,11 +34,21 @@ export class EventDetailComponent implements OnInit{
     localidades: [],
     promedioCalificaciones: 0
   }
+  idCarrito:string= '';
+  idCuenta: string='';
+
   constructor(  private route: ActivatedRoute,
     private eventoService: EventoService,
     private router: Router,
-    private authService: AuthService){
-  
+    private authService: AuthService,
+    private sharedService: SharedService,
+    private carritoService: CarritoService){
+      this.idCarrito= this.sharedService.getCarritoId();
+      this.idCuenta= this.sharedService.getUserId();
+  }
+
+  obtenerId(){
+
   }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id'); // Asegúrate de usar 'id'
@@ -44,6 +57,8 @@ export class EventDetailComponent implements OnInit{
     } else {
       console.error('ID del evento no encontrado en la ruta');
     }  
+    this.idCarrito= this.sharedService.getCarritoId();
+    this.idCuenta= this.sharedService.getUserId();
   }
   obtenerEvento(id: string): void { 
     this.authService.getEventoById(id).subscribe(
@@ -59,4 +74,29 @@ export class EventDetailComponent implements OnInit{
       }
     );
   }
+
+  agregarAlCarrito(eventId: string, cantidad: number, nombreLocalidad: string) {
+    const carritoDTO: CarritoDTO = {
+      idEvento: eventId,
+      idCarrito: this.idCarrito,
+      nuevaCantidad: cantidad,
+      nLocalidad: nombreLocalidad
+    };
+    console.log('id carrito ', this.idCarrito)
+    console.log('nombre localidad ',nombreLocalidad);
+
+    this.carritoService.agregarEventoCarrito(carritoDTO).subscribe(
+      (response) => {
+        console.log(response.respuesta); // Confirmación de que el item fue agregado
+        alert("Evento agregado al carrito con exito: \n" + response.respuesta)
+      },
+      (error) => {
+        console.error('Error al agregar el evento al carrito:', error);
+        alert("Ha habido un problema a la hora de agregar el evento al carrito" )
+      }
+    );
+  }
+
+
+
 }

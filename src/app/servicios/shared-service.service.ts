@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SharedService {
   private _password: string = '';
+  private _userId: string = '';
+  private _carritoId: string = '';
 
   // Establecer la contraseña
   setPassword(password: string) {
@@ -20,4 +22,24 @@ export class SharedService {
   clearPassword() {
     this._password = '';
   }
+
+  // Establecer el userId
+  setUserId(userId: string) {
+    this._userId = userId;
+  }
+
+  // Obtener el userId
+  getUserId(): string {
+    return this._userId;
+  }
+
+  setCarritoId(carritoId: string) {
+    this._carritoId = carritoId;
+  }
+
+  // Obtener el carritoId
+  getCarritoId(): string {
+    return this._carritoId;
+  }
+  
 }
