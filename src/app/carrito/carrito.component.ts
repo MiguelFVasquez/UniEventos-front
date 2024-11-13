@@ -20,7 +20,7 @@ import { ItemCarritoDTO } from '../models/item-carritoDTO';
 })
 export class CarritoComponent {
   elementosCarritos: ItemCarritoDTO[] = [];
-
+  idUsuario: string = 'idUsuario';
   cuponForm!: FormGroup;
 
   listaCarrito=[];
@@ -46,8 +46,13 @@ export class CarritoComponent {
     this.crearFormulario();
     this.listarElementosCarrito();
   }
+
+  ngOnInit(): void {
+    this.listarElementosCarrito();
+  }
+
   public listarElementosCarrito(){
-    this.carritoService.listarElementos().subscribe({
+    this.carritoService.listarElementos(this.idUsuario).subscribe({
       next: (data) => {
         this.elementosCarritos = data.respuesta;
       }
