@@ -25,7 +25,8 @@ export class MiCuentaComponent {
     telefono: '',
     direccion:'',
     nombre: '',
-    idCuenta:''
+    idCuenta:'',
+    idCarrito:''
   };
   rol:string='';
   passwordVisible: boolean = false;
@@ -93,7 +94,8 @@ export class MiCuentaComponent {
       telefono: this.user.telefono,
       direccion: this.user.direccion,
       email: this.user.email,
-      idCuenta:this.user.idCuenta
+      idCuenta:this.user.idCuenta,
+      idCarrito:this.user.idCarrito
     };
 
     this.miCuentaService.editarCuenta(infoAdicionalDTO).subscribe({

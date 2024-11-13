@@ -5,4 +5,5 @@ export interface InfoAdicionalDTO{
     direccion: string;
     nombre:string;
     idCuenta:string;
+    idCarrito:string;
 }

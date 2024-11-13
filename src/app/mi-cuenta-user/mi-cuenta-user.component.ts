@@ -25,7 +25,8 @@ export class MiCuentaUserComponent {
     telefono: '',
     direccion:'',
     nombre: '',
-    idCuenta:''
+    idCuenta:'',
+    idCarrito:''
   };
   passwordVisible: boolean = false;
   constructor(private authService: AuthService,
@@ -59,10 +60,12 @@ export class MiCuentaUserComponent {
         this.user.direccion = info.direccion;
         this.user.email = info.email;
         this.user.idCuenta=info.idCuenta;
+        this.user.idCarrito=info.idCarrito;
         console.log("Id obtenido: ", this.user.idCuenta);
+        console.log('Id de carrito obtenido: ',this.user.idCarrito );
       },error: (error) => {
         console.error('Error al cargar los datos del usuario:', error);
-        this.showNotification('Erro al carga los datos del usuario')
+        this.showNotification('Error al carga los datos del usuario')
       }
     });
   }
@@ -87,7 +90,8 @@ export class MiCuentaUserComponent {
       telefono: this.user.telefono,
       direccion: this.user.direccion,
       email: this.user.email,
-      idCuenta:this.user.idCuenta
+      idCuenta:this.user.idCuenta,
+      idCarrito:this.user.idCarrito
     };
 
     this.miCuentaService.editarCuentaUser(infoAdicionalDTO).subscribe({
