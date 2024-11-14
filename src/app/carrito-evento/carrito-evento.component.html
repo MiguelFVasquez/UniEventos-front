@@ -14,7 +14,7 @@
     onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
     <i class="fas fa-minus"></i>
     </button>
-    <form [formGroup]="editarForm" (ngSubmit)="editarCantidad(itemCarrito.idEvento)">
+    <form [formGroup]="editarForm" class="d-flex">
         <input id="form1" min="0" name="quantity" value={{itemCarrito.nuevaCantidad}} type="number"
         class="form-control form-control-sm" formControlName="nCantidad" />
         <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"

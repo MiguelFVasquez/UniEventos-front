@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ItemEventoDTO } from '../models/item-evento-dto';
 import { ItemCarritoDTO } from '../models/item-carritoDTO';
 import { CarritoDTO } from '../models/carritoDTO';
@@ -13,16 +13,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './carrito-evento.component.html',
   styleUrl: './carrito-evento.component.css'
 })
-export class CarritoEventoComponent {
+export class CarritoEventoComponent implements OnInit {
 
   @Input() itemCarrito!: ItemCarritoDTO;
 
   idEvento: string="";
   idCarrito: string="";
-  cantidad: number=0;
-
   nCantidad: number=0;
-
   editarForm!: FormGroup;
 
   constructor(private carritoService : CarritoService,
@@ -30,6 +27,14 @@ export class CarritoEventoComponent {
               private formBuilder: FormBuilder
   ){
     this.idCarrito= this.sharedService.getCarritoId();
+    this.crearFormulario();
+  }
+  ngOnInit(): void {
+    if(this.itemCarrito != null){
+      this.editarForm.patchValue({
+        nCantidad: this.itemCarrito.nuevaCantidad,
+      });
+    }
   }
 
   eliminarEvento(idEvento: string){
@@ -50,16 +55,20 @@ export class CarritoEventoComponent {
     })
   }
 
+
+
   editarCantidad(idEvento: string):void{
     const carritoDTO: CarritoDTO = {
       idCarrito:this.idCarrito,
       idEvento: idEvento,
-      nuevaCantidad: this.nCantidad,
+      nuevaCantidad: this.editarForm.get("nCantidad")?.value,
       nLocalidad:this.itemCarrito.nLocalidad
     };
+
+    console.log("Nueva cantidad: ", carritoDTO.nuevaCantidad)
     this.carritoService.editarCantidad(carritoDTO).subscribe({
       next: (data) => {
-        data.respuesta;
+        
       },
       error: (error) => {
         console.log(error);
@@ -69,7 +78,7 @@ export class CarritoEventoComponent {
 
   public crearFormulario(){
     this.editarForm = this.formBuilder.group({
-      nCantidad: this.cantidad
+      nCantidad: 0
     });
   }
 
