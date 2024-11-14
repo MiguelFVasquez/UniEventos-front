@@ -3,6 +3,7 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
 import { ItemCarritoDTO } from '../models/item-carritoDTO';
 import { CarritoDTO } from '../models/carritoDTO';
 import { CarritoService } from '../servicios/carrito.service';
+import { SharedService } from '../servicios/shared-service.service';
 
 @Component({
   selector: 'app-carrito-evento',
@@ -18,14 +19,16 @@ export class CarritoEventoComponent {
   idEvento: string="";
   idCarrito: string="";
 
-  constructor(private carritoService : CarritoService){
-
+  constructor(private carritoService : CarritoService,
+              private sharedService: SharedService
+  ){
+    this.idCarrito= this.sharedService.getCarritoId();
   }
 
-  eliminarEvento(){
+  eliminarEvento(idEvento: string){
     const carritoDTO: CarritoDTO = {
       idCarrito:this.idCarrito,
-      idEvento: this.idEvento,
+      idEvento: idEvento,
       nuevaCantidad: this.itemCarrito.nuevaCantidad,
       nLocalidad:this.itemCarrito.nLocalidad
     };
