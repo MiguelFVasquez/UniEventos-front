@@ -42,7 +42,7 @@ export class BusquedaInicioPrincipalComponent {
     this.tipos = [];
     this.ciudades=[];
     this.obtenerTipos();
-    
+    this.obtenerCiudades(); 
   }
   
   public obtenerTipos(){

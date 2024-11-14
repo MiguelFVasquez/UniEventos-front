@@ -18,8 +18,10 @@ import { CommonModule } from '@angular/common';
 export class CarritoComponent implements OnInit {
   elementosCarritos: ItemCarritoDTO[] = [];
   idUsuario: string = '';
+  idCarrito: string = '';
   cuponForm!: FormGroup;
   cantidadEventos: number = 0;
+  totalCarrito: number= 0;
 
   constructor(
     private carritoService: CarritoService,
@@ -28,7 +30,9 @@ export class CarritoComponent implements OnInit {
   ) {
     // Obtener el ID de usuario desde el servicio compartido
     this.idUsuario = this.sharedService.getUserId();
+    this.idCarrito= this.sharedService.getCarritoId();
     this.crearFormulario();
+    this.obtenerTotalCarrito();
   }
 
   ngOnInit(): void {
@@ -54,6 +58,15 @@ export class CarritoComponent implements OnInit {
     });
   }
 
+  obtenerTotalCarrito(): void{
+      this.carritoService.obtenerTotalCarrito(this.idCarrito).subscribe({
+        next: (data) => { 
+          this.totalCarrito= data.respuesta;
+        }
+      })
+  }
+
+
   // Actualiza el total de eventos en el carrito
   actualizarCantidadEventos(): void {
     this.cantidadEventos = this.obtenerCantidadEventos();
@@ -70,4 +83,6 @@ export class CarritoComponent implements OnInit {
       codigoCupon: ['', [Validators.maxLength(6), Validators.minLength(6)]]
     });
   }
+
+  
 }

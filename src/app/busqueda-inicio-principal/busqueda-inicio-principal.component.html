@@ -41,15 +41,10 @@
         </select>
         <select class="form-select" formControlName="ciudad" >
           <option value="" >Ubicación</option>
-          <option value="Armenia" >Armenia</option>
           @for (item of ciudades; track $index) {
             <option value="{{item}}" >{{item}}</option>
           }
         </select>
-        <select class="form-select" formControlName="ciudad">
-          <option value="">Ubicación</option>
-          <option value="Armenia">Armenia</option>
-        </select> 
         <button type="button" (click)="filtrarEventos()" class="btn btn-primary">Buscar</button> 
       </div>
       </form>

@@ -33,7 +33,7 @@ import { AuthService } from './auth.service';
     eliminarElemento(carritoDTO: CarritoDTO): Observable<MensajeDTO>{
       const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-      return this.http.delete<MensajeDTO>(`${this.apiUrl}/eliminarEvento-carrito`);
+      return this.http.request<MensajeDTO>("delete", `${this.apiUrl}/eliminarEvento-carrito`, {body: carritoDTO} );
     }
      
     vaciarCarrito(idCarrito: string): Observable<MensajeDTO>{
@@ -49,5 +49,16 @@ import { AuthService } from './auth.service';
       return this.http.get<MensajeDTO>(`${this.apiUrl}/obtenerCantidadItems/${idCarrito}`);
     }
 
+    obtenerTotalCarrito(idCarrito: string): Observable<MensajeDTO>{
+      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+      return this.http.get<MensajeDTO>(`${this.apiUrl}/getTotalCarrito/${idCarrito}`);
+    }
+
+    editarCantidad(carritoDTO: CarritoDTO): Observable<MensajeDTO>{
+      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
+      return this.http.put<MensajeDTO>(`${this.apiUrl}/editarCantidad`, carritoDTO);
+    }
 
 }
