@@ -10,4 +10,6 @@ export interface CrearEvento{
     imagenPortada: string;
     imagenLocalidades: string;
     localidades: Localidad[];
+    imagenPortadaFile?: File; // Archivo seleccionado para portada
+    imagenLocalidadesFile?: File; // Archivo seleccionado para localidade
 }

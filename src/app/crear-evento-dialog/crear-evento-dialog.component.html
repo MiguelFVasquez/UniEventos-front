@@ -31,16 +31,32 @@
     <textarea id="descripcion" [(ngModel)]="evento.descripcion"></textarea>
 </div>
 
-<div class="form-row">
-    <div class="form-group">
-    <label for="imagenPortada">Imagen Portada:</label>
-    <input type="text" id="imagenPortada" [(ngModel)]="evento.imagenPortada">
-    </div>
-    <div class="form-group">
-    <label for="imagenLocalidades">Imagen Localidades:</label>
-    <input type="text" id="imagenLocalidades" [(ngModel)]="evento.imagenLocalidades">
-    </div>
+<div class="form-group">
+  <label for="imagenPortada">Imagen Portada:</label>
+  <input 
+    type="file" 
+    id="imagenPortada" 
+    (change)="onFileSelected($event, 'portada')" 
+    accept="image/*">
 </div>
+<div class="form-group">
+  <label for="imagenLocalidades">Imagen Localidades:</label>
+  <input 
+    type="file" 
+    id="imagenLocalidades" 
+    (change)="onFileSelected($event, 'localidades')" 
+    accept="image/*">
+</div>
+<div *ngIf="evento.imagenPortada">
+  <label>Vista previa Imagen Portada:</label>
+  <img [src]="evento.imagenPortada" alt="Imagen Portada" class="preview-image">
+</div>
+
+<div *ngIf="evento.imagenLocalidades">
+  <label>Vista previa Imagen Localidades:</label>
+  <img [src]="evento.imagenLocalidades" alt="Imagen Localidades" class="preview-image">
+</div>
+
 <h3>Localidades</h3>
 <div class="localidades-section">
     <button type="button" (click)="agregarLocalidad()" class="agregar-localidad-btn">Agregar Localidad</button>

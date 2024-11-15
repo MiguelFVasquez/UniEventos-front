@@ -34,27 +34,56 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
       return this.http.get<Evento>(`${this.apiUrl}/${eventId}`).pipe(
         map((data: Evento) => {
           // Asegúrate de que la fecha esté en formato de array
-          if (Array.isArray(data.fecha) && data.fecha.length === 5) {
+          if (Array.isArray(data.fecha) && data.fecha.length >= 6) {
             // Convertir el array de la fecha a un objeto Date
             const fecha = new Date(
               data.fecha[0],       // Año
               data.fecha[1] - 1,   // Mes (ajustamos para que sea 0-11)
               data.fecha[2],       // Día
               data.fecha[3],       // Hora
-              data.fecha[4]        // Minutos
+              data.fecha[4],       // Minutos
+              data.fecha[5]        // Segundos
             );
             return { ...data, fecha: fecha }; // Asigna la fecha transformada
           }
           return data; // Si la fecha no está en el formato esperado, retornamos los datos sin cambios
         })
       );
-    } 
+    }
+    
     //Metodo para crear un nuevo evento
 
-    crearEvento(evento:CrearEvento):Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>(`${this.apiUrl}/save`,evento);
-    }
-
+    crearEventoConArchivos(
+      evento: CrearEvento,
+      imagenPortada: File | null,
+      imagenLocalidades: File | null
+  ): Observable<any> {
+      const formData = new FormData();
+  
+      // Serializa solo los campos del evento, sin incluir imágenes en el JSON.
+      formData.append('evento', new Blob([JSON.stringify({
+          nombre: evento.nombre,
+          descripcion: evento.descripcion,
+          direccion: evento.direccion,
+          ciudad: evento.ciudad,
+          fecha: evento.fecha,
+          tipo: evento.tipo,
+          localidades: evento.localidades,
+      })], { type: 'application/json' }));
+  
+      if (imagenPortada) {
+          formData.append('portada', imagenPortada);
+      }
+      if (imagenLocalidades) {
+          formData.append('localidades', imagenLocalidades);
+      }
+  
+      return this.http.post(`${this.apiUrl}/save`, formData);
+  }
+  
+  
+    
+    
     //Metodo con el que se elimina el evento
     eliminarEvento(id:string): Observable<MensajeDTO>{
       return this.http.delete<MensajeDTO>(`${this.apiUrl}/${id}`);

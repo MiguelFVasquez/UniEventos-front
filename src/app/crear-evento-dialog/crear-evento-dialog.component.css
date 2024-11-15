@@ -77,4 +77,81 @@
     background-color: #dc3545;
     color: white;
   }
+  .preview-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  input[type="text"],
+  input[type="file"],
+  input[type="number"],
+  input[type="date"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input[type="file"] {
+    padding: 6px 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .guardar-btn {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .cancelar-btn {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .agregar-localidad-btn,
+  .eliminar-localidad-btn {
+    background-color: #2196f3;
+    color: #fff;
+  }
+  
+  .preview-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
   
