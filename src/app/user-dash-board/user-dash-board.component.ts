@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SharedService } from '../servicios/shared-service.service';
 
 @Component({
   selector: 'app-user-dash-board',

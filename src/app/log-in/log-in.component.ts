@@ -7,6 +7,8 @@ import { AuthService } from '../servicios/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MiCuentaService } from '../servicios/mi-cuenta.service';
 import { SharedService } from '../servicios/shared-service.service';
+import { TokenService } from '../servicios/token.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -19,67 +21,93 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   passwordVisible: boolean = false;
-
-  constructor(private authService: AuthService,  private snackBar: MatSnackBar,private router: Router,private sharedService: SharedService) {}
+  idCuenta: string='';
+  idCarrito: string= '';
+  constructor(private authService: AuthService,  
+              private snackBar: MatSnackBar,
+              private router: Router,
+              private sharedService: SharedService,
+              private tokenService: TokenService
+  ) {}
 
   // Alternar visibilidad de la contraseña
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
    // Método para mostrar notificaciones personalizadas
-   showNotification(message: string, action: string = 'Cerrar') {
-    this.snackBar.open(message, action, {
-      duration: 3000, // Duración en milisegundos
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: ['custom-snackbar'] // Clase CSS personalizada
-    });
-  }
+public showNotification(message: string, action: string = 'Cerrar') {
+  Swal.fire({
+    title: message,
+    confirmButtonText: action,
+    icon: 'info',
+    position: 'top',
+    timer: 3000, // Duración en milisegundos
+    timerProgressBar: true,
+    showCloseButton: true,
+    toast: true,
+    customClass: {
+      popup: 'custom-swal-popup' // Clase CSS personalizada
+    }
+  });
+}
 
   // Método que se llama cuando se envía el formulario
-  onSubmit() {
-    this.authService.login(this.email, this.password).subscribe({
-      next: (loginResponse) => {
-        const token = loginResponse?.respuesta?.token;
-        if (token) {
-          this.authService.saveToken(token);
-          // Almacena temporalmente la contraseña en el servicio
-          this.sharedService.setPassword(this.password);
-          const email = this.email;
-          if (email) {
-            this.authService.getUserInfo(email).subscribe({
-              next: (userInfo) => {
-                // Verifica el rol usando el email
-                this.authService.verificarRol(email).subscribe({
-                  next: (rolResponse) => {
-                    const rol = rolResponse.respuesta;
-                    if (rol) {
-                      this.authService.redirectToDashboard(rol);
-                    } else {
-                      console.error('Rol no encontrado');
-                    }
-                  },
-                  error: (error) => {
-                    console.error('Error al verificar rol', error);
-                  }
-                });
-              },
-              error: (error) => {
-                console.error('Error al obtener la información del usuario', error);
+onSubmit() {
+  this.authService.login(this.email, this.password).subscribe({
+    next: (loginResponse) => {
+      const token = loginResponse?.respuesta?.token;
+      if (token) {
+        this.tokenService.login(token);
+        this.sharedService.setPassword(this.password);
+        
+        // Almacena temporalmente el email para obtener información adicional
+        const email = this.email;
+        
+        if (email) {
+          // Obtiene información adicional del usuario
+          this.sharedService.setCorreo(email);
+          this.authService.getUserInfo(email).subscribe({
+            next: (userInfo) => {
+              this.idCuenta = userInfo?.idCuenta;
+              this.idCarrito = userInfo?.idCarrito;
+
+              // Almacena los IDs en SharedService
+              this.sharedService.setUserId(this.idCuenta);
+              this.sharedService.setCarritoId(this.idCarrito);
+
+              // Obtiene el rol directamente desde el token
+              const rol = this.tokenService.getRol();
+              if (rol) {
+                this.authService.redirectToDashboard(rol);
+                this.showNotification('Inicio de sesión exitoso', 'Cerrar');
+              } else {
+                this.showNotification('Rol no encontrado en el token', 'Cerrar');
+                console.error('Rol no encontrado en el token');
               }
-            });
-          } else {
-            console.error('No se pudo obtener el email del token.');
-          }
+            },
+            error: (error) => {
+              this.showNotification('Error al obtener la información del usuario', 'Cerrar');
+              console.error('Error al obtener la información del usuario', error);
+            }
+          });
         } else {
-          console.error('Token no encontrado en la respuesta');
+          this.showNotification('No se pudo obtener el email del token.', 'Cerrar');
+          console.error('No se pudo obtener el email del token.');
         }
-      },
-      error: (error) => {
-        console.error('Error al iniciar sesión', error);
+      } else {
+        this.showNotification('Token no encontrado en la respuesta', 'Cerrar');
+        console.error('Token no encontrado en la respuesta');
       }
-    });
-  }
+    },
+    error: (error) => {
+      this.showNotification('Error al iniciar sesión', 'Cerrar');
+      console.error('Error al iniciar sesión', error);
+    }
+  });
+}
+  
+  
+  
   
   
 }

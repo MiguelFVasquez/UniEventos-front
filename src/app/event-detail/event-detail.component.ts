@@ -10,11 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { SharedService } from '../servicios/shared-service.service';
 import { CarritoDTO } from '../models/carritoDTO';
 import { CarritoService } from '../servicios/carrito.service';
+import { UserHeaderComponent } from "../user-header/user-header.component";
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, UserHeaderComponent],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css'
 })

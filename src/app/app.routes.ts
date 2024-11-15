@@ -21,11 +21,14 @@ import { EventCardComponent } from './event-card/event-card.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventDetailAdminComponent } from './event-detail-admin/event-detail-admin.component';
 import { UserEventComponent } from './user-event/user-event.component';
+import { LoginGuard} from './servicios/permiso.service';
+import { RolesGuard } from './servicios/roles.service';
+
 
 
 export const routes: Routes = [
-    { path: 'log-in', component: LoginComponent },
-    { path: 'registro', component: RegistroComponent },
+    { path: 'log-in', component: LoginComponent, canActivate: [LoginGuard] },
+    { path: 'registro', component: RegistroComponent,  canActivate: [LoginGuard] },
     {path: 'validar-codigo', component: ValidarCodigoComponent},
     {path: 'change-password', component: ChangePasswordComponent},
     {path: 'carrito',component: CarritoComponent},
@@ -48,8 +51,9 @@ export const routes: Routes = [
             { path: 'reportes', component: ReporteComponent },
           ]
         }
-      ]
-    },
+      ],
+      canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] }
+     },
 
     {
       path: 'user',
@@ -67,7 +71,8 @@ export const routes: Routes = [
 
           ]
         }
-      ]
+      ],
+      canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] }
     },
     { path: '', redirectTo: '/inicio-principal', pathMatch: 'full' },
     { path: '**', redirectTo: '/inicio-principal' }, 

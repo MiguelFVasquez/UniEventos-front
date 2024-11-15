@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoAdicionalDTO } from '../models/InfoAdicionalDTO';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -35,10 +36,12 @@ export class MiCuentaComponent {
               private sharedService: SharedService,
               private miCuentaService:MiCuentaService,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar,) {}
+              private snackBar: MatSnackBar,
+              private tokenService: TokenService) {}
 
   ngOnInit() {
-    const email = this.authService.getEmailFromToken();
+    const email = this.sharedService.getCorreo();
+    const correo= this.tokenService.getToken()
     if (email) {
       this.cargarDatosUsuario(email);
       // Obtén la contraseña desde el servicio compartido
@@ -97,7 +100,7 @@ export class MiCuentaComponent {
       idCuenta:this.user.idCuenta,
       idCarrito:this.user.idCarrito
     };
-
+    console.log('Correo: ', infoAdicionalDTO.email)
     this.miCuentaService.editarCuenta(infoAdicionalDTO).subscribe({
       next: (response) => {
         this.showNotification(response.message);
@@ -115,7 +118,7 @@ export class MiCuentaComponent {
   
     if (confirmacion) {
       // Si presiona "Sí", elimina el token del localStorage
-      this.authService.saveToken(''); // Elimina el token
+      this.tokenService.logout(); // Elimina el token
   
       // Redirige a la ruta de inicio de sesión
       this.router.navigate(['/inicio-principal']);
