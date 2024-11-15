@@ -7,8 +7,17 @@ export class SharedService {
   private _password: string = '';
   private _userId: string = '';
   private _carritoId: string = '';
-
+  private _correo: string = '';
+  
+  setCorreo(correo:string){
+    this._correo=correo;
+  }
+  getCorreo():string  {
+    return this._correo;
+  }
+  
   // Establecer la contraseña
+
   setPassword(password: string) {
     this._password = password;
   }

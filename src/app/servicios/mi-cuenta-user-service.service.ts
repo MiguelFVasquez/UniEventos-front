@@ -14,14 +14,12 @@ export class MiCuentaUserServiceService {
 
 
   eliminarCuentaUser(email:string):Observable<MessageDTO>{
-    const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-    return this.http.delete<MessageDTO>(`${this.apiUrl}/eliminar-cuenta/${email}`, { headers });
+    return this.http.delete<MessageDTO>(`${this.apiUrl}/eliminar-cuenta/${email}`);
   }
   editarCuentaUser(infoCuenta:InfoAdicionalDTO) :Observable<MessageDTO> {
     const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-    return this.http.put<MessageDTO>(`${this.apiUrl}/editar-cuenta`, infoCuenta, { headers });
+    return this.http.put<MessageDTO>(`${this.apiUrl}/editar-cuenta`, infoCuenta);
   }
 
 

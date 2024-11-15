@@ -21,26 +21,17 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
     
     
     //Metodo con el que obtenemos el total de los eventos activos
-    getEventosActivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {
-      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-      
-      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/activos?page=${pagina}&size=${size}`, { headers });
+    getEventosActivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {  
+      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/activos?page=${pagina}&size=${size}`);
     }
     
     //Metodo con el que obtenemos el total de los eventos inactivos
-    getEventosInactivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {
-      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-      
-      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/inactivos?page=${pagina}&size=${size}`, { headers });
+    getEventosInactivos(pagina: number, size: number):Observable<Page<ItemEventoDTO>> {    
+      return this.http.get<Page<ItemEventoDTO>>(`${this.apiUrl}/inactivos?page=${pagina}&size=${size}`);
     }
 
     getEventoById(eventId: string): Observable<Evento> {
-      const token = this.authService.getToken();
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      
-      return this.http.get<Evento>(`${this.apiUrl}/${eventId}`, { headers }).pipe(
+      return this.http.get<Evento>(`${this.apiUrl}/${eventId}`).pipe(
         map((data: Evento) => {
           // Asegúrate de que la fecha esté en formato de array
           if (Array.isArray(data.fecha) && data.fecha.length === 5) {
@@ -61,44 +52,31 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
     //Metodo para crear un nuevo evento
 
     crearEvento(evento:CrearEvento):Observable<MensajeDTO>{
-      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-      console.log('token: ', token)
-      return this.http.post<MensajeDTO>(`${this.apiUrl}/save`,evento,{headers});
+      return this.http.post<MensajeDTO>(`${this.apiUrl}/save`,evento);
     }
 
     //Metodo con el que se elimina el evento
     eliminarEvento(id:string): Observable<MensajeDTO>{
-      const token = this.authService.getToken(); // Obtener el token del servicio de autenticación
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agregar el token a los encabezados
-      return this.http.delete<MensajeDTO>(`${this.apiUrl}/${id}`,{headers});
+      return this.http.delete<MensajeDTO>(`${this.apiUrl}/${id}`);
     }
 
     //-------------------Reportes PDF----------------------------------
     //Metodo para generar el reporte de un evento dado el id
 
     generarReportePdf(id: string):Observable<Blob>{
-      const token = this.authService.getToken();
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get(`${this.apiUrl}/generar-reporte-pdf/${id}`,{headers, responseType:'blob'}); //Para manejar el pdf como un blob
+      return this.http.get(`${this.apiUrl}/generar-reporte-pdf/${id}`,{responseType:'blob'}); //Para manejar el pdf como un blob
     }
     //
     generarReportePdfInactivos(): Observable<Blob>{
-      const token = this.authService.getToken();
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get(`${this.apiUrl}/generar-reporte-inactivos-pdf`,{headers, responseType:'blob'}); //Para manejar el pdf como un blob
+      return this.http.get(`${this.apiUrl}/generar-reporte-inactivos-pdf`,{responseType:'blob'}); //Para manejar el pdf como un blob
     }
 //--------------------Reportes web--------------------------------
     //Genara el reporte web de un evento en especifico
     generarReporteWeb(eventoId: string):Observable<any>{
-      const token = this.authService.getToken();
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get(`${this.apiUrl}/generar-reporte-web/${eventoId}`,{headers})
+      return this.http.get(`${this.apiUrl}/generar-reporte-web/${eventoId}`)
     }
     //Genera el reporte web de todos los eventos inactivos
     generarReporteWebInactivos(): Observable<any>{
-      const token = this.authService.getToken();
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get(`${this.apiUrl}/generar-reporte-inactivos-web`,{headers})
+      return this.http.get(`${this.apiUrl}/generar-reporte-inactivos-web`)
     }
 }

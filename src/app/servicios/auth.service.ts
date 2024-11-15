@@ -83,7 +83,7 @@ import { Evento } from '../models/evento';
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
       return this.http.get<any>(`${this.apiUrl}/${email}`, { headers }).pipe(
         tap(userInfo => {
-          // Guarda la información del usuario en el almacenamiento local
+         
           localStorage.setItem('user', JSON.stringify(userInfo));
         })
       );
@@ -106,7 +106,7 @@ import { Evento } from '../models/evento';
     if (rol === 'ADMINISTRADOR') {
       this.router.navigate(['/admin/dashboard/events']);
     } else {
-      this.router.navigate(['/user/dashboard/user-mi-cuenta']);
+      this.router.navigate(['/user/dashboard/events']);
     }
   }
 
