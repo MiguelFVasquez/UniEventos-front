@@ -7,6 +7,8 @@ import { EditarCuponDTO} from '../models/editar-cupon-dto';
 import { MessageDTO } from '../models/message.dto';
 import { AuthService } from '../servicios/auth.service'; 
 import { Page } from '../models/Page';
+import { RedimirCuponDTO } from '../models/RedimirCuponDTO';
+import { MensajeDTO } from '../models/mensaje-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,10 @@ export class CuponService {
   actualizarCupon(id: string, cuponDTO: EditarCuponDTO): Observable<MessageDTO> {
     return this.http.put<MessageDTO>(`${this.apiUrl}/${id}`, cuponDTO);
   }
+  redimirCupon(redimirCupon : RedimirCuponDTO){
+    return this.http.post<MensajeDTO>(`${this.apiUrl}/redimir`, redimirCupon);
+  }
+
+  
+
 }

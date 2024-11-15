@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Buffer } from "buffer";
-import { Observable } from 'rxjs';
 
 const TOKEN_KEY = "AuthToken";
 

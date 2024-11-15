@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { MensajeDTO } from '../models/mensaje-dto';
 import { CarritoDTO } from '../models/carritoDTO';
 import { AuthService } from './auth.service';
+import { MessageDTO } from '../models/message.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,10 @@ import { AuthService } from './auth.service';
 
     editarCantidad(carritoDTO: CarritoDTO): Observable<MensajeDTO>{
       return this.http.put<MensajeDTO>(`${this.apiUrl}/editarCantidad`, carritoDTO);
+    }
+
+    obtenerTotalDescuento(idCarrito: string){
+      return this.http.get<MensajeDTO>(`${this.apiUrl}/getTotal/${idCarrito}`);
     }
 
 }

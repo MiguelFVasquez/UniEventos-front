@@ -59,13 +59,14 @@ onSubmit() {
       if (token) {
         this.tokenService.login(token);
         this.sharedService.setPassword(this.password);
-        
+      
         // Almacena temporalmente el email para obtener información adicional
         const email = this.email;
-        
+          
         if (email) {
           // Obtiene información adicional del usuario
           this.sharedService.setCorreo(email);
+          localStorage.setItem('email', email)
           this.authService.getUserInfo(email).subscribe({
             next: (userInfo) => {
               this.idCuenta = userInfo?.idCuenta;
@@ -74,6 +75,9 @@ onSubmit() {
               // Almacena los IDs en SharedService
               this.sharedService.setUserId(this.idCuenta);
               this.sharedService.setCarritoId(this.idCarrito);
+
+              localStorage.setItem('idUser', this.idCuenta);
+              localStorage.setItem('idCarrito', this.idCarrito);
 
               // Obtiene el rol directamente desde el token
               const rol = this.tokenService.getRol();

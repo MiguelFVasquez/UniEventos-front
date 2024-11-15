@@ -7,6 +7,9 @@ import { CarritoEventoComponent } from '../carrito-evento/carrito-evento.compone
 import { SharedService } from '../servicios/shared-service.service';
 import { ItemCarritoDTO } from '../models/item-carritoDTO';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+import { RedimirCuponDTO } from '../models/RedimirCuponDTO';
+import { CuponService } from '../servicios/cupon.service';
 
 @Component({
   selector: 'app-carrito',
@@ -23,25 +26,31 @@ export class CarritoComponent implements OnInit {
   cantidadEventos: number = 0;
   totalCarrito: number= 0;
 
+  cuponRedimido: boolean =false;
   constructor(
     private carritoService: CarritoService,
     private formBuilder: FormBuilder,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private cuponService: CuponService
   ) {
     // Obtener el ID de usuario desde el servicio compartido
     this.idUsuario = this.sharedService.getUserId();
+    this.idUsuario= localStorage.getItem('idUser') || '';
     this.idCarrito= this.sharedService.getCarritoId();
+    this.idCarrito=localStorage.getItem('idCarrito') || '';
     this.crearFormulario();
     this.obtenerTotalCarrito();
   }
 
   ngOnInit(): void {
+    this.crearFormulario();
     this.listarElementosCarrito();
     this.actualizarCantidadEventos();
   }
 
   // Método para listar los elementos del carrito
   public listarElementosCarrito(): void {
+    console.log("Id al listar Elementos: ", this.idUsuario);
     this.carritoService.listarElementos(this.idUsuario).subscribe({
       next: (data) => {
         if (!data.error) {
@@ -80,9 +89,69 @@ export class CarritoComponent implements OnInit {
   // Crea el formulario para aplicar un cupón
   public crearFormulario(): void {
     this.cuponForm = this.formBuilder.group({
-      codigoCupon: ['', [Validators.maxLength(6), Validators.minLength(6)]]
+      codigoCupon: ['', [Validators.maxLength(8), Validators.minLength(4)]]
+    });
+  } 
+
+  redimirCupon(): void {
+    if (this.cuponForm.valid) {
+      const codigoCupon = this.cuponForm.get('codigoCupon')?.value;  // Captura el valor del código de cupón
+  
+      const redimirCuponDTO = {
+        idCuenta: this.idUsuario,
+        codigoCupon,
+        total: this.totalCarrito
+      };
+  
+      this.cuponService.redimirCupon(redimirCuponDTO).subscribe({
+        next: (response) => {
+          if (response.error) {
+            this.showNotification('Error al redimir el cupón: ' + response.respuesta);
+          } else {
+            // Actualiza el total del carrito con el descuento aplicado
+            this.totalCarrito = response.respuesta;
+            this.showNotification('Cupón redimido con éxito. Nuevo total: $' + this.totalCarrito);
+            this.cuponRedimido = true;
+          }
+        },
+        error: (err) => {
+          console.error('Error al redimir el cupón:', err);
+          this.showNotification('Ocurrió un problema al procesar tu solicitud.');
+        },
+      });
+    } else {
+      this.showNotification('Por favor, ingresa un valor de cupón válido.');
+    }
+  }
+  
+  
+  
+  finalizarCompra() {
+    // Lógica para finalizar la compra
+    console.log('Compra finalizada');
+  }
+  obtenerTotalDescuento(){
+    this.carritoService.obtenerTotalDescuento(this.idCarrito).subscribe({
+      next: (data) => { 
+        this.totalCarrito= data.respuesta;
+      }
     });
   }
-
+  public showNotification(message: string, action: string = 'Cerrar') {
+    Swal.fire({
+      title: message,
+      confirmButtonText: action,
+      icon: 'info',
+      position: 'top',
+      timer: 3000, // Duración en milisegundos
+      timerProgressBar: true,
+      showCloseButton: true,
+      toast: true,
+      customClass: {
+        popup: 'custom-swal-popup' // Clase CSS personalizada
+      }
+    });
+  }
+  
   
 }

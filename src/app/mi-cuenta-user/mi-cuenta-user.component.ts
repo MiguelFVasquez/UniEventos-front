@@ -40,7 +40,7 @@ export class MiCuentaUserComponent {
 
 
   ngOnInit() {
-    const email = this.sharedService.getCorreo();
+    const email = localStorage.getItem('email') || '';
     if (email) {
       this.cargarDatosUsuario(email);
       // Obtén la contraseña desde el servicio compartido
@@ -62,6 +62,7 @@ export class MiCuentaUserComponent {
         this.user.direccion = info.direccion;
         this.user.email = info.email;
         this.user.idCuenta=info.idCuenta;
+        this.user.idCarrito=info.idCarrito;
         this.user.idCarrito=info.idCarrito;
         this.sharedService.setUserId(info.idCuenta);
         this.sharedService.setCarritoId(info.idCarrito);
