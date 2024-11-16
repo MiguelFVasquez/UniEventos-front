@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
   export class CarritoService {
-    private apiUrl = 'https://unieventos-fuk1.onrender.com/carrito'; 
+    private apiUrl = 'https://unieventos-fuk1.onrender.com/api/carrito'; 
 
     constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
     }
