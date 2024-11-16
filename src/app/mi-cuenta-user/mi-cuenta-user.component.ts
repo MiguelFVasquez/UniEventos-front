@@ -169,6 +169,11 @@ export class MiCuentaUserComponent {
       });
     }
   }
+
+  obtenerHistorial(){
+    this.router.navigate(['/user/dashboard/user-historial']);
+  }
+
   showNotification(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,

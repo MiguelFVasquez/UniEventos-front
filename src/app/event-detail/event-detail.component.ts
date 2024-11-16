@@ -39,7 +39,6 @@ export class EventDetailComponent implements OnInit{
   idCuenta: string='';
 
   constructor(  private route: ActivatedRoute,
-    private eventoService: EventoService,
     private router: Router,
     private authService: AuthService,
     private sharedService: SharedService,
@@ -61,13 +60,16 @@ export class EventDetailComponent implements OnInit{
     this.idCarrito= this.sharedService.getCarritoId();
     this.idCuenta= this.sharedService.getUserId();
   }
-  obtenerEvento(id: string): void { 
+  obtenerEvento(id: string): void {
     this.authService.getEventoById(id).subscribe(
       (data: Evento) => {
-        // Convierte la fecha al tipo Date para asegurar la visualización correcta
         this.evento = {
           ...data,
-          fecha: new Date(data.fecha) // Asegura que la fecha se convierta a un objeto Date
+          fecha: new Date(data.fecha),
+          localidades: data.localidades.map(localidad => ({
+            ...localidad,
+            capacidadDisponible: localidad.capacidadMaxima - localidad.entradasVendidas
+          }))
         };
       },
       (error) => {
@@ -75,6 +77,7 @@ export class EventDetailComponent implements OnInit{
       }
     );
   }
+  
 
   agregarAlCarrito(eventId: string, cantidad: number, nombreLocalidad: string) {
     const carritoDTO: CarritoDTO = {

@@ -1,0 +1,16 @@
+<div class="historial-card">
+    <div class="card-image">
+      <img [src]="item?.urlImagenEvento1" alt="Imagen del evento">
+    </div>
+    <div class="card-content">
+      <h3>{{ item?.nombresEvento1 }}</h3>
+      <p>{{ item?.localidadEvento1 }}</p>
+      <p>{{ item?.cantidadEvento1 }} entradas</p>
+      <p *ngIf="isValidDate(item?.fecha1)">
+        {{ item?.fecha1 | date: 'dd/MM/yyyy HH:mm' }}
+      </p>
+      <p *ngIf="!isValidDate(item?.fecha1)">Fecha inválida</p>
+      <p>Total: {{ item?.total | number: '1.2-2' }} </p>
+    </div>
+  </div>
+  

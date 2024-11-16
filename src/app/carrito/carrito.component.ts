@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { RedimirCuponDTO } from '../models/RedimirCuponDTO';
 import { CuponService } from '../servicios/cupon.service';
+import { OrdenService } from '../servicios/orden.service';
 
 @Component({
   selector: 'app-carrito',
@@ -31,7 +32,8 @@ export class CarritoComponent implements OnInit {
     private carritoService: CarritoService,
     private formBuilder: FormBuilder,
     private sharedService: SharedService,
-    private cuponService: CuponService
+    private cuponService: CuponService,
+    private ordenService: OrdenService
   ) {
     // Obtener el ID de usuario desde el servicio compartido
     this.idUsuario = this.sharedService.getUserId();
@@ -46,6 +48,9 @@ export class CarritoComponent implements OnInit {
     this.crearFormulario();
     this.listarElementosCarrito();
     this.actualizarCantidadEventos();
+    if (this.cuponRedimido) {
+      this.obtenerTotalDescuento();
+    }
   }
 
   // Método para listar los elementos del carrito
@@ -125,11 +130,32 @@ export class CarritoComponent implements OnInit {
   }
   
   
-  
+    
   finalizarCompra() {
-    // Lógica para finalizar la compra
-    console.log('Compra finalizada');
+    this.ordenService.realizarPago(this.idUsuario).subscribe({
+      next: (data) => {
+        if (data.error === false) {
+          // Si el pago es exitoso, mostramos una notificación y redirigimos al usuario a la URL proporcionada
+          this.showNotification('¡Compra finalizada con éxito!', 'Aceptar');
+          this.redirigirAUrl(data.respuesta); // Redirigir a la URL recibida
+        } else {
+          // Si hay algún error, mostramos el mensaje de error
+          this.showNotification('Hubo un error al finalizar la compra: ' + data.respuesta, 'Cerrar');
+        }
+      },
+      error: (err) => {
+        console.error('Error en el servicio de pago:', err);
+        this.showNotification('Ocurrió un problema al procesar tu solicitud. Por favor, inténtalo nuevamente.', 'Cerrar');
+      },
+    });
   }
+  redirigirAUrl(url: string): void {
+    // Abre la URL en una nueva pestaña
+    window.open(url, '_blank');
+  }
+  
+  
+  
   obtenerTotalDescuento(){
     this.carritoService.obtenerTotalDescuento(this.idCarrito).subscribe({
       next: (data) => { 

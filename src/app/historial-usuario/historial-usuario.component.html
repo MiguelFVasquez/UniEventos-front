@@ -1,0 +1,19 @@
+<div class="historial-container">
+  <h2>Historial de Compras</h2>
+
+  <!-- Mensaje si no hay historial -->
+  <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
+
+  <!-- Lista de tarjetas de historial -->
+  <div *ngIf="tieneHistorial">
+    <app-historial-card 
+      *ngFor="let item of historial" 
+      [item]="item">
+    </app-historial-card>
+  </div>
+
+  <!-- Si no hay historial, mostramos este mensaje -->
+  <ng-container *ngIf="!tieneHistorial">
+    <p>No has realizado ninguna compra.</p>
+  </ng-container>
+</div>

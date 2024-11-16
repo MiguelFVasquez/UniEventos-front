@@ -23,6 +23,7 @@ import { EventDetailAdminComponent } from './event-detail-admin/event-detail-adm
 import { UserEventComponent } from './user-event/user-event.component';
 import { LoginGuard} from './servicios/permiso.service';
 import { RolesGuard } from './servicios/roles.service';
+import { HistorialUsuarioComponent } from './historial-usuario/historial-usuario.component';
 
 
 
@@ -67,8 +68,8 @@ export const routes: Routes = [
             {path: 'carrito', component: CarritoComponent},
             {path: 'events', component: UserEventComponent}, //ruta para mostrar los eventos una vez se ha logeado
             {path:'events/detail/:id', component:EventDetailComponent},
-            {path: 'change-password', component: ChangePasswordComponent}
-
+            {path: 'change-password', component: ChangePasswordComponent},
+            {path: 'user-historial', component:HistorialUsuarioComponent}
           ]
         }
       ],

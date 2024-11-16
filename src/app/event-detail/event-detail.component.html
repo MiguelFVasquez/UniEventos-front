@@ -36,7 +36,8 @@
             <tr>
               <th>Ubicación</th>
               <th>Precio</th>
-              <th>Aforo</th>
+              <th>Capacidad Maxima</th>
+              <th>Capacidad disponible</th>
               <th>Cantidad</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@
               <td>{{ localidad.nombre }}</td>
               <td>{{ localidad.precio | currency:'COP' }}</td>
               <td>{{ localidad.capacidadMaxima }}</td>
+              <td>{{ localidad.capacidadMaxima - localidad.entradasVendidas  }}</td>
               <td class="quantity-cell">
                 <input
                   type="number"
@@ -53,7 +55,10 @@
                   [(ngModel)]="localidad.cantidadSeleccionada"
                   class="quantity-selector"
                 />
-                <button class="add-button" (click)="agregarAlCarrito(evento.id, localidad.cantidadSeleccionada, localidad.nombre)">
+                <button 
+                  [disabled]="localidad.capacidadMaxima - localidad.entradasVendidas === 0" 
+                  class="add-button"
+                 (click)="agregarAlCarrito(evento.id, localidad.cantidadSeleccionada, localidad.nombre)">
                   <i class="fas fa-plus"></i>
                 </button>
               </td>

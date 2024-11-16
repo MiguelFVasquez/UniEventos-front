@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
 import { MensajeDTO } from '../models/mensaje-dto';
 import { CarritoDTO } from '../models/carritoDTO';
 import { AuthService } from './auth.service';
-import { MessageDTO } from '../models/message.dto';
 
 @Injectable({
   providedIn: 'root'

@@ -40,7 +40,7 @@ export class MiCuentaComponent {
               private tokenService: TokenService) {}
 
   ngOnInit() {
-    const email = this.sharedService.getCorreo();
+    const email = localStorage.getItem('email') || '';
     const correo= this.tokenService.getToken()
     if (email) {
       this.cargarDatosUsuario(email);
