@@ -79,8 +79,39 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
       }
   
       return this.http.post(`${this.apiUrl}/save`, formData);
-  }
-  
+    }
+
+    updateEvento(
+      id: string,
+      evento: CrearEvento, // Asegúrate de que CrearEvento tenga los campos correctos para tu modelo
+      imagenPortada: File | null,
+      imagenLocalidades: File | null
+    ): Observable<any> {
+      const formData = new FormData();
+      
+      // Serializa solo los campos del evento (sin imágenes) para incluirlos en FormData
+      formData.append('evento', new Blob([JSON.stringify({
+        nombre: evento.nombre,
+        descripcion: evento.descripcion,
+        direccion: evento.direccion,
+        ciudad: evento.ciudad,
+        fecha: evento.fecha,
+        tipo: evento.tipo,
+        localidades: evento.localidades, // Asegúrate de enviar las localidades si es necesario
+      })], { type: 'application/json' }));
+      
+      // Añadimos las imágenes si están disponibles
+      if (imagenPortada) {
+        formData.append('portada', imagenPortada);  // Agrega la portada como un archivo
+      }
+      if (imagenLocalidades) {
+        formData.append('localidades', imagenLocalidades);  // Agrega las localidades como un archivo
+      }
+      
+      // Hacemos la solicitud PUT al backend
+      return this.http.put(`${this.apiUrl}/update/${id}`, formData);
+    }
+    
   
     
     

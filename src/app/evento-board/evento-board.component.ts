@@ -73,6 +73,7 @@ export class EventoBoardComponent {
     // Método para manejar el clic en un evento
   // Método que navega a la página de detalles del evento
   onEventCardClick(eventId: string) {
+    localStorage.setItem('selectedEventId', eventId);
     this.router.navigate([`/admin/dashboard/events/detail/${eventId}`]);
   }
 

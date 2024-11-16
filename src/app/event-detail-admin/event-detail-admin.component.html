@@ -75,10 +75,11 @@
     <!-- Botones de Acción (solo visibles si evento está activo) -->
     <div class="action-buttons" *ngIf="evento.estado === 'ACTIVO'">
       <!-- Botón Actualizar -->
-      <button class="action-btn" (click)="actualizarEvento()">
+      <button class="action-btn" (click)="abrirDialogEditarEvento(evento)">
         <i class="fa fa-edit"></i>
         <span class="tooltip-text">Actualizar</span>
       </button>
+      
       
       <!-- Botón Eliminar -->
       <button class="action-btn delete" (click)="eliminarEvento()">

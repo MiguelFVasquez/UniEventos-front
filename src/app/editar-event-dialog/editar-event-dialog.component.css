@@ -1,0 +1,157 @@
+.crear-evento-dialog {
+    width: 95%; /* Ocupa el 95% del ancho de la pantalla */
+    max-width: 1200px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    overflow-y: auto;
+    max-height: 90vh; /* Limita la altura del diálogo y agrega scroll si es necesario */
+  }
+  
+  .form-group, .localidad-group {
+    margin-bottom: 20px;
+    
+  }
+  
+  textarea, input[type="text"], input[type="date"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .localidad-group {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .form-row .form-group {
+    flex: 1 1 45%;
+  }
+  
+  .localidades-container {
+    margin-top: 25px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  button.guardar-btn, button.cancelar-btn, button.agregar-localidad-btn, button.eliminar-localidad-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button.guardar-btn, button.agregar-localidad-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button.cancelar-btn, button.eliminar-localidad-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  .preview-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  input[type="text"],
+  input[type="file"],
+  input[type="number"],
+  input[type="date"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input[type="file"] {
+    padding: 6px 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .guardar-btn {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .cancelar-btn {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .agregar-localidad-btn,
+  .eliminar-localidad-btn {
+    background-color: #2196f3;
+    color: #fff;
+  }
+  
+  .preview-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

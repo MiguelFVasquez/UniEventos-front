@@ -6,6 +6,9 @@ import { EventoService } from '../servicios/evento-service.service';
 import { MensajeDTO } from '../models/mensaje-dto';
 import { saveAs } from 'file-saver';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { CrearEventoDialogComponent } from '../crear-evento-dialog/crear-evento-dialog.component';
+import { EditarEventDialogComponent } from '../editar-event-dialog/editar-event-dialog.component';
 @Component({
   selector: 'app-event-detail-admin',
   standalone: true,
@@ -33,7 +36,8 @@ export class EventDetailAdminComponent implements OnInit {
     private route: ActivatedRoute,
     private eventoService: EventoService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
   ) {}
   
   ngOnInit(): void {
@@ -45,20 +49,24 @@ export class EventDetailAdminComponent implements OnInit {
       console.error('ID del evento no encontrado en la ruta');
     }
   }
+  
 
   obtenerEvento(id: string): void {
     this.eventoService.getEventoById(id).subscribe(
       (data: Evento) => {
-        // Convierte la fecha al tipo Date para asegurar la visualización correcta
         this.evento = {
           ...data,
-          fecha: new Date(data.fecha) // convierte la fecha recibida a un objeto Date
+          fecha: this.parseFecha(data.fecha) // Usa una función para manejar fechas
         };
       },
       (error) => {
         console.error('Error al obtener el evento:', error);
       }
     );
+  }
+  parseFecha(fecha: any): Date {
+    const parsedDate = new Date(fecha);
+    return isNaN(parsedDate.getTime()) ? new Date() : parsedDate; // Retorna la fecha actual si es inválida
   }
 
   eliminarEvento(): void {
@@ -86,8 +94,51 @@ export class EventDetailAdminComponent implements OnInit {
       console.error('No se ha encontrado un ID válido para eliminar el evento');
     }
   }
+
+  actualizarEvento(eventoActualizado: any): void {
+    const formData = new FormData();
   
-  actualizarEvento(){}
+    // Agregar el objeto evento como JSON dentro de FormData
+    formData.append('evento', new Blob([JSON.stringify(eventoActualizado)], { type: 'application/json' }));
+  
+    // Agregar los archivos (si existen)
+    const imagenPortadaFile = eventoActualizado.imagenPortadaFile || null;
+    const imagenLocalidadesFile = eventoActualizado.imagenLocalidadesFile || null;
+  
+    // Llamada al servicio para actualizar el evento
+    this.eventoService.updateEvento(
+      this.evento.id,      // ID del evento
+      eventoActualizado,   // Los datos del evento
+      imagenPortadaFile,   // Imagen de portada (si existe)
+      imagenLocalidadesFile // Imagen de localidades (si existe)
+    ).subscribe({
+      next: (response) => {
+        this.showNotification(response.respuesta);
+        this.obtenerEvento(this.evento.id); // Refresca los datos del evento
+      },
+      error: (error) => {
+        console.error('Error al actualizar el evento:', error);
+        alert('Hubo un problema al actualizar el evento. Por favor, intente nuevamente.');
+      }
+    });
+  }
+  
+  
+
+  abrirDialogEditarEvento(evento: any): void {
+    const dialogRef = this.dialog.open(EditarEventDialogComponent, {
+      data: { evento }, // Pasamos el evento actual como data
+      width: '600px' // Ajusta el tamaño según lo necesario
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.actualizarEvento(result); // Actualizamos el evento con los nuevos datos
+      }
+    });
+  }
+  
+  
 
   generarReporteWeb(){
     const eventoId = this.evento.id; // Obtén el ID del evento que quieres generar
