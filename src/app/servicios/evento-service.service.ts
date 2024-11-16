@@ -15,7 +15,7 @@ import { ItemEventoDTO } from '../models/item-evento-dto';
   providedIn: 'root'
 })
   export class EventoService {
-    private apiUrl = 'http://localhost:8080/api/evento'; 
+    private apiUrl = 'https://unieventos-fuk1.onrender.com/api/evento'; 
 
     constructor(private http: HttpClient, private router: Router,private authService: AuthService) {}
     

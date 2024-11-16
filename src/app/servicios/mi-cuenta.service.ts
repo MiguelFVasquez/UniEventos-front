@@ -10,7 +10,7 @@ import { InfoAdicionalDTO } from '../models/InfoAdicionalDTO';
   providedIn: 'root'
 })
 export class MiCuentaService {
-  private apiUrl= 'http://localhost:8080/api/cuenta'; //url para el controller del admin
+  private apiUrl= 'https://unieventos-fuk1.onrender.com/api/cuenta'; //url para el controller del admin
   constructor(private http: HttpClient, private authService: AuthService,private router: Router) { }
 
   //----------------------METODOS PARA EL MANEJO DE LA CUENTA DEL ADMIN-------------------------

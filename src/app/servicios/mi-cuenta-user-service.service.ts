@@ -9,7 +9,7 @@ import { InfoAdicionalDTO } from '../models/InfoAdicionalDTO';
   providedIn: 'root'
 })
 export class MiCuentaUserServiceService {
-  private apiUrl= 'http://localhost:8080/api/cuenta/user'; //url para el controller del user
+  private apiUrl= 'https://unieventos-fuk1.onrender.com/api/cuenta/user'; //url para el controller del user
   constructor(private http: HttpClient, private authService: AuthService,private router: Router) { }
 
 

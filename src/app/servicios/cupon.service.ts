@@ -14,7 +14,7 @@ import { MensajeDTO } from '../models/mensaje-dto';
   providedIn: 'root'
 })
 export class CuponService {
-  private apiUrl = 'http://localhost:8080/api/cupon'; // URL del backend
+  private apiUrl = 'https://unieventos-fuk1.onrender.com/api/cupon'; // URL del backend
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

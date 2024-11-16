@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class OrdenService {
-  private apiUrl = 'http://localhost:8080/api/orden'; 
+  private apiUrl = 'https://unieventos-fuk1.onrender.com/api/orden'; 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
 

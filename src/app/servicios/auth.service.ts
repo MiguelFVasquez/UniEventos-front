@@ -17,7 +17,7 @@ import { Evento } from '../models/evento';
   providedIn: 'root'
 })
   export class AuthService {
-    private apiUrl = 'http://localhost:8080/api/public'; 
+    private apiUrl = 'https://unieventos-fuk1.onrender.com/api/public'; 
 
     constructor(private http: HttpClient, private router: Router) {}
 
